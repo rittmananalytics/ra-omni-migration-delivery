@@ -260,37 +260,36 @@ Do not use `--dangerously-skip-permissions` against live instances. Use `acceptE
 
 Trim or extend from the first run's transcript; a denied call shows up in the turn output and tells you what to add.
 
-### Driver skeleton
+### The driver
 
-This repo ships the driver as `harness/run_test.sh` with the Part B turn texts in `harness/turns/turn1.txt` ... `harness/turns/turn5.txt`. Fill `<MODEL_ID>` in `harness/turns/turn1.txt` first, then run `bash harness/run_test.sh` from the repo root. The skeleton, for reference:
+This repo ships the driver as `harness/run_test.sh` with the Part B turn texts in `harness/turns/turn1.txt` ... `harness/turns/turn5.txt`. Fill `<MODEL_ID>` in `harness/turns/turn1.txt` (the script refuses to start while the placeholder is present), then from the repo root:
 
 ```bash
-#!/usr/bin/env bash
-set -euo pipefail
-LOG=harness_run.log
-
-run_turn() {  # run_turn <file> <expect-regex> <max-retries-of-status-poll>
-  local file="$1" expect="$2"
-  echo "=== $(date -u +%FT%TZ) turn: $file ===" | tee -a "$LOG"
-  claude -p -c --permission-mode acceptEdits "$(cat "$file")" | tee -a "$LOG" > last_turn.txt
-  if ! grep -qiE "$expect" last_turn.txt; then
-    echo "GATE NOT REACHED after $file (expected /$expect/). Stopping for a human." | tee -a "$LOG"
-    exit 1
-  fi
-}
-
-# Turn 1 starts the conversation (no -c)
-echo "=== $(date -u +%FT%TZ) turn: harness/turns/turn1.txt ===" | tee -a "$LOG"
-claude -p --permission-mode acceptEdits "$(cat harness/turns/turn1.txt)" | tee -a "$LOG" > last_turn.txt
-grep -qiE "parked|migration plan" last_turn.txt || { echo "Turn 1 did not reach the plan. Stopping."; exit 1; }
-
-run_turn harness/turns/turn2.txt "target setup|model batch|branch"
-run_turn harness/turns/turn3.txt "needs_human|batch .* (ready|complete|validated)"
-run_turn harness/turns/turn4.txt "equivalency|parity"
-run_turn harness/turns/turn5.txt "PASS|ACCEPTED|not PASS"
-
-echo "Turns 1-5 complete. CUTOVER IS MANUAL: review the equivalency report, then run turn 6 yourself in an interactive session." | tee -a "$LOG"
+bash harness/run_test.sh
 ```
+
+Behaviour:
+
+- Sends turn 1 with `claude -p`, then turns 2 to 5 with `claude -p -c` so they continue the same conversation.
+- Streams the working detail live by default (`--verbose`): tool calls, command output, and each response as the orchestrator works. `QUIET=1 bash harness/run_test.sh` prints only each turn's final response.
+- Everything is also appended to `harness_run.log`.
+- After each turn it checks the output against a gate regex and stops for a human if the gate is not reached.
+
+### Watching the run
+
+Terminal 1 runs the driver and is the live transcript. Terminal 2 watches Wire's own record update, which is the Wire-side view of the same work:
+
+```bash
+watch -n 10 "cat .wire/releases/*/execution_log.md 2>/dev/null | tail -20"
+```
+
+To inspect the conversation properly at any pause (a gate stop, or after the run), open the same conversation in the normal Claude Code UI:
+
+```bash
+claude -c
+```
+
+That resumes the harness's conversation interactively with full rendering: scroll the transcript, ask questions, or give a ruling the canned turns did not cover. Exit, then continue the harness from the next turn file, e.g. `claude -p -c --verbose "$(cat harness/turns/turn3.txt)"`.
 
 Notes:
 
