@@ -30,18 +30,20 @@ gate() {  # gate <turn-number> <expect-regex>
   fi
 }
 
-declare -A EXPECT=(
-  [1]="parked|migration plan"
-  [2]="target setup|model batch|branch"
-  [3]="needs_human|batch .* (ready|complete|validated)"
-  [4]="equivalency|parity"
-  [5]="PASS|ACCEPTED|not PASS"
-)
+expect_for() {  # gate regex per turn (plain case: macOS ships bash 3.2, no declare -A)
+  case "$1" in
+    1) echo "parked|migration plan" ;;
+    2) echo "target setup|model batch|branch" ;;
+    3) echo "needs_human|batch .* (ready|complete|validated)" ;;
+    4) echo "equivalency|parity" ;;
+    5) echo "PASS|ACCEPTED|not PASS" ;;
+  esac
+}
 
 for n in 1 2 3 4 5; do
   [ "$n" -lt "$START_AT" ] && continue
   if [ "$n" = "1" ]; then send 1 ""; else send "$n" "-c"; fi
-  gate "$n" "${EXPECT[$n]}"
+  gate "$n" "$(expect_for "$n")"
 done
 
 echo "Turns ${START_AT}-5 complete. CUTOVER IS MANUAL: review the equivalency report, then give the turn 6 ruling yourself in an interactive session (claude -c)." | tee -a "$LOG"
