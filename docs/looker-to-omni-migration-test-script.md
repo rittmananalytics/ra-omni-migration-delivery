@@ -36,6 +36,8 @@ git ls-remote https://github.com/rittmananalytics/ra_data_warehouse_lookml
 git ls-remote https://github.com/rittmananalytics/ra-data-warehouse-omni-target
 ```
 
+**Pass**: each command prints lines of `<sha>  <ref>` pairs. Content does not matter — the LookML repo will list `master` plus many `dev-*` branches (Looker's per-developer and marketplace-automation branches; normal, and irrelevant to the migration, which snapshots the default branch), and the Omni target repo may show only `main`. **Fail**: no refs, and an error such as `fatal: could not read Username`, `remote: Repository not found`, or a 403 — fix your git credentials before turn 1.
+
 (A manual local checkout via `bi_migration.lookml_repo_path` exists as a fallback for repos Wire cannot clone; it is not needed here.)
 
 ### 2. Install the Wire preview plugin
