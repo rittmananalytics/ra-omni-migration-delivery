@@ -1,0 +1,23 @@
+I want to migrate part of our Looker estate to Omni. Set up the engagement and drive it;
+I am the release director, park anything that needs a ruling.
+
+Source: the Looker instance at https://rittman.eu.looker.com, LookML in
+https://github.com/rittmananalytics/ra_data_warehouse_lookml (local checkout ./lookml),
+model analytics.model.lkml.
+
+Target: the Omni instance at https://rittmananalytics.omniapp.co, model id <MODEL_ID>.
+The git-connected Omni model repo is
+https://github.com/rittmananalytics/ra-data-warehouse-omni-target.
+
+Scope ruling: migrate only what these three dashboards need, including the dashboards
+themselves:
+- Business Summary, https://rittman.eu.looker.com/dashboards/267
+- Engagement RAG Status 2026, https://rittman.eu.looker.com/dashboards/416
+- Web Performance and Marketing Attribution, https://rittman.eu.looker.com/dashboards/255
+That means every explore, view and other LookML object they reference from the analytics
+model, plus the views those explores join. Everything else in the Looker estate is the
+drop list, no exceptions. Tier 1 is these three dashboards; parity scope is all their
+tiles; parallel run 14 days.
+
+Register both repos as migration sources, refresh them, run the Looker audit, and bring
+me the migration plan with the parked decisions.

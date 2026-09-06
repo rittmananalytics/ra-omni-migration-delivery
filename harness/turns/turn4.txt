@@ -1,0 +1,2 @@
+Model batches approved. Build the three dashboards as Omni documents on the branch, then
+run tile parity against a pinned as-of and bring me the equivalency report.

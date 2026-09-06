@@ -1,0 +1,2 @@
+Approved. Continue to the next batch. Show me each batch's needs_human items with your
+proposed resolution before you apply them.

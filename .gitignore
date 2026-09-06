@@ -1,0 +1,5 @@
+# LookML checkout lives in its own repo; snapshotted by migration-source-register, never committed here
+lookml/
+# Harness run artifacts
+harness_run.log
+last_turn.txt

@@ -1,0 +1,2 @@
+Walk me through every tile that is not PASS, with your proposed fix or an
+accepted-difference justification. Do not mark anything ACCEPTED_DIFFERENCE without my ruling.

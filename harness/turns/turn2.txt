@@ -1,0 +1,7 @@
+Rulings:
+- Drop list: confirmed, drop everything not needed by the three dashboards.
+- PDTs: rebuild as Omni query views unless the plan proposes a dbt model; park any you are unsure about.
+- View naming: keep LookML view names (the converter default).
+- Groups and user attributes: carry only what the three dashboards' access needs.
+- Parallel run: 14 days. Parity: every tile on all three dashboards.
+Approve the plan. Continue: target setup, then the model batches. Stop at the first decision.

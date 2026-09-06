@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git clone:*)",
+      "Bash(git -C lookml:*)",
+      "Bash(git ls-remote:*)",
+      "Bash(omni:*)",
+      "Bash(python3:*)",
+      "Bash(date:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)"
+    ]
+  }
+}
