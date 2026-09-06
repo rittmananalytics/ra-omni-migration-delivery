@@ -269,15 +269,16 @@ Trim or extend from the first run's transcript; a denied call shows up in the tu
 This repo ships the driver as `harness/run_test.sh` with the Part B turn texts in `harness/turns/turn1.txt` ... `harness/turns/turn5.txt`. Fill `<MODEL_ID>` in `harness/turns/turn1.txt` (the script refuses to start while the placeholder is present), then from the repo root:
 
 ```bash
-bash harness/run_test.sh
+bash harness/run_test.sh        # full run from turn 1
+bash harness/run_test.sh 3      # resume from turn 3, continuing the same conversation
 ```
 
 Behaviour:
 
-- Sends turn 1 with `claude -p`, then turns 2 to 5 with `claude -p -c` so they continue the same conversation.
-- Streams the working detail live by default (`--verbose`): tool calls, command output, and each response as the orchestrator works. `QUIET=1 bash harness/run_test.sh` prints only each turn's final response.
+- Sends turn 1 with `claude -p`, then later turns with `claude -p -c` so they continue the same conversation.
+- Streams live as the orchestrator works: `claude`'s `stream-json` output is rendered readable by `harness/format_stream.py`, so you see each tool call (`> Bash: ...`), each tool result (`< ...`), the response text, and per-turn duration and cost. Expect minutes of tool activity on turn 1 (engagement setup, both source snapshots, the audit) before its final response.
 - Everything is also appended to `harness_run.log`.
-- After each turn it checks the output against a gate regex and stops for a human if the gate is not reached.
+- After each turn it checks the final response against a gate regex and stops for a human if the gate is not reached; fix or rule interactively (`claude -c`), then resume with `bash harness/run_test.sh <next-turn>`.
 
 ### Watching the run
 
