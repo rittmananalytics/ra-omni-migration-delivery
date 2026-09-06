@@ -2,8 +2,7 @@ I want to migrate part of our Looker estate to Omni. Set up the engagement and d
 I am the release director, park anything that needs a ruling.
 
 Source: the Looker instance at https://rittman.eu.looker.com, LookML in
-https://github.com/rittmananalytics/ra_data_warehouse_lookml (local checkout ./lookml),
-model analytics.model.lkml.
+https://github.com/rittmananalytics/ra_data_warehouse_lookml, model analytics.model.lkml.
 
 Target: the Omni instance at https://rittmananalytics.omniapp.co, model id <MODEL_ID>.
 The git-connected Omni model repo is

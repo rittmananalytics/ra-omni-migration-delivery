@@ -13,7 +13,7 @@ Engagement workspace for migrating three dashboards (Business Summary, Engagemen
 
 ## Quick start
 
-1. Work through Part A of `docs/looker-to-omni-migration-test-script.md` (plugins, Looker API key, Omni CLI and token, model id). Clone the LookML project into `./lookml` (gitignored).
+1. Work through Part A of `docs/looker-to-omni-migration-test-script.md` (plugins, Looker API key, Omni CLI and token, model id). No manual repo cloning: Wire snapshots the LookML and Omni target repos itself when turn 1 registers them as migration sources.
 2. Interactive test: open Claude Code in this directory and type the Part B turns, starting with the turn 1 directive. No `/wire:` command is needed to begin; the directive is the entry point.
 3. Automated test: fill `<MODEL_ID>` in `harness/turns/turn1.txt`, then `bash harness/run_test.sh`. Review `harness_run.log` and the `.wire/` record against Part C's assertions.
 4. Cutover (turn 6) is always given by a person, interactively, after reviewing the equivalency report.

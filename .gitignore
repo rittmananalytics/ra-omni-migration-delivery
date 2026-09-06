@@ -1,4 +1,7 @@
-# LookML checkout lives in its own repo; snapshotted by migration-source-register, never committed here
+# Source snapshots are cloned by /wire:migration-source-refresh and reproducible
+# from the recorded last_commit; the rest of .wire/ is the engagement record and is committed.
+.wire/releases/*/migration/source_snapshot/
+# Fallback local LookML checkout, if ever used (bi_migration.lookml_repo_path)
 lookml/
 # Harness run artifacts
 harness_run.log

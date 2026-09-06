@@ -20,15 +20,23 @@ Do these once, before opening Claude Code. Steps 4 and 5 need admin access to th
 
 ### 1. Engagement workspace and repos
 
-**This repository (`rittmananalytics/ra-omni-migration-delivery`) is the engagement workspace.** Wire creates its `.wire/` state here, and this is the directory you run Claude Code from. Clone it, then clone the LookML project inside it:
+**This repository (`rittmananalytics/ra-omni-migration-delivery`) is the engagement workspace.** Wire creates its `.wire/` state here, and this is the directory you run Claude Code from:
 
 ```bash
 git clone https://github.com/rittmananalytics/ra-omni-migration-delivery
 cd ra-omni-migration-delivery
-git clone https://github.com/rittmananalytics/ra_data_warehouse_lookml lookml
 ```
 
-`./lookml` is the default `lookml_repo_path` the engagement setup expects; it is gitignored here so the LookML repo stays its own repo. You do not need to clone `ra-data-warehouse-omni-target` by hand: `/wire:migration-source-register` snapshots it into `.wire/releases/<release>/migration/source_snapshot/` itself, but your git credentials must be able to clone both repos from this machine (test with `git ls-remote https://github.com/rittmananalytics/ra-data-warehouse-omni-target`).
+You do not clone the LookML repo or the Omni target repo by hand. Turn 1 registers both as migration sources, and `/wire:migration-source-refresh` clones each into `.wire/releases/<release>/migration/source_snapshot/` itself; every audit and migration command reads those snapshots and stamps the commit they were taken from (that commit is what drift detection diffs against). The snapshots are gitignored here since they are reproducible from the recorded commit.
+
+The one requirement is that your git credentials can clone both repos from this machine. Test:
+
+```bash
+git ls-remote https://github.com/rittmananalytics/ra_data_warehouse_lookml
+git ls-remote https://github.com/rittmananalytics/ra-data-warehouse-omni-target
+```
+
+(A manual local checkout via `bi_migration.lookml_repo_path` exists as a fallback for repos Wire cannot clone; it is not needed here.)
 
 ### 2. Install the Wire preview plugin
 
@@ -121,8 +129,7 @@ omni config show
 | Omni skills loaded | `/plugin` | `omni-analytics` listed as enabled |
 | Looker API | the python one-liner above | your name |
 | Omni CLI | `omni models list` | model list incl. the target model |
-| Repos reachable | `git ls-remote` both repos | refs print |
-| LookML checkout | `ls lookml/analytics.model.lkml` (path may sit in a subfolder) | file exists |
+| Repos cloneable | `git ls-remote` both repos | refs print (Wire clones its own snapshots) |
 
 ---
 
@@ -137,8 +144,7 @@ I want to migrate part of our Looker estate to Omni. Set up the engagement and d
 I am the release director, park anything that needs a ruling.
 
 Source: the Looker instance at https://rittman.eu.looker.com, LookML in
-https://github.com/rittmananalytics/ra_data_warehouse_lookml (local checkout ./lookml),
-model analytics.model.lkml.
+https://github.com/rittmananalytics/ra_data_warehouse_lookml, model analytics.model.lkml.
 
 Target: the Omni instance at https://rittmananalytics.omniapp.co, model id <MODEL_ID>.
 The git-connected Omni model repo is
