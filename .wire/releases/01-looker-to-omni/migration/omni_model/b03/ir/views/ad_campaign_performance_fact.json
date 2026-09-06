@@ -1,0 +1,484 @@
+{
+  "identity": "looker:analytics:view:ad_campaign_performance_fact",
+  "name": "ad_campaign_performance_fact",
+  "schema": "analytics",
+  "table_name": null,
+  "emitted": true,
+  "class": "assisted",
+  "unsupported": [
+    {
+      "construct": "sql_table_name_liquid",
+      "class": "redesign",
+      "reason": "sql_table_name contains Liquid"
+    }
+  ],
+  "source": {
+    "file": "views/ad_campaign_performance_fact.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:ad_campaign_fk",
+      "name": "ad_campaign_fk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.ad_campaign_fk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true,
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:campaign",
+      "name": "campaign",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.campaign_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${campaign[date]}",
+        "timeframes": [
+          "raw",
+          "date",
+          "week",
+          "month",
+          "quarter",
+          "year"
+        ]
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:average_actual_cpc",
+      "name": "average_actual_cpc",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "${TABLE}.actual_cpc",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${actual_cpc}",
+        "aggregate_type": "average",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:average_actual_ctr",
+      "name": "average_actual_ctr",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "${TABLE}.actual_ctr",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${actual_ctr}",
+        "aggregate_type": "average",
+        "format": "percent_2"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:average_actual_vs_reported_clicks_pct",
+      "name": "average_actual_vs_reported_clicks_pct",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "${TABLE}.actual_vs_reported_clicks_pct",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${actual_vs_reported_clicks_pct}",
+        "aggregate_type": "average",
+        "format": "percent_2"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:average_avg_reported_bounce_rate",
+      "name": "average_avg_reported_bounce_rate",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "${TABLE}.avg_reported_bounce_rate",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${avg_reported_bounce_rate}",
+        "aggregate_type": "average",
+        "format": "percent_2"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:avg_reported_time_on_site",
+      "name": "avg_reported_time_on_site",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "${TABLE}.avg_reported_time_on_site",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${avg_reported_time_on_site}",
+        "aggregate_type": "average",
+        "format": "number_2"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:average_reported_cpc",
+      "name": "average_reported_cpc",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "${TABLE}.reported_cpc",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${reported_cpc}",
+        "aggregate_type": "average",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:average_reported_cpm",
+      "name": "average_reported_cpm",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "${TABLE}.reported_cpm",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${reported_cpm}",
+        "aggregate_type": "average",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:average_reported_ctr",
+      "name": "average_reported_ctr",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "${TABLE}.reported_ctr",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${reported_ctr}",
+        "aggregate_type": "average",
+        "format": "percent_2"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_clicks",
+      "name": "total_clicks",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_clicks",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_clicks}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_session_page_views",
+      "name": "total_session_page_views",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_session_page_views",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_session_page_views}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_session_services_page_views",
+      "name": "total_session_services_page_views",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_session_services_page_views",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_session_services_page_views}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_session_marketing_page_views",
+      "name": "total_session_marketing_page_views",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_session_marketing_page_views",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_session_marketing_page_views}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_session_case_study_page_views",
+      "name": "total_session_case_study_page_views",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_session_case_study_page_views",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_session_case_study_page_views}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_session_goals_achieved",
+      "name": "total_session_goals_achieved",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_session_goals_achieved",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_session_goals_achieved}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_session_conversions",
+      "name": "total_session_conversions",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_session_conversions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_session_conversions}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_unique_users",
+      "name": "total_unique_users",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_unique_users",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_unique_users}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_reported_clicks",
+      "name": "total_reported_clicks",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_reported_clicks",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_reported_clicks}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_reported_cost",
+      "name": "total_reported_cost",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_reported_cost",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_reported_cost}",
+        "aggregate_type": "sum",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_reported_impressions",
+      "name": "total_reported_impressions",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_reported_impressions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_reported_impressions}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:total_reported_invalid_clicks",
+      "name": "total_reported_invalid_clicks",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.total_reported_invalid_clicks",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_reported_invalid_clicks}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaign_performance_fact:count",
+      "name": "count",
+      "kind": "measure",
+      "lookml_type": "count",
+      "source_sql": null,
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "aggregate_type": "count"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaign_performance_fact.view.lkml",
+        "view": "ad_campaign_performance_fact"
+      }
+    }
+  ]
+}

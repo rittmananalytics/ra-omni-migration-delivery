@@ -1,0 +1,232 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Google Sans', 'Inter', system-ui, sans-serif; color: #181B25; -webkit-font-smoothing: antialiased; }
+    a { color: #4F60FF; } a:hover { color: #4F5FFE; }
+    .eyebrow { font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: #4F60FF; }
+    .title { font-size: 28px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: #181B25; margin: 8px 0 0; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .code { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; font-weight: 500; line-height: 1.4; background: #F7F7FA; border: 1px solid #E1E1E9; border-radius: 4px; padding: 1px 6px; color: #2B3041; white-space: nowrap; }
+    .card { background: #FFFFFF; border: 1px solid #E1E1E9; border-radius: 12px; box-shadow: 0 2px 6px rgba(24,27,37,0.06), 0 1px 2px rgba(24,27,37,0.04); }
+    .label { font-size: 13px; font-weight: 600; line-height: 1.3; color: #181B25; }
+    .small { font-size: 11.5px; font-weight: 400; line-height: 1.4; color: #4F5564; }
+    .tier-num { font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1; }
+    .tier-name { font-size: 15px; font-weight: 600; line-height: 1.25; margin-top: 6px; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: none; }
+    .arrow-label { font-size: 12px; font-weight: 500; line-height: 1.2; color: #4F5564; }
+    .card .mono { overflow-wrap: anywhere; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; background: #FFFFFF; position: relative; overflow: hidden; box-sizing: border-box; padding: 40px; display: flex; flex-direction: column; gap: 16px;">
+
+  <!-- Header -->
+  <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+    <div>
+      <div class="eyebrow">Wire 4.0.0 · Agent architecture</div>
+      <h1 class="title">Three tiers, one set of commands, one record</h1>
+    </div>
+    <div style="display: flex; gap: 18px; align-items: center;">
+      <div style="display: flex; gap: 8px; align-items: center;"><span class="dot" style="background: #181B25;"></span><span class="small" style="color: #181B25;">Release director</span></div>
+      <div style="display: flex; gap: 8px; align-items: center;"><span class="dot" style="background: #4F60FF;"></span><span class="small" style="color: #181B25;">Orchestrating session</span></div>
+      <div style="display: flex; gap: 8px; align-items: center;"><span class="dot" style="background: #2BB673;"></span><span class="small" style="color: #181B25;">Lane agents</span></div>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div style="display: flex; gap: 24px; flex: 1; min-height: 0;">
+
+    <!-- Layers -->
+    <div style="flex: 1; display: flex; flex-direction: column; min-width: 0;">
+
+      <!-- Tier 1: release director -->
+      <div style="height: 88px; display: flex; gap: 18px; align-items: center; background: #181B25; border-radius: 12px; padding: 14px 18px; box-sizing: border-box; color: #FFFFFF;">
+        <div style="width: 150px; flex: none;">
+          <div class="tier-num" style="color: #87A0FF;">Tier 1</div>
+          <div class="tier-name">Release director</div>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: center; flex: 1;">
+          <div style="display: flex; gap: 10px; align-items: center; margin-right: 8px;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+            <span style="font-size: 13px; font-weight: 500;">One human per release. Decides; does not execute.</span>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08);">intent</span>
+            <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08);">rulings</span>
+            <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08);">approvals at gates</span>
+            <span style="font-size: 12px; font-weight: 500; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08);">budget</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrows 1 to 2 -->
+      <div style="height: 36px; display: flex; align-items: center; justify-content: center; gap: 40px; padding-left: 168px;">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg>
+          <span class="arrow-label">intent, rulings, budget</span>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg>
+          <span class="arrow-label">parked decisions, one report</span>
+        </div>
+      </div>
+
+      <!-- Tier 2: orchestrating session -->
+      <div style="height: 108px; display: flex; gap: 18px; align-items: center; background: #4F60FF; border-radius: 12px; padding: 14px 18px; box-sizing: border-box; color: #FFFFFF;">
+        <div style="width: 150px; flex: none;">
+          <div class="tier-num" style="color: #D5DDFF;">Tier 2</div>
+          <div class="tier-name">Orchestrating session</div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; flex: 1;">
+          <div style="font-size: 13px; font-weight: 500;">One Claude Code session in the engagement repo. Single writer of <span class="mono" style="font-weight: 600;">status.md</span> and <span class="mono" style="font-weight: 600;">execution_log.md</span>.</div>
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px;">
+            <div style="background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; padding: 8px 10px;"><div class="mono" style="font-size: 12px; font-weight: 600;">release-director</div><div style="font-size: 11px; opacity: 0.85;">skill: the operating procedure</div></div>
+            <div style="background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; padding: 8px 10px;"><div style="font-size: 12px; font-weight: 600;">Runnable set</div><div style="font-size: 11px; opacity: 0.85;">from the release-type graph</div></div>
+            <div style="background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; padding: 8px 10px;"><div style="font-size: 12px; font-weight: 600;">Release claim</div><div style="font-size: 11px; opacity: 0.85;">one driver per release</div></div>
+            <div style="background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; padding: 8px 10px;"><div style="font-size: 12px; font-weight: 600;">Consolidation pass</div><div style="font-size: 11px; opacity: 0.85;">5 checks before any report</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrows 2 to 3 -->
+      <div style="height: 36px; display: flex; align-items: center; justify-content: center; gap: 40px; padding-left: 168px;">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg>
+          <span class="arrow-label">lane brief</span>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg>
+          <span class="arrow-label">report once</span>
+        </div>
+      </div>
+
+      <!-- Tier 3: lane agents -->
+      <div style="height: 128px; display: flex; gap: 18px; align-items: center; background: #EBFFEB; border-radius: 12px; padding: 14px 18px; box-sizing: border-box; color: #181B25;">
+        <div style="width: 150px; flex: none;">
+          <div class="tier-num" style="color: #2BB673;">Tier 3</div>
+          <div class="tier-name">Lane agents</div>
+          <div class="small" style="margin-top: 4px;">1 to 12 concurrent, flat</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; flex: 1;">
+          <div class="card" style="padding: 10px 12px; border-radius: 8px;"><div class="mono" style="font-size: 12px; font-weight: 600; color: #181B25;">conceptual_model</div><div class="small" style="margin-top: 6px;">owns <span class="mono">design/</span></div><div class="small">state <span class="mono">lanes/conceptual_model.md</span></div></div>
+          <div class="card" style="padding: 10px 12px; border-radius: 8px;"><div class="mono" style="font-size: 12px; font-weight: 600; color: #181B25;">dbt-developer [staging 1/2]</div><div class="small" style="margin-top: 6px;">owns <span class="mono">dev/</span></div><div class="small">state <span class="mono">lanes/dbt-developer-staging-1-2.md</span></div></div>
+          <div class="card" style="padding: 10px 12px; border-radius: 8px;"><div class="mono" style="font-size: 12px; font-weight: 600; color: #181B25;">dbt-developer [staging 2/2]</div><div class="small" style="margin-top: 6px;">owns <span class="mono">dev/</span></div><div class="small">state <span class="mono">lanes/dbt-developer-staging-2-2.md</span></div></div>
+          <div class="card" style="padding: 10px 12px; border-radius: 8px;"><div class="mono" style="font-size: 12px; font-weight: 600; color: #181B25;">qa-agent</div><div class="small" style="margin-top: 6px;">owns <span class="mono">artifacts/qa/</span></div><div class="small">state <span class="mono">lanes/qa-agent.md</span></div></div>
+          <div style="border: 1.5px dashed #2BB673; border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; justify-content: center; text-align: center;"><div class="small" style="color: #181B25; font-weight: 500;">up to 12 lanes<br>one scoped task each<br>no sub-agents</div></div>
+        </div>
+      </div>
+
+      <!-- Arrow 3 to 4 -->
+      <div style="height: 36px; display: flex; align-items: center; justify-content: center; gap: 40px; padding-left: 168px;">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg>
+          <span class="arrow-label">runs <span class="mono">/wire:</span> commands, loads skills</span>
+        </div>
+      </div>
+
+      <!-- Tier 4: commands and skills -->
+      <div style="height: 122px; display: flex; gap: 18px; align-items: center; background: #EFF0FF; border-radius: 12px; padding: 14px 18px; box-sizing: border-box; color: #181B25;">
+        <div style="width: 150px; flex: none;">
+          <div class="tier-num" style="color: #4F60FF;">Tier 4</div>
+          <div class="tier-name">Wire commands and skills</div>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 12px; flex: 1;">
+          <div class="card" style="padding: 10px 12px; border-radius: 8px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline;"><span class="label">331 commands</span><span class="small">slash commands under <span class="mono">commands/</span></span></div>
+            <div style="display: flex; gap: 4px; height: 22px;">
+              <div style="flex-grow: 92; background: #4F60FF; color: #FFFFFF; border-radius: 4px; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center;">generate 92</div>
+              <div style="flex-grow: 87; background: #AD86FF; color: #181B25; border-radius: 4px; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center;">validate 87</div>
+              <div style="flex-grow: 82; background: #87D5FC; color: #181B25; border-radius: 4px; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center;">review 82</div>
+              <div style="flex-grow: 70; background: #EFF0F4; color: #181B25; border-radius: 4px; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center;">other 70</div>
+            </div>
+            <div style="display: flex; gap: 8px; align-items: center;">
+              <span class="small">Two gates on every command path:</span>
+              <span style="display: inline-flex; gap: 6px; align-items: center;"><svg width="12" height="12" viewBox="0 0 14 14" fill="#EFF0FF" stroke="#4F60FF" stroke-width="1.5"><path d="M7 1l6 6-6 6-6-6z"></path></svg><span class="code">precondition gate</span></span>
+              <svg width="26" height="8" viewBox="0 0 26 8" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M0 4h20"></path><path d="M17 1l4 3-4 3"></path></svg>
+              <span style="display: inline-flex; gap: 6px; align-items: center;"><svg width="12" height="12" viewBox="0 0 14 14" fill="#EFF0FF" stroke="#4F60FF" stroke-width="1.5"><path d="M7 1l6 6-6 6-6-6z"></path></svg><span class="code">auto-validate</span></span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+            <div class="card" style="padding: 10px 12px; border-radius: 8px;"><div style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1;">69</div><div class="label" style="margin-top: 4px;">skills</div><div class="small">loaded by trigger or by name</div></div>
+            <div class="card" style="padding: 10px 12px; border-radius: 8px;"><div style="font-size: 22px; font-weight: 700; letter-spacing: -0.02em; line-height: 1;">12</div><div class="label" style="margin-top: 4px;">release-type graphs</div><div class="small">phases, artifacts, <span class="mono">depends_on</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow 4 to 5 -->
+      <div style="height: 36px; display: flex; align-items: center; justify-content: center; gap: 40px; padding-left: 168px;">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg>
+          <span class="arrow-label">MCP tools, Bash, files</span>
+        </div>
+      </div>
+
+      <!-- Tier 5: tools and runtime -->
+      <div style="height: 112px; display: flex; gap: 18px; align-items: center; background: #F7F7FA; border: 1px solid #E1E1E9; border-radius: 12px; padding: 14px 18px; box-sizing: border-box; color: #181B25;">
+        <div style="width: 150px; flex: none;">
+          <div class="tier-num" style="color: #6B7280;">Tier 5</div>
+          <div class="tier-name">Tools and runtime</div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; flex: 1;">
+          <div class="card" style="padding: 10px 12px; border-radius: 8px;"><div class="label">MCP servers</div><div class="small" style="margin-top: 4px;">BigQuery, Atlassian, Fathom, Notion, Amplitude, GitHub</div></div>
+          <div class="card" style="padding: 10px 12px; border-radius: 8px;"><div class="label">Command-line tools</div><div class="small mono" style="margin-top: 4px;">git, gh, omni, bq, dbt</div></div>
+          <div class="card" style="padding: 10px 12px; border-radius: 8px;"><div class="label">Claude Code plugin</div><div class="small" style="margin-top: 4px;">commands, skills, agents, 2 hooks, output style</div></div>
+          <div class="card" style="padding: 10px 12px; border-radius: 8px;"><div class="label">Operating system</div><div class="small" style="margin-top: 4px;">the <span class="mono">.wire/</span> tree, git worktrees, environment variables</div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right rail: the record -->
+    <div style="width: 272px; flex: none; display: flex; flex-direction: column; gap: 10px;">
+      <div class="eyebrow" style="height: 14px; display: flex; align-items: center;">The record</div>
+      <div class="card" style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12.5px; font-weight: 600;">status.md</span></div>
+        <div class="small">Artifact states, the release claim, the budget, parked decisions.</div>
+        <div style="display: flex; gap: 6px; align-items: center;"><span class="dot" style="background: #4F60FF;"></span><span class="small">written by the orchestrator only</span></div>
+      </div>
+      <div class="card" style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12.5px; font-weight: 600;">execution_log.md</span></div>
+        <div class="small">One row per command run or skill activation. 9 columns, append only.</div>
+        <div style="display: flex; gap: 6px; align-items: center;"><span class="dot" style="background: #4F60FF;"></span><span class="small">written by the orchestrator only</span></div>
+      </div>
+      <div class="card" style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12.5px; font-weight: 600;">decisions.md</span></div>
+        <div class="small">Rulings, written the moment they are given. Modelling decisions from lanes.</div>
+        <div style="display: flex; gap: 6px; align-items: center;"><span class="dot" style="background: #181B25;"></span><span class="dot" style="background: #4F60FF;"></span><span class="dot" style="background: #2BB673;"></span><span class="small">director rulings, orchestrator, lanes</span></div>
+      </div>
+      <div class="card" style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12.5px; font-weight: 600;">lanes/&lt;label&gt;.md</span></div>
+        <div class="small">One state file per lane, rewritten after each completed item.</div>
+        <div style="display: flex; gap: 6px; align-items: center;"><span class="dot" style="background: #2BB673;"></span><span class="small">written by each lane</span></div>
+      </div>
+      <div class="card" style="flex: 1; padding: 12px 14px; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12.5px; font-weight: 600;">trace.jsonl</span></div>
+        <div class="small">Step-level trace, local only, when <span class="mono">WIRE_TRACE=true</span>.</div>
+        <div style="display: flex; gap: 6px; align-items: center;"><span class="dot" style="background: #4F60FF;"></span><span class="dot" style="background: #2BB673;"></span><span class="small">written by the command that ran</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div style="display: flex; justify-content: space-between; align-items: center; height: 24px;">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="logo-black-blue.svg" alt="Rittman Analytics" style="height: 20px; display: block;">
+      <span class="small" style="color: #6B7280;">Wire 4.0.0 · Diagram 1 of 4</span>
+    </div>
+    <span class="small mono" style="color: #6B7280;">docs/wire-agent-architecture.md</span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

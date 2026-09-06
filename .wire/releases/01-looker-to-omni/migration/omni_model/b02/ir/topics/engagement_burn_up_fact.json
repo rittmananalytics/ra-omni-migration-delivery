@@ -1,0 +1,12 @@
+{
+  "identity": "looker:analytics:topic:engagement_burn_up_fact",
+  "name": "engagement_burn_up_fact",
+  "base_view": "engagement_burn_up_fact",
+  "emitted": true,
+  "fields": null,
+  "joins": [],
+  "unsupported": [],
+  "source": {
+    "file": "models/analytics.model.lkml"
+  }
+}

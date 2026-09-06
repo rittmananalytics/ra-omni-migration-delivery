@@ -150,7 +150,7 @@ I am the release director, park anything that needs a ruling.
 Source: the Looker instance at https://rittman.eu.looker.com, LookML in
 https://github.com/rittmananalytics/ra_data_warehouse_lookml, model analytics.model.lkml.
 
-Target: the Omni instance at https://rittmananalytics.omniapp.co, model id <MODEL_ID>.
+Target: the Omni instance at https://rittmananalytics.omniapp.co, model id 67716e96-520d-402a-88ad-89f97f9bc2a0.
 The git-connected Omni model repo is
 https://github.com/rittmananalytics/ra-data-warehouse-omni-target.
 

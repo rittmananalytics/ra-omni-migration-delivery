@@ -1,0 +1,39 @@
+catalog: ra-development
+schema: analytics
+table_name: organic_post_performance_fact
+dimensions:
+  organic_post_fk:
+    hidden: true
+  pk:
+    primary_key: true
+    sql: concat(${organic_post_fk},${post_ts[date]}
+    hidden: true
+  organic_post_natural_key:
+    hidden: true
+  post_total_comments:
+    hidden: true
+  post_total_likes:
+    hidden: true
+  source: {}
+  post_ts:
+    timeframes:
+    - raw
+    - date
+    - week
+    - month
+    - quarter
+    - year
+    hidden: true
+measures:
+  total_organic_posts:
+    sql: ${organic_post_fk}
+    aggregate_type: count_distinct
+    format: number_0
+  total_post_comments:
+    sql: ${post_total_comments}
+    aggregate_type: sum
+    format: number_0
+  total_post_likes:
+    sql: ${post_total_likes}
+    aggregate_type: average
+    format: number_0

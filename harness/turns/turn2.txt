@@ -1,4 +1,5 @@
 Rulings:
+- Omni model (PD-1): 67716e96-520d-402a-88ad-89f97f9bc2a0, the shared model 'ra_data_warehouse 2'.
 - Drop list: confirmed, drop everything not needed by the three dashboards.
 - PDTs: rebuild as Omni query views unless the plan proposes a dbt model; park any you are unsure about.
 - View naming: keep LookML view names (the converter default).

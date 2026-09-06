@@ -1,0 +1,4 @@
+base_view: organic_posts_dim
+label: Content Marketing
+joins:
+  organic_post_performance_fact: {}

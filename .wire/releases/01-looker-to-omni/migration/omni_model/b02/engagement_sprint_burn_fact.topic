@@ -1,0 +1,9 @@
+base_view: engagement_sprint_burn_fact
+label: Engagement Sprint Burn
+description: One row per sprint per month, with hours against that sprint's own budget and the state it was in. Feeds the sprint burn table and the sprint timeline.
+group_label: '        Core Analytics'
+default_filters:
+  engagement_sprint_burn_fact.reporting_month[month]:
+    time_for_duration:
+    - 1 complete months ago
+    - 1 months

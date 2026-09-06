@@ -1,0 +1,13 @@
+catalog: ra-development
+sql: "SELECT\n          web_events_fact.session_id  AS web_events_fact_session_id,\n          COUNT(DISTINCT CASE WHEN ( lower(web_events_fact.event_type) like '%meeting%' ) THEN web_events_fact.web_event_pk  ELSE NULL END)>0 AS is_conversion_session,\n          COUNT(DISTINCT CASE WHEN ( lower(web_events_fact.event_type) like '%cta%' ) THEN web_events_fact.web_event_pk  ELSE NULL END)>0 AS is_goal_achieved_session,\n      FROM `analytics.web_events_fact`\n           AS web_events_fact\n      GROUP BY\n          1"
+dimensions:
+  web_events_fact_session_id:
+    primary_key: true
+    hidden: true
+  is_conversion_session:
+    group_label: Behavior
+    hidden: true
+  is_goal_achieved_session:
+    sql: ${is_conversion_session}
+    group_label: Behavior
+    hidden: true

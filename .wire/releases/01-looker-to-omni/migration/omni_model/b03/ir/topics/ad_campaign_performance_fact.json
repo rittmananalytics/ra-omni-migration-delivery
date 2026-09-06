@@ -1,0 +1,23 @@
+{
+  "identity": "looker:analytics:topic:ad_campaign_performance_fact",
+  "name": "ad_campaign_performance_fact",
+  "base_view": "ad_campaign_performance_fact",
+  "emitted": true,
+  "fields": null,
+  "joins": [
+    {
+      "name": "ad_campaigns_dim",
+      "view": "ad_campaigns_dim",
+      "alias": null,
+      "relationship": "many_to_one",
+      "type": "left_outer",
+      "on_sql": "${ad_campaign_performance_fact.ad_campaign_fk} = ${ad_campaigns_dim.ad_campaign_pk}",
+      "emitted": true,
+      "unsupported": []
+    }
+  ],
+  "unsupported": [],
+  "source": {
+    "file": "models/analytics.model.lkml"
+  }
+}

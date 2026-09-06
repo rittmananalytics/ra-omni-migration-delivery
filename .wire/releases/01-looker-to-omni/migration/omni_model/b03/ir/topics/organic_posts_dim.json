@@ -1,0 +1,23 @@
+{
+  "identity": "looker:analytics:topic:organic_posts_dim",
+  "name": "organic_posts_dim",
+  "base_view": "organic_posts_dim",
+  "emitted": true,
+  "fields": null,
+  "joins": [
+    {
+      "name": "organic_post_performance_fact",
+      "view": "organic_post_performance_fact",
+      "alias": null,
+      "relationship": "one_to_many",
+      "type": "inner",
+      "on_sql": "${organic_posts_dim.organic_post_pk} = ${organic_post_performance_fact.organic_post_fk}",
+      "emitted": true,
+      "unsupported": []
+    }
+  ],
+  "unsupported": [],
+  "source": {
+    "file": "models/analytics.model.lkml"
+  }
+}

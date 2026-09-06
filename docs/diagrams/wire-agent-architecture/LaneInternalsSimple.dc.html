@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Google Sans', 'Inter', system-ui, sans-serif; color: #181B25; -webkit-font-smoothing: antialiased; }
+    a { color: #4F60FF; } a:hover { color: #4F5FFE; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .head { font-size: 20px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+    .desc { font-size: 15px; font-weight: 400; line-height: 1.5; color: #2B3041; }
+    .stage { background: #FFFFFF; border: 1px solid #E1E1E9; border-radius: 12px; padding: 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 0; }
+    .stage-title { font-size: 17px; font-weight: 600; line-height: 1.25; }
+    .chip { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; font-weight: 500; background: #F7F7FA; border: 1px solid #E1E1E9; border-radius: 6px; padding: 4px 10px; white-space: nowrap; }
+    .tool { font-size: 16px; font-weight: 600; background: #F7F7FA; border: 1px solid #E1E1E9; border-radius: 999px; padding: 12px 22px; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; background: #FFFFFF; position: relative; overflow: hidden; box-sizing: border-box; padding: 56px; display: flex; flex-direction: column; justify-content: center; gap: 24px;">
+
+  <!-- Main -->
+  <div style="flex: none; display: grid; grid-template-columns: 300px minmax(0, 1fr) 300px; gap: 24px;">
+
+    <!-- Loaded -->
+    <div style="background: #E6DBFF; border-radius: 14px; padding: 28px 28px; display: flex; flex-direction: column; gap: 14px;">
+      <div class="head">Loaded into the lane</div>
+      <div class="desc">The agent definition</div>
+      <span class="chip" style="width: fit-content;">agents/dbt-developer/AGENT.md</span>
+      <div class="desc" style="margin-top: 6px;">Its skills</div>
+      <span class="chip" style="width: fit-content;">dbt-development</span>
+      <span class="chip" style="width: fit-content;">droughty</span>
+    </div>
+
+    <!-- Lane -->
+    <div style="background: #EBFFEB; border-radius: 14px; padding: 28px 30px; display: flex; flex-direction: column; gap: 20px; min-width: 0;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 16px;">
+        <div class="head mono">dbt-developer [staging 1/2]</div>
+        <span class="chip">runs /wire:dbt-generate</span>
+      </div>
+      <div style="display: flex; gap: 10px; align-items: stretch;">
+        <div class="stage"><div class="stage-title">Precondition gate</div><div class="desc">Checks the upstream artifacts are approved. Blocks by default.</div></div>
+        <svg width="12" height="18" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5" style="align-self: center; flex: none;"><path d="M2 1l6 6-6 6"></path></svg>
+        <div class="stage"><div class="stage-title">Workflow steps</div><div class="desc">Reads the requirements and the model design. Writes its models.</div></div>
+        <svg width="12" height="18" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5" style="align-self: center; flex: none;"><path d="M2 1l6 6-6 6"></path></svg>
+        <div class="stage"><div class="stage-title">Artifact write</div><div class="desc">Only inside the directory it owns.</div></div>
+        <svg width="12" height="18" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5" style="align-self: center; flex: none;"><path d="M2 1l6 6-6 6"></path></svg>
+        <div class="stage"><div class="stage-title">State file</div><div class="desc">Rewritten after each completed item, so a restart loses at most one.</div></div>
+      </div>
+    </div>
+
+    <!-- Writes -->
+    <div style="display: flex; flex-direction: column; gap: 24px;">
+      <div style="background: #EFF0FF; border-radius: 14px; padding: 28px 28px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+        <div class="head">Writes</div>
+        <div class="desc">Its artifact tree</div>
+        <div class="desc">Its state file</div>
+        <div class="desc">A line in <span class="mono">decisions.md</span></div>
+      </div>
+      <div style="background: #F7F7FA; border: 1px solid #E1E1E9; border-radius: 14px; padding: 28px 28px; display: flex; flex-direction: column; gap: 12px; flex: 1;">
+        <div class="head">Never writes</div>
+        <div class="desc mono" style="color: #E5484D; text-decoration: line-through;">status.md</div>
+        <div class="desc mono" style="color: #E5484D; text-decoration: line-through;">execution_log.md</div>
+        <div class="desc">The orchestrator writes both from the state file.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Tools -->
+  <div style="flex: none; display: flex; gap: 16px; align-items: center;">
+    <span style="font-size: 16px; font-weight: 600; color: #4F5564; margin-right: 8px;">Tools it calls</span>
+    <span class="tool">MCP servers</span>
+    <span class="tool">Bash</span>
+    <span class="tool">Git worktree</span>
+    <span class="tool">The <span class="mono">.wire/</span> tree</span>
+  </div>
+
+  <div style="position: absolute; left: 56px; bottom: 48px; height: 20px; display: flex; align-items: center;">
+    <img src="logo-black-blue.svg" alt="Rittman Analytics" style="height: 20px; display: block;">
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

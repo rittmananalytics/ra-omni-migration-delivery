@@ -1,0 +1,11 @@
+base_view: web_sessions_fact
+label: '    Web Analytics'
+description: Website activity and visitor journey
+group_label: '        Core Analytics'
+joins:
+  wh_sessions_attribution: {}
+  page_first_published: {}
+  web_events_fact:
+    ips_enriched: {}
+  has_viewed_pricing: {}
+  is_conversion_session: {}

@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Google Sans', 'Inter', system-ui, sans-serif; color: #181B25; -webkit-font-smoothing: antialiased; }
+    a { color: #4F60FF; } a:hover { color: #4F5FFE; }
+    .eyebrow { font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: #4F60FF; }
+    .title { font-size: 28px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: #181B25; margin: 8px 0 0; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .code { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; font-weight: 500; line-height: 1.4; background: #F7F7FA; border: 1px solid #E1E1E9; border-radius: 4px; padding: 1px 6px; color: #2B3041; white-space: nowrap; }
+    .card { background: #FFFFFF; border: 1px solid #E1E1E9; border-radius: 12px; box-shadow: 0 2px 6px rgba(24,27,37,0.06), 0 1px 2px rgba(24,27,37,0.04); }
+    .label { font-size: 13px; font-weight: 600; line-height: 1.3; color: #181B25; }
+    .small { font-size: 11.5px; font-weight: 400; line-height: 1.4; color: #4F5564; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: none; }
+    .arrow-label { font-size: 12px; font-weight: 500; line-height: 1.2; color: #4F5564; }
+    .lane-tag { font-size: 10.5px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #2BB673; line-height: 1; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; background: #FFFFFF; position: relative; overflow: hidden; box-sizing: border-box; padding: 40px; display: flex; flex-direction: column; gap: 16px;">
+
+  <!-- Header -->
+  <div>
+    <div class="eyebrow">Tier 2 to Tier 3 · Dispatch</div>
+    <h1 class="title">The orchestrating session dispatching and coordinating lanes</h1>
+  </div>
+
+  <!-- Main -->
+  <div style="display: grid; grid-template-columns: 236px minmax(0, 1fr) 264px; gap: 20px; flex: 1; min-height: 0;">
+
+    <!-- Inputs -->
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="eyebrow" style="height: 14px; display: flex; align-items: center;">Inputs</div>
+      <div class="card" style="padding: 10px 12px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12px; font-weight: 600;">release-types/&lt;type&gt;.yaml</span></div>
+        <div class="small" style="margin-top: 4px;">the graph: phases, artifacts, <span class="mono">depends_on</span>, profiles</div>
+      </div>
+      <div class="card" style="padding: 10px 12px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12px; font-weight: 600;">status.md</span></div>
+        <div class="small" style="margin-top: 4px;">artifact states, profile, budget, parked decisions</div>
+      </div>
+      <div class="card" style="padding: 10px 12px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12px; font-weight: 600;">decisions.md</span></div>
+        <div class="small" style="margin-top: 4px;">rulings on record, by id</div>
+      </div>
+      <div style="display: flex; justify-content: center; height: 30px; align-items: center;">
+        <svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg>
+      </div>
+      <div style="background: #EFF0FF; border: 1px solid #4F60FF; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+        <div class="label">Runnable set</div>
+        <div class="small">one state per artifact, in topological order</div>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+          <span class="code">runnable: generate</span>
+          <span class="code">runnable: validate</span>
+          <span class="code">parked: needs ruling</span>
+          <span class="code">blocked: &lt;unmet precondition&gt;</span>
+          <span class="code">not applicable</span>
+          <span class="code">complete</span>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center; justify-content: flex-end; margin-top: 4px;">
+        <span class="arrow-label">feeds the plan</span>
+        <svg width="40" height="14" viewBox="0 0 40 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M0 7h32"></path><path d="M26 1l7 6-7 6"></path></svg>
+      </div>
+    </div>
+
+    <!-- Centre -->
+    <div style="display: flex; flex-direction: column; gap: 12px; min-width: 0;">
+
+      <!-- Orchestrator -->
+      <div style="background: #4F60FF; color: #FFFFFF; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <span class="eyebrow" style="color: #D5DDFF;">Orchestrating session</span>
+          <span style="font-size: 11.5px; color: #D5DDFF;">single writer of <span class="mono" style="font-weight: 600;">status.md</span> and <span class="mono" style="font-weight: 600;">execution_log.md</span></span>
+        </div>
+        <div style="display: flex; gap: 12px; align-items: stretch;">
+          <div style="background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; padding: 10px 12px; width: 220px; flex: none;">
+            <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px;">budget</div>
+            <div class="mono" style="font-size: 11.5px; line-height: 1.55;">lanes_max: 4<br>model_tier: default<br>warehouse_spend: none<br>stop_at: decisions</div>
+          </div>
+          <div style="background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3); border-radius: 8px; padding: 10px 12px; flex: 1; min-width: 0;">
+            <div style="font-size: 12px; font-weight: 600; margin-bottom: 6px;">Agent tool</div>
+            <div class="mono" style="font-size: 11.5px; line-height: 1.5; word-break: break-all;">subagent_type: wire:&lt;agent&gt;:AGENT</div>
+            <div style="font-size: 11px; opacity: 0.85; margin-top: 6px;">one Claude Code subagent per lane, on the same account and key. The agent definition is its system context.</div>
+          </div>
+          <div style="background: #FFFFFF; color: #181B25; border-radius: 8px; padding: 10px 12px; width: 236px; flex: none; display: flex; flex-direction: column; gap: 4px;">
+            <div class="mono" style="font-size: 12px; font-weight: 600;">mockups-generate</div>
+            <div class="small" style="font-weight: 500; color: #181B25;">interactive</div>
+            <div class="small">runs with the director in the foreground, never as a lane</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrows -->
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <svg width="10" height="20" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg>
+            <span class="arrow-label">lane brief, 10 fields · <span class="mono">WIRE_INVOKED_BY=lane</span></span>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <span class="arrow-label">report once: complete, stalled, or needs a ruling</span>
+            <svg width="10" height="20" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+          <div style="display: flex; justify-content: center; gap: 14px;"><svg width="12" height="30" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><svg width="12" height="30" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg></div>
+          <div style="display: flex; justify-content: center; gap: 14px;"><svg width="12" height="30" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><svg width="12" height="30" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg></div>
+          <div style="display: flex; justify-content: center; gap: 14px;"><svg width="12" height="30" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><svg width="12" height="30" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg></div>
+        </div>
+        <div style="display: flex; justify-content: center;">
+          <span style="font-size: 11.5px; font-weight: 500; color: #4F5564; border: 1.5px dashed #4F60FF; border-radius: 999px; padding: 4px 12px;">the orchestrator reads state files, never polls a lane · a lane with no write for 30 minutes is stalled</span>
+        </div>
+      </div>
+
+      <!-- Lanes -->
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; flex: 1; min-height: 0;">
+        <div style="background: #EBFFEB; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+          <div class="lane-tag">Lane</div>
+          <div class="mono" style="font-size: 13px; font-weight: 600;">conceptual_model</div>
+          <div class="small">agent <span class="mono">data-designer</span> · runs <span class="mono">conceptual_model-generate</span></div>
+          <div class="small" style="margin-top: 2px;">owns <span class="code">design/</span></div>
+          <div class="small">state <span class="code">lanes/conceptual_model.md</span></div>
+          <div style="display: flex; gap: 8px; align-items: center; margin-top: 6px;">
+            <span style="display: inline-flex; gap: 5px; align-items: center; font-size: 11px; font-weight: 500; color: #E5484D; border: 1px solid #E5484D; border-radius: 4px; padding: 1px 6px; text-decoration: line-through; white-space: nowrap;"><svg width="9" height="9" viewBox="0 0 14 14" fill="none" stroke="#E5484D" stroke-width="2"><path d="M2 2l10 10M12 2L2 12"></path></svg>sub-agent</span>
+            <span class="small">flat: no sub-agents below a lane</span>
+          </div>
+        </div>
+        <div style="background: #EBFFEB; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+          <div class="lane-tag">Lane · fan-out batch 1 of 2</div>
+          <div class="mono" style="font-size: 13px; font-weight: 600;">dbt-developer [staging 1/2]</div>
+          <div class="small">agent <span class="mono">dbt-developer</span> · runs <span class="mono">dbt-generate</span> for 5 models in <span class="mono">task_scope</span></div>
+          <div class="small" style="margin-top: 2px;">owns <span class="code">dev/models/staging/</span></div>
+          <div class="small">state <span class="code">lanes/dbt-developer-staging-1-2.md</span></div>
+        </div>
+        <div style="background: #EBFFEB; border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+          <div class="lane-tag">Lane · fan-out batch 2 of 2</div>
+          <div class="mono" style="font-size: 13px; font-weight: 600;">dbt-developer [staging 2/2]</div>
+          <div class="small">agent <span class="mono">dbt-developer</span> · runs <span class="mono">dbt-generate</span> for 5 models in <span class="mono">task_scope</span></div>
+          <div class="small" style="margin-top: 2px;">owns <span class="code">dev/models/staging/</span></div>
+          <div class="small">state <span class="code">lanes/dbt-developer-staging-2-2.md</span></div>
+        </div>
+      </div>
+
+      <!-- Waves -->
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+        <div style="display: flex; align-items: center;"><span class="small">Two artifacts with no dependency path between them run as two lanes, up to <span class="mono">lanes_max</span>.</span></div>
+        <div style="grid-column: 2 / 4; background: #F7F7FA; border: 1px solid #E1E1E9; border-radius: 12px; padding: 10px 14px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <div class="card" style="flex: 1; padding: 8px 10px; border-radius: 8px;"><div class="label" style="font-size: 12px;">Wave 1 · staging</div><div class="small">2 batches in parallel</div></div>
+            <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M2 1l6 6-6 6"></path></svg>
+            <div class="card" style="flex: 1; padding: 8px 10px; border-radius: 8px;"><div class="label" style="font-size: 12px;">Wave 2 · integration</div><div class="small">1 batch</div></div>
+            <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M2 1l6 6-6 6"></path></svg>
+            <div class="card" style="flex: 1; padding: 8px 10px; border-radius: 8px;"><div class="label" style="font-size: 12px;">Wave 3 · warehouse</div><div class="small">2 batches in parallel</div></div>
+          </div>
+          <div class="small">Waves run in sequence, batches within a wave in parallel. Each batch counts against <span class="mono">lanes_max</span>.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- The record -->
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <div class="eyebrow" style="height: 14px; display: flex; align-items: center;">The record</div>
+      <div class="card" style="padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;">
+        <div class="label">Consolidation pass · 5 checks</div>
+        <div class="small">before any lane's artifact is reported as ready for a ruling</div>
+        <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 2px;">
+          <div class="small" style="display: flex; gap: 8px;"><span class="mono" style="color: #4F60FF; font-weight: 600;">1</span><span>the files the lane claimed exist on disk</span></div>
+          <div class="small" style="display: flex; gap: 8px;"><span class="mono" style="color: #4F60FF; font-weight: 600;">2</span><span>validate ran and its result matches the lane's claim</span></div>
+          <div class="small" style="display: flex; gap: 8px;"><span class="mono" style="color: #4F60FF; font-weight: 600;">3</span><span>the lane did not write <span class="mono">status.md</span></span></div>
+          <div class="small" style="display: flex; gap: 8px;"><span class="mono" style="color: #4F60FF; font-weight: 600;">4</span><span>warehouse results re-checked against the warehouse</span></div>
+          <div class="small" style="display: flex; gap: 8px;"><span class="mono" style="color: #4F60FF; font-weight: 600;">5</span><span>a sample spot-checked at full depth</span></div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center; height: 30px; align-items: center;">
+        <svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg>
+      </div>
+      <div class="card" style="padding: 10px 12px; display: flex; flex-direction: column; gap: 4px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12px; font-weight: 600;">status.md</span></div>
+        <div style="display: flex; gap: 6px; align-items: center;"><span class="dot" style="background: #4F60FF;"></span><span class="small">single writer: the orchestrator, from the lane state files</span></div>
+      </div>
+      <div class="card" style="padding: 10px 12px; display: flex; flex-direction: column; gap: 4px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12px; font-weight: 600;">execution_log.md</span></div>
+        <div style="display: flex; gap: 6px; align-items: center;"><span class="dot" style="background: #4F60FF;"></span><span class="small">single writer: the orchestrator; Session column names the lane</span></div>
+      </div>
+      <div class="card" style="padding: 10px 12px; display: flex; flex-direction: column; gap: 4px;">
+        <div style="display: flex; gap: 8px; align-items: center;"><svg width="14" height="17" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg><span class="mono" style="font-size: 12px; font-weight: 600;">decisions.md</span></div>
+        <div style="display: flex; gap: 6px; align-items: center;"><span class="dot" style="background: #4F60FF;"></span><span class="dot" style="background: #2BB673;"></span><span class="small">the orchestrator writes rulings; lanes append modelling decisions</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div style="display: flex; justify-content: space-between; align-items: center; height: 24px;">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="logo-black-blue.svg" alt="Rittman Analytics" style="height: 20px; display: block;">
+      <span class="small" style="color: #6B7280;">Wire 4.0.0 · Diagram 3 of 4</span>
+    </div>
+    <span class="small mono" style="color: #6B7280;">docs/wire-agent-architecture.md</span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

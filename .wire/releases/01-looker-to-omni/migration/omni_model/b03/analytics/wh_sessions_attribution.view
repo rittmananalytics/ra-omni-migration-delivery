@@ -1,0 +1,94 @@
+catalog: ra-development
+sql: "SELECT\n        web_session_fk,blended_user_id,converted_ts,\n        user_registration_first_click_attrib_conversions count_first_click_goals_achieved,\n        user_registration_first_non_direct_click_attrib_conversions count_first_non_direct_click_goals_achieved,\n        user_registration_first_paid_click_attrib_conversions count_first_paid_click_goals_achieved,\n        first_order_first_click_attrib_conversions count_first_click_first_conversions,\n        first_order_first_non_direct_click_attrib_conversions count_first_non_direct_click_first_conversions,\n        first_order_last_non_direct_click_attrib_conversions count_last_non_direct_click_first_conversions,\n        first_order_even_click_attrib_conversions count_even_click_first_conversions,\n        first_order_first_paid_click_attrib_conversions count_first_paid_click_first_conversions,\n        repeat_order_first_click_attrib_conversions count_first_click_repeat_conversions,\n        repeat_order_first_non_direct_click_attrib_conversions\
+  \ count_first_non_direct_click_repeat_conversions,\n        repeat_order_first_paid_click_attrib_conversions count_first_paid_click_repeat_conversions,\n        first_order_revenue total_first_order_revenue,\n        ltv_revenue total_ltv_revenue\n      FROM\n        `ra-development.analytics.multi_cycle_attribution_fact`"
+dimensions:
+  web_session_fk:
+    primary_key: true
+    hidden: true
+  blended_user_id:
+    hidden: true
+  total_converter_ltv_revenue:
+    sql: ${total_ltv_revenue}
+    group_label: Attribution
+    format: gbpcurrency_0
+  total_converter_first_order_revenue:
+    sql: ${total_first_order_revenue}
+    group_label: Attribution
+    format: gbpcurrency_0
+  count_first_click_goals_achieved:
+    hidden: true
+  count_first_non_direct_click_goals_achieved:
+    hidden: true
+  count_first_paid_click_goals_achieved:
+    hidden: true
+  count_first_click_first_conversions:
+    hidden: true
+  count_first_non_direct_click_first_conversions:
+    hidden: true
+  count_last_non_direct_click_first_conversions:
+    hidden: true
+  count_even_click_first_conversions:
+    hidden: true
+  count_first_paid_click_first_conversions:
+    hidden: true
+  count_first_click_repeat_conversions:
+    hidden: true
+  count_first_non_direct_click_repeat_conversions:
+    hidden: true
+  count_first_paid_click_repeat_conversions:
+    hidden: true
+  converted_ts:
+    timeframes:
+    - date
+    - week
+    - month
+    - quarter
+    - year
+    hidden: true
+measures:
+  count:
+    aggregate_type: count
+  first_click_goals_achieved:
+    sql: ${count_first_click_goals_achieved}
+    aggregate_type: sum
+    group_label: Attribution
+  first_non_direct_click_goals_achieved:
+    sql: ${count_first_non_direct_click_goals_achieved}
+    aggregate_type: sum
+    group_label: Attribution
+  first_paid_click_goals_achieved:
+    sql: ${count_first_paid_click_goals_achieved}
+    aggregate_type: sum
+    group_label: Attribution
+  first_click_first_conversions:
+    sql: ${count_first_click_first_conversions}
+    aggregate_type: sum
+    group_label: Attribution
+  last_non_direct_click_first_conversions:
+    sql: ${count_last_non_direct_click_first_conversions}
+    aggregate_type: sum
+    group_label: Attribution
+  even_click_first_conversions:
+    sql: ${count_even_click_first_conversions}
+    aggregate_type: sum
+    group_label: Attribution
+  first_non_direct_click_first_conversions:
+    sql: ${count_first_non_direct_click_first_conversions}
+    aggregate_type: sum
+    group_label: Attribution
+  first_paid_click_first_conversions:
+    sql: ${count_first_paid_click_first_conversions}
+    aggregate_type: sum
+    group_label: Attribution
+  first_click_repeat_conversions:
+    sql: ${count_first_click_repeat_conversions}
+    aggregate_type: sum
+    group_label: Attribution
+  first_non_direct_click_repeat_conversions:
+    sql: ${count_first_non_direct_click_repeat_conversions}
+    aggregate_type: sum
+    group_label: Attribution
+  first_paid_click_repeat_conversions:
+    sql: ${count_first_paid_click_repeat_conversions}
+    aggregate_type: sum
+    group_label: Attribution

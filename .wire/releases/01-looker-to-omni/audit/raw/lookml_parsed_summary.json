@@ -1,0 +1,5327 @@
+{
+ "lookml_commit": "82b3ab594f0d8f518072f3e1cc4f4ce8ac1d576e",
+ "files_parsed": 160,
+ "parse_errors": [],
+ "counts": {
+  "view": 190,
+  "explore": 39,
+  "join": 155,
+  "dimension": 2420,
+  "dimension_group": 288,
+  "measure": 804,
+  "filter": 4,
+  "parameter": 17,
+  "set": 28
+ },
+ "class_by_type": {
+  "view": {
+   "mechanical": 153,
+   "redesign": 37
+  },
+  "explore": {
+   "mechanical": 34,
+   "assisted": 5
+  },
+  "join": {
+   "mechanical": 31,
+   "assisted": 111,
+   "redesign": 13
+  },
+  "dimension": {
+   "mechanical": 2337,
+   "redesign": 27,
+   "assisted": 56
+  },
+  "dimension_group": {
+   "assisted": 36,
+   "mechanical": 252
+  },
+  "measure": {
+   "redesign": 34,
+   "mechanical": 713,
+   "assisted": 57
+  },
+  "filter": {
+   "redesign": 4
+  },
+  "parameter": {
+   "redesign": 17
+  },
+  "set": {
+   "mechanical": 28
+  }
+ },
+ "views": {
+  "actuals_v_targets": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 11,
+   "field_classes": {
+    "assisted": 1,
+    "redesign": 4,
+    "mechanical": 6
+   },
+   "construct": "view:derived_table",
+   "file": "views/actuals_v_targets.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "ad_campaign_performance_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 23,
+   "field_classes": {
+    "mechanical": 23
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/ad_campaign_performance_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.ad_campaign_performance_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ad_campaigns_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 12,
+   "field_classes": {
+    "mechanical": 12
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/ad_campaigns_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.ad_campaigns_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ad_performance_snapshot_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 12,
+   "field_classes": {
+    "mechanical": 12
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/ad_performance_snapshot_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.ad_performance_snapshot_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ad_roi_summary_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 64,
+   "field_classes": {
+    "mechanical": 51,
+    "redesign": 13
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/ad_roi_summary_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.ad_roi_summary_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ads_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 19,
+   "field_classes": {
+    "mechanical": 19
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/ads_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.ads_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ads_dim__ad_conversion_specs": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 1,
+   "field_classes": {
+    "mechanical": 1
+   },
+   "construct": "view:no_table",
+   "file": "views/ads_dim.view.lkml",
+   "line": 178,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ads_dim__ad_creative": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 1,
+   "field_classes": {
+    "mechanical": 1
+   },
+   "construct": "view:no_table",
+   "file": "views/ads_dim.view.lkml",
+   "line": 185,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ads_dim__ad_recommendations": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 6,
+   "field_classes": {
+    "mechanical": 6
+   },
+   "construct": "view:no_table",
+   "file": "views/ads_dim.view.lkml",
+   "line": 119,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ads_dim__ad_targeting": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 7,
+   "field_classes": {
+    "mechanical": 7
+   },
+   "construct": "view:no_table",
+   "file": "views/ads_dim.view.lkml",
+   "line": 195,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ads_dim__ad_targeting__geo_locations": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:no_table",
+   "file": "views/ads_dim.view.lkml",
+   "line": 288,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ads_dim__ad_targeting__geo_locations__cities": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 7,
+   "field_classes": {
+    "mechanical": 7
+   },
+   "construct": "view:no_table",
+   "file": "views/ads_dim.view.lkml",
+   "line": 250,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ads_dim__ad_targeting__geo_locations__regions": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:no_table",
+   "file": "views/ads_dim.view.lkml",
+   "line": 232,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ads_dim__ad_tracking_specs": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:no_table",
+   "file": "views/ads_dim.view.lkml",
+   "line": 151,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "adsets_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 13,
+   "field_classes": {
+    "mechanical": 13
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/adsets_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.adsets_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "adsets_dim__adset_targeting": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 7,
+   "field_classes": {
+    "mechanical": 7
+   },
+   "construct": "view:no_table",
+   "file": "views/adsets_dim.view.lkml",
+   "line": 107,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "adsets_dim__adset_targeting__geo_locations": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:no_table",
+   "file": "views/adsets_dim.view.lkml",
+   "line": 200,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "adsets_dim__adset_targeting__geo_locations__cities": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 7,
+   "field_classes": {
+    "mechanical": 7
+   },
+   "construct": "view:no_table",
+   "file": "views/adsets_dim.view.lkml",
+   "line": 162,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "adsets_dim__adset_targeting__geo_locations__regions": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:no_table",
+   "file": "views/adsets_dim.view.lkml",
+   "line": 144,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "anomaly_detection": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 19,
+   "field_classes": {
+    "redesign": 10,
+    "mechanical": 9
+   },
+   "construct": "view:derived_table_liquid",
+   "file": "views/anomaly_detection.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "attribution_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 29,
+   "field_classes": {
+    "mechanical": 29
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/attribution_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.attribution_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "bank_account_details": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:derived_table",
+   "file": "views/bank_account_details.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "bank_transactions_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 27,
+   "field_classes": {
+    "mechanical": 27
+   },
+   "construct": "view:table",
+   "file": "views/bank_transactions_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.bank_transactions_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "certification_progress": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 6,
+   "field_classes": {
+    "mechanical": 6
+   },
+   "construct": "view:table",
+   "file": "views/certification_progress.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics_seed.certification_progress`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "chart_of_accounts_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 24,
+   "field_classes": {
+    "mechanical": 24
+   },
+   "construct": "view:table",
+   "file": "views/chart_of_accounts_dim.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.chart_of_accounts_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "client_prospect_status_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 6,
+   "field_classes": {
+    "mechanical": 6
+   },
+   "construct": "view:derived_table",
+   "file": "views/client_prospect_status_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "coding_agent_commands_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 13,
+   "field_classes": {
+    "mechanical": 13
+   },
+   "construct": "view:table",
+   "file": "views/coding_agent_commands_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.coding_agent_commands_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "coding_agent_prompts_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 35,
+   "field_classes": {
+    "mechanical": 33,
+    "assisted": 2
+   },
+   "construct": "view:table",
+   "file": "views/coding_agent_prompts_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.coding_agent_prompts_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "companies_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 17,
+   "field_classes": {
+    "mechanical": 17
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/companies_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.companies_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "companies_dim__all_company_addresses": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 6,
+   "field_classes": {
+    "mechanical": 6
+   },
+   "construct": "view:no_table",
+   "file": "views/companies_dim.view.lkml",
+   "line": 155,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "companies_dim__all_company_ids": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 1,
+   "field_classes": {
+    "mechanical": 1
+   },
+   "construct": "view:no_table",
+   "file": "views/companies_dim.view.lkml",
+   "line": 146,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "companies_dim_ideal_customer": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 47,
+   "field_classes": {
+    "mechanical": 41,
+    "redesign": 6
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/companies_dim_ideal_customer.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.companies_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "company_comparison": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 51,
+   "field_classes": {
+    "mechanical": 42,
+    "assisted": 9
+   },
+   "construct": "view:derived_table",
+   "file": "views/company_comparison.view.lkml",
+   "line": 2,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "company_converted_projects": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 7,
+   "field_classes": {
+    "mechanical": 7
+   },
+   "construct": "view:derived_table",
+   "file": "views/company_converted_projects.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "company_deal_value_attribute": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:derived_table",
+   "file": "views/company_deal_value_attribute.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "company_hubspot_id": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 2,
+   "field_classes": {
+    "mechanical": 2
+   },
+   "construct": "view:derived_table_liquid",
+   "file": "views/company_hubspot_id.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "consultant_revenue_attribution": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 15,
+   "field_classes": {
+    "mechanical": 14,
+    "assisted": 1
+   },
+   "construct": "view:derived_table",
+   "file": "views/consultant_revenue_attribution.view.lkml",
+   "line": 2,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "consulting_companies": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 33,
+   "field_classes": {
+    "mechanical": 33
+   },
+   "construct": "view:table",
+   "file": "views/consulting_companies.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics_seed.consulting_companies`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contact_bio": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 2,
+   "field_classes": {
+    "mechanical": 2
+   },
+   "construct": "view:derived_table",
+   "file": "views/contact_bio.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "contact_companies_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/contact_companies_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.contact_companies_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contact_deals_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/contact_deals_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.contact_deals_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contact_engagements_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 9,
+   "field_classes": {
+    "mechanical": 9
+   },
+   "construct": "view:table",
+   "file": "views/contact_engagements_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.contact_engagements_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contact_meetings_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 13,
+   "field_classes": {
+    "mechanical": 13
+   },
+   "construct": "view:table",
+   "file": "views/contact_meetings_fact.view.lkml",
+   "line": 5,
+   "sql_table_name": "`ra-development.analytics.contact_sales_meetings_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contact_meetings_fact__all_attendee_person_pk": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 1,
+   "field_classes": {
+    "mechanical": 1
+   },
+   "construct": "view:no_table",
+   "file": "views/contact_meetings_fact.view.lkml",
+   "line": 130,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contact_meetings_fact__all_company_pk": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 1,
+   "field_classes": {
+    "mechanical": 1
+   },
+   "construct": "view:no_table",
+   "file": "views/contact_meetings_fact.view.lkml",
+   "line": 115,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contact_nps_survey_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 12,
+   "field_classes": {
+    "mechanical": 12
+   },
+   "construct": "view:table",
+   "file": "views/contact_nps_survey_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.contact_nps_survey_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contact_utilization_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 32,
+   "field_classes": {
+    "mechanical": 16,
+    "assisted": 16
+   },
+   "construct": "view:derived_table",
+   "file": "views/contact_utilization_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "contacts_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 129,
+   "field_classes": {
+    "mechanical": 129
+   },
+   "construct": "view:table",
+   "file": "views/contacts_dim.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.contacts_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contacts_influencer_list_xa": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 4,
+   "field_classes": {
+    "mechanical": 4
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/contacts_influencer_list_xa.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.contacts_influencer_list_xa`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contacts_segments_xa": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/contacts_segments_xa.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.contacts_segments_xa`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contacts_web_event_history_xa": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 8,
+   "field_classes": {
+    "mechanical": 8
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/contacts_web_event_history_xa.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.contacts_web_event_history_xa`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "contacts_web_interests_xa": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 23,
+   "field_classes": {
+    "mechanical": 23
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/contacts_web_interests_xa.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.contacts_web_interests_xa`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "content_performance": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 20,
+   "field_classes": {
+    "mechanical": 20
+   },
+   "construct": "view:derived_table",
+   "file": "views/content_performance.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "contracts_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 23,
+   "field_classes": {
+    "mechanical": 23
+   },
+   "construct": "view:table",
+   "file": "views/contracts_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.contracts_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "cumulative_churned_clients": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 11,
+   "field_classes": {
+    "mechanical": 10,
+    "assisted": 1
+   },
+   "construct": "view:pdt",
+   "file": "views/cumulative_churned_clients.view.lkml",
+   "line": 5,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": true,
+   "extends": []
+  },
+  "currency_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 4,
+   "field_classes": {
+    "mechanical": 4
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/currency_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.currency_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "customer_first_deal_cohorts": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:derived_table",
+   "file": "views/customer_first_deal_cohorts.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "customer_first_order_segments": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 20,
+   "field_classes": {
+    "mechanical": 20
+   },
+   "construct": "view:derived_table",
+   "file": "views/customer_first_order_segments.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "customer_meetings": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 16,
+   "field_classes": {
+    "mechanical": 16
+   },
+   "construct": "view:derived_table",
+   "file": "views/customer_meetings.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "date_spine_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 1,
+   "field_classes": {
+    "mechanical": 1
+   },
+   "construct": "view:derived_table",
+   "file": "views/date_spine_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "dates": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 2,
+   "field_classes": {
+    "mechanical": 2
+   },
+   "construct": "view:derived_table",
+   "file": "views/dates.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "dbt_slack": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 11,
+   "field_classes": {
+    "mechanical": 11
+   },
+   "construct": "view:table",
+   "file": "views/dbt_slack.view.lkml",
+   "line": 13,
+   "sql_table_name": "`ra-development.analytics_seed.dbt_slack`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "dbt_slack__slack_channels": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 1,
+   "field_classes": {
+    "mechanical": 1
+   },
+   "construct": "view:no_table",
+   "file": "views/dbt_slack.view.lkml",
+   "line": 97,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "deal_pipeline_history": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 10,
+   "field_classes": {
+    "mechanical": 9,
+    "assisted": 1
+   },
+   "construct": "view:table",
+   "file": "views/deal_pipeline_history.view.lkml",
+   "line": 1,
+   "sql_table_name": "analytics.deal_pipeline_history_fact",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "deals_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 83,
+   "field_classes": {
+    "mechanical": 27,
+    "assisted": 56
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/deals_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.deals_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "delivery_project_cycle_times": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 30,
+   "field_classes": {
+    "mechanical": 30
+   },
+   "construct": "view:table",
+   "file": "views/delivery_project_cycle_times.view.lkml",
+   "line": 1,
+   "sql_table_name": "ra-development.analytics.cycle_times_all",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "delivery_project_cycle_times_hkm": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 29,
+   "field_classes": {
+    "mechanical": 29
+   },
+   "construct": "view:derived_table",
+   "file": "views/delivery_project_cycle_times_hkm.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "delivery_project_docs_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 11,
+   "field_classes": {
+    "mechanical": 11
+   },
+   "construct": "view:table",
+   "file": "views/delivery_project_docs_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.delivery_project_docs_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "delivery_projects_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 12,
+   "field_classes": {
+    "mechanical": 12
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/delivery_projects_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.delivery_projects_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "delivery_task_history": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 16,
+   "field_classes": {
+    "mechanical": 16
+   },
+   "construct": "view:derived_table",
+   "file": "views/delivery_task_history.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "delivery_tasks_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 65,
+   "field_classes": {
+    "mechanical": 62,
+    "assisted": 3
+   },
+   "construct": "view:derived_table",
+   "file": "views/delivery_tasks_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "delivery_team_fact_xa": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 15,
+   "field_classes": {
+    "mechanical": 15
+   },
+   "construct": "view:table",
+   "file": "views/delivery_team_fact_xa.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.delivery_team_fact_xa`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "dim_countries": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 4,
+   "field_classes": {
+    "mechanical": 4
+   },
+   "construct": "view:table",
+   "file": "views/booksy_demo.view.lkml",
+   "line": 229,
+   "sql_table_name": "booksy_analytics.dim_countries",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "dim_dates": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 13,
+   "field_classes": {
+    "mechanical": 13
+   },
+   "construct": "view:table",
+   "file": "views/booksy_demo.view.lkml",
+   "line": 259,
+   "sql_table_name": "booksy_analytics.dim_dates",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "dim_providers": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 11,
+   "field_classes": {
+    "mechanical": 11
+   },
+   "construct": "view:table",
+   "file": "views/booksy_demo.view.lkml",
+   "line": 151,
+   "sql_table_name": "booksy_analytics.dim_providers",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "dynamic_monthly_stats": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 0,
+   "field_classes": {},
+   "construct": "view:no_table",
+   "file": "views/dynamic_monthly_stats.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "dynamic_web_stats": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 15,
+   "field_classes": {
+    "mechanical": 13,
+    "redesign": 2
+   },
+   "construct": "view:derived_table_liquid",
+   "file": "views/dynamic_web_stat.view.lkml",
+   "line": 2,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "email_contacts_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 44,
+   "field_classes": {
+    "mechanical": 44
+   },
+   "construct": "view:derived_table",
+   "file": "views/email_contacts_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "email_lists_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 20,
+   "field_classes": {
+    "mechanical": 20
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/email_lists_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.email_lists_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "email_send_outcomes_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 18,
+   "field_classes": {
+    "mechanical": 18
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/email_send_outcomes_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.email_send_outcomes_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "email_sends_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 25,
+   "field_classes": {
+    "mechanical": 25
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/email_sends_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.email_sends_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "employee_pto": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 11,
+   "field_classes": {
+    "mechanical": 11
+   },
+   "construct": "view:table",
+   "file": "views/employee_pto.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics_seed.employee_pto`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "engagement_actions_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 15,
+   "field_classes": {
+    "mechanical": 15
+   },
+   "construct": "view:table",
+   "file": "views/engagement_actions_fact.view.lkml",
+   "line": 9,
+   "sql_table_name": "`ra-development.analytics.engagement_actions_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "engagement_burn_up_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 15,
+   "field_classes": {
+    "mechanical": 15
+   },
+   "construct": "view:table",
+   "file": "views/engagement_burn_up_fact.view.lkml",
+   "line": 9,
+   "sql_table_name": "`ra-development.analytics.engagement_burn_up_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "engagement_context_attribution": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 20,
+   "field_classes": {
+    "mechanical": 20
+   },
+   "construct": "view:table",
+   "file": "views/engagement_context_attribution.view.lkml",
+   "line": 11,
+   "sql_table_name": "`ra-development.analytics.engagement_context_attribution`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "engagement_details": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 8,
+   "field_classes": {
+    "mechanical": 8
+   },
+   "construct": "view:table",
+   "file": "views/engagement_details.view.lkml",
+   "line": 3,
+   "sql_table_name": "`ra-development.analytics_docai_europe_west2.engagement_details`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "engagement_details__deliverables": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:no_table",
+   "file": "views/engagement_details.view.lkml",
+   "line": 83,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "engagement_details__objectives": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:no_table",
+   "file": "views/engagement_details.view.lkml",
+   "line": 49,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "engagement_health_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 106,
+   "field_classes": {
+    "mechanical": 102,
+    "redesign": 4
+   },
+   "construct": "view:table",
+   "file": "views/engagement_health_fact.view.lkml",
+   "line": 9,
+   "sql_table_name": "`ra-development.analytics.engagement_health_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "engagement_renewal_analysis": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 40,
+   "field_classes": {
+    "mechanical": 37,
+    "assisted": 3
+   },
+   "construct": "view:pdt",
+   "file": "views/engagement_renewal_analysis.view.lkml",
+   "line": 7,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": true,
+   "extends": []
+  },
+  "engagement_sprint_burn_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 24,
+   "field_classes": {
+    "mechanical": 23,
+    "assisted": 1
+   },
+   "construct": "view:table",
+   "file": "views/engagement_sprint_burn_fact.view.lkml",
+   "line": 9,
+   "sql_table_name": "`ra-development.analytics.engagement_sprint_burn_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "engagements": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 34,
+   "field_classes": {
+    "mechanical": 34
+   },
+   "construct": "view:derived_table",
+   "file": "views/engagements.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "exchange_rates": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 2,
+   "field_classes": {
+    "mechanical": 2
+   },
+   "construct": "view:table",
+   "file": "views/exchange_rates.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics_seed.exchange_rates`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "fathom_meeting_actions": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 8,
+   "field_classes": {
+    "mechanical": 8
+   },
+   "construct": "view:derived_table",
+   "file": "views/fathom_meeting_actions.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "fathom_meetings": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 38,
+   "field_classes": {
+    "mechanical": 38
+   },
+   "construct": "view:derived_table",
+   "file": "views/fathom_meetings.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "fct_boost_transactions": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 19,
+   "field_classes": {
+    "mechanical": 14,
+    "redesign": 2,
+    "assisted": 3
+   },
+   "construct": "view:table",
+   "file": "views/booksy_demo.view.lkml",
+   "line": 10,
+   "sql_table_name": "booksy_analytics.fct_boost_transactions",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ga_multi_cycle_multi_touch_attribution": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 26,
+   "field_classes": {
+    "mechanical": 25,
+    "assisted": 1
+   },
+   "construct": "view:pdt",
+   "file": "views/ga_multi_cycle_multi_touch_attribution.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": true,
+   "extends": []
+  },
+  "gcp_billing_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 21,
+   "field_classes": {
+    "mechanical": 21
+   },
+   "construct": "view:table",
+   "file": "views/gcp_billing_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.gcp_billing_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "general_ledger_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 29,
+   "field_classes": {
+    "mechanical": 28,
+    "assisted": 1
+   },
+   "construct": "view:table",
+   "file": "views/general_ledger_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.general_ledger_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "has_viewed_pricing": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:derived_table",
+   "file": "views/has_viewed_pricing.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "hr_survey_results_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 28,
+   "field_classes": {
+    "mechanical": 27,
+    "assisted": 1
+   },
+   "construct": "view:derived_table",
+   "file": "views/hr_survey_results_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "icp_lookalike_audience_uk_ie_eu_only": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 13,
+   "field_classes": {
+    "mechanical": 13
+   },
+   "construct": "view:table",
+   "file": "views/icp_lookalike_audience_uk_ie_eu_only.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics_seed.icp_lookalike_audience_uk_ie_eu_only`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ideal_customer_2025": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 50,
+   "field_classes": {
+    "mechanical": 50
+   },
+   "construct": "view:table",
+   "file": "views/ideal_customer_2025.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics_seed.ideal_customer_2025`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ideal_customers": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 16,
+   "field_classes": {
+    "mechanical": 16
+   },
+   "construct": "view:table",
+   "file": "views/ideal_customers.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics_seed.ideal_customers`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "invoices_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 50,
+   "field_classes": {
+    "mechanical": 47,
+    "assisted": 3
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/invoices_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.invoices_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "ips_enriched": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 15,
+   "field_classes": {
+    "mechanical": 13,
+    "redesign": 1,
+    "assisted": 1
+   },
+   "construct": "view:table",
+   "file": "views/ips_enriched.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics_seed.ips_enriched`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "is_conversion_session": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:derived_table",
+   "file": "views/is_conversion_session.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "journals_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 19,
+   "field_classes": {
+    "mechanical": 19
+   },
+   "construct": "view:table",
+   "file": "views/journals_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.journals_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "keyword_page_report": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 16,
+   "field_classes": {
+    "mechanical": 16
+   },
+   "construct": "view:derived_table",
+   "file": "views/keyword_page_report.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "kpi_scorecard": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 32,
+   "field_classes": {
+    "mechanical": 28,
+    "assisted": 3,
+    "redesign": 1
+   },
+   "construct": "view:table",
+   "file": "views/kpi_scorecard.view.lkml",
+   "line": 6,
+   "sql_table_name": "`ra-development.analytics.kpi_scorecard`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "linkedin_company_pages": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 16,
+   "field_classes": {
+    "mechanical": 16
+   },
+   "construct": "view:derived_table",
+   "file": "views/linkedin_company_pages.view.lkml",
+   "line": 2,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "looker_usage_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 16,
+   "field_classes": {
+    "mechanical": 16
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/looker_usage_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.looker_usage_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "looker_usage_stats": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 19,
+   "field_classes": {
+    "mechanical": 18,
+    "assisted": 1
+   },
+   "construct": "view:derived_table",
+   "file": "views/looker_usage_stats.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "marketing_content_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 17,
+   "field_classes": {
+    "mechanical": 17
+   },
+   "construct": "view:table",
+   "file": "views/marketing_content_dim.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.marketing_content_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "marketing_interactions_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 13,
+   "field_classes": {
+    "mechanical": 13
+   },
+   "construct": "view:table",
+   "file": "views/marketing_interactions_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.marketing_interactions_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "meeting_contact_lines_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 10,
+   "field_classes": {
+    "mechanical": 10
+   },
+   "construct": "view:table",
+   "file": "views/meeting_contact_lines_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.meeting_contact_lines_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "messages_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 17,
+   "field_classes": {
+    "mechanical": 17
+   },
+   "construct": "view:table",
+   "file": "views/messages_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.messages_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "monthly_performance_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 52,
+   "field_classes": {
+    "mechanical": 52
+   },
+   "construct": "view:table",
+   "file": "views/monthly_performance_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.monthly_performance_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "monthly_resource_revenue_forecast_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 24,
+   "field_classes": {
+    "redesign": 4,
+    "mechanical": 20
+   },
+   "construct": "view:derived_table",
+   "file": "views/monthly_resource_revenue_forecast_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "monzo_bank_transactions_enriched": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 19,
+   "field_classes": {
+    "mechanical": 19
+   },
+   "construct": "view:table",
+   "file": "views/monzo_bank_transactions_enriched.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics_seed.monzo_bank_transactions_enriched`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "nps_survey_results_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 11,
+   "field_classes": {
+    "mechanical": 10,
+    "assisted": 1
+   },
+   "construct": "view:table",
+   "file": "views/nps_survey_results_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.nps_survey_results_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "organic_post_performance_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 10,
+   "field_classes": {
+    "mechanical": 10
+   },
+   "construct": "view:table",
+   "file": "views/organic_post_performance_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.organic_post_performance_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "organic_posts_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 8,
+   "field_classes": {
+    "mechanical": 8
+   },
+   "construct": "view:table",
+   "file": "views/organic_posts_dim.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.organic_posts_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "page_first_published": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 2,
+   "field_classes": {
+    "mechanical": 1,
+    "assisted": 1
+   },
+   "construct": "view:derived_table",
+   "file": "views/page_first_published.view.lkml",
+   "line": 2,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "page_keyword_performance": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 19,
+   "field_classes": {
+    "mechanical": 19
+   },
+   "construct": "view:pdt",
+   "file": "views/page_keyword_performance.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": true,
+   "extends": []
+  },
+  "page_report": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 16,
+   "field_classes": {
+    "mechanical": 16
+   },
+   "construct": "view:table",
+   "file": "views/page_report.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.fivetran_google_search_console.page_report`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "payments_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 22,
+   "field_classes": {
+    "mechanical": 22
+   },
+   "construct": "view:table",
+   "file": "views/payments_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.payments_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "performance_narrative_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 6,
+   "field_classes": {
+    "mechanical": 5,
+    "redesign": 1
+   },
+   "construct": "view:table",
+   "file": "views/performance_narrative_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.performance_narrative_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "persons_dim": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 100,
+   "field_classes": {
+    "mechanical": 99,
+    "assisted": 1
+   },
+   "construct": "view:table",
+   "file": "views/persons_dim.view.lkml",
+   "line": 5,
+   "sql_table_name": "`ra-development.analytics.persons_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "persons_dim__all_addresses": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:no_table",
+   "file": "views/persons_dim.view.lkml",
+   "line": 844,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "persons_dim__all_emails": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 1,
+   "field_classes": {
+    "mechanical": 1
+   },
+   "construct": "view:no_table",
+   "file": "views/persons_dim.view.lkml",
+   "line": 828,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "persons_dim__current_roles": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 1,
+   "field_classes": {
+    "mechanical": 1
+   },
+   "construct": "view:no_table",
+   "file": "views/persons_dim.view.lkml",
+   "line": 836,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "pipeline_history": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 7,
+   "field_classes": {
+    "mechanical": 6,
+    "assisted": 1
+   },
+   "construct": "view:derived_table",
+   "file": "views/pipeline_history.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "pl_reports": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 9,
+   "field_classes": {
+    "mechanical": 9
+   },
+   "construct": "view:table",
+   "file": "views/pl_reports.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics_finance_demo.pl_reports_filtered`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "podcast_transcriptions": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 10,
+   "field_classes": {
+    "mechanical": 10
+   },
+   "construct": "view:table",
+   "file": "views/podcast_transcriptions.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics_seed.podcast_transcriptions`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "product_usage_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 38,
+   "field_classes": {
+    "mechanical": 33,
+    "assisted": 5
+   },
+   "construct": "view:table",
+   "file": "views/product_usage_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.product_usage_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "products_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 8,
+   "field_classes": {
+    "mechanical": 8
+   },
+   "construct": "view:table",
+   "file": "views/products_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.products_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "profit_and_loss_demo_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 12,
+   "field_classes": {
+    "mechanical": 10,
+    "assisted": 2
+   },
+   "construct": "view:table",
+   "file": "views/profit_and_loss_demo_fact.view.lkml",
+   "line": 8,
+   "sql_table_name": "`ra-development.analytics.profit_and_loss_report_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "profit_and_loss_report_account_group": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 9,
+   "field_classes": {
+    "mechanical": 9
+   },
+   "construct": "view:table",
+   "file": "views/profit_and_loss_report_account_group.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics_finance_demo.profit_and_loss_report_account_group`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "profit_and_loss_report_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 44,
+   "field_classes": {
+    "mechanical": 25,
+    "assisted": 1,
+    "redesign": 18
+   },
+   "construct": "view:table",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.profit_and_loss_report_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "project_attribution": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 18,
+   "field_classes": {
+    "mechanical": 18
+   },
+   "construct": "view:derived_table",
+   "file": "views/project_attribution.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "project_engagements": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 6,
+   "field_classes": {
+    "mechanical": 5,
+    "assisted": 1
+   },
+   "construct": "view:table",
+   "file": "views/project_engagements_monthly_revenue.view.lkml",
+   "line": 1,
+   "sql_table_name": "ra-development.analytics.timesheet_project_engagements_monthly_revenue_fact",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "project_metrics": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 15,
+   "field_classes": {
+    "mechanical": 15
+   },
+   "construct": "view:derived_table",
+   "file": "views/project_metrics.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "projects_delivered_is_ontime": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:derived_table",
+   "file": "views/projects_delivered_is_ontime.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "recognized_revenue_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 23,
+   "field_classes": {
+    "mechanical": 20,
+    "assisted": 3
+   },
+   "construct": "view:table",
+   "file": "views/recognized_revenue_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.recognized_revenue_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "recruiting_application_stages_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 6,
+   "field_classes": {
+    "mechanical": 6
+   },
+   "construct": "view:table",
+   "file": "views/recruiting_application_stages_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.recruiting_application_stages_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "recruiting_job_applications_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 28,
+   "field_classes": {
+    "mechanical": 28
+   },
+   "construct": "view:table",
+   "file": "views/recruiting_job_applications_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.recruiting_job_applications_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "recruiting_jobs_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 11,
+   "field_classes": {
+    "mechanical": 11
+   },
+   "construct": "view:table",
+   "file": "views/recruiting_jobs_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.recruiting_jobs_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "revenue_and_forecast": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 13,
+   "field_classes": {
+    "mechanical": 13
+   },
+   "construct": "view:derived_table",
+   "file": "views/revenue_and_forecast.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "revenue_attribution": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 6,
+   "field_classes": {
+    "mechanical": 6
+   },
+   "construct": "view:derived_table",
+   "file": "views/revenue_attribution.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "rfm_model": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 9,
+   "field_classes": {
+    "mechanical": 9
+   },
+   "construct": "view:native_derived_table",
+   "file": "views/rfm_model.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "sales_funnel_xa": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 37,
+   "field_classes": {
+    "mechanical": 37
+   },
+   "construct": "view:table",
+   "file": "views/sales_funnel_xa.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.sales_funnel_xa`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "sales_targets": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 22,
+   "field_classes": {
+    "mechanical": 22
+   },
+   "construct": "view:table",
+   "file": "views/sales_targets.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics_seed.sales_targets`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "site_report_by_page": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 11,
+   "field_classes": {
+    "mechanical": 11
+   },
+   "construct": "view:table",
+   "file": "views/site_report_by_page.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.fivetran_google_search_console.site_report_by_page`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "site_report_by_site": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 8,
+   "field_classes": {
+    "mechanical": 8
+   },
+   "construct": "view:table",
+   "file": "views/site_report_by_site.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.fivetran_google_search_console.site_report_by_site`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "src_control_commits_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 20,
+   "field_classes": {
+    "mechanical": 20
+   },
+   "construct": "view:table",
+   "file": "views/src_control_commits_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.src_control_commits_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "src_control_daily_metrics_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 24,
+   "field_classes": {
+    "mechanical": 22,
+    "assisted": 2
+   },
+   "construct": "view:table",
+   "file": "views/src_control_daily_metrics_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.src_control_daily_metrics_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "src_control_issues_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 24,
+   "field_classes": {
+    "mechanical": 24
+   },
+   "construct": "view:table",
+   "file": "views/src_control_issues_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.src_control_issues_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "src_control_pull_requests_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 47,
+   "field_classes": {
+    "mechanical": 47
+   },
+   "construct": "view:table",
+   "file": "views/src_control_pull_requests_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.src_control_pull_requests_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "src_control_repos_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 26,
+   "field_classes": {
+    "mechanical": 26
+   },
+   "construct": "view:table",
+   "file": "views/src_control_repos_dim.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.src_control_repos_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "staff_daily_engagement_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 70,
+   "field_classes": {
+    "mechanical": 68,
+    "assisted": 2
+   },
+   "construct": "view:table",
+   "file": "views/staff_daily_engagement_fact.view.lkml",
+   "line": 7,
+   "sql_table_name": "`ra-development.analytics.staff_daily_engagement_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "staff_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 11,
+   "field_classes": {
+    "mechanical": 11
+   },
+   "construct": "view:derived_table",
+   "file": "views/staff_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "staff_event_timeline_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 13,
+   "field_classes": {
+    "mechanical": 10,
+    "redesign": 2,
+    "assisted": 1
+   },
+   "construct": "view:table",
+   "file": "views/staff_event_timeline_fact.view.lkml",
+   "line": 7,
+   "sql_table_name": "`ra-development.analytics.staff_event_timeline_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "staff_weekly_engagement_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 58,
+   "field_classes": {
+    "mechanical": 51,
+    "assisted": 6,
+    "redesign": 1
+   },
+   "construct": "view:table",
+   "file": "views/staff_weekly_engagement_fact.view.lkml",
+   "line": 6,
+   "sql_table_name": "`ra-development.analytics.staff_weekly_engagement_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "targets": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 53,
+   "field_classes": {
+    "mechanical": 52,
+    "assisted": 1
+   },
+   "construct": "view:table",
+   "file": "views/targets.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics_seed.targets`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "team_revenue_targets": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 8,
+   "field_classes": {
+    "mechanical": 6,
+    "assisted": 2
+   },
+   "construct": "view:table",
+   "file": "views/team_revenue_targets.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics_seed.consultant_targets_grades`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_costs_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 24,
+   "field_classes": {
+    "mechanical": 24
+   },
+   "construct": "view:table",
+   "file": "views/timesheet_project_costs_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.timesheet_project_costs_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_engagement_progress_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 6,
+   "field_classes": {
+    "mechanical": 6
+   },
+   "construct": "view:table",
+   "file": "views/timesheet_project_engagement_progress_fact.view.lkml",
+   "line": 3,
+   "sql_table_name": "`ra-development.analytics.timesheet_project_engagement_progress_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_engagement_progress_fact__deliverables": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:no_table",
+   "file": "views/timesheet_project_engagement_progress_fact.view.lkml",
+   "line": 97,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_engagement_progress_fact__objectives": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 8,
+   "field_classes": {
+    "mechanical": 8
+   },
+   "construct": "view:no_table",
+   "file": "views/timesheet_project_engagement_progress_fact.view.lkml",
+   "line": 42,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_engagement_rag_status_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 29,
+   "field_classes": {
+    "mechanical": 21,
+    "assisted": 1,
+    "redesign": 7
+   },
+   "construct": "view:table",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.timesheet_project_engagement_rag_status_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_engagement_rag_status_fact__client_action_points": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:no_table",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": 222,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_engagement_rag_status_fact__month_timeline_events": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:no_table",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": 243,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_engagement_rag_status_fact__ra_action_points": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:no_table",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": 201,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_engagements_dim__projects": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:no_table",
+   "file": "views/engagements.view.lkml",
+   "line": 283,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_monthly_forecast_billing_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 5,
+   "field_classes": {
+    "mechanical": 5
+   },
+   "construct": "view:derived_table",
+   "file": "views/timesheet_project_monthly_forecast_billing_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_stakeholder_jtbd_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 7,
+   "field_classes": {
+    "mechanical": 7
+   },
+   "construct": "view:table",
+   "file": "views/timesheet_project_stakeholder_jtbd_fact.view.lkml",
+   "line": 15,
+   "sql_table_name": "`ra-development.analytics.timesheet_project_stakeholder_jtbd_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_stakeholder_jtbd_fact__identified_jtbds": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 3,
+   "field_classes": {
+    "mechanical": 3
+   },
+   "construct": "view:no_table",
+   "file": "views/timesheet_project_stakeholder_jtbd_fact.view.lkml",
+   "line": 76,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_project_stakeholder_jtbd_fact__keywords": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 2,
+   "field_classes": {
+    "mechanical": 2
+   },
+   "construct": "view:no_table",
+   "file": "views/timesheet_project_stakeholder_jtbd_fact.view.lkml",
+   "line": 59,
+   "sql_table_name": null,
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_projects_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 31,
+   "field_classes": {
+    "mechanical": 31
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/timesheet_projects_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.timesheet_projects_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheet_tasks_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 8,
+   "field_classes": {
+    "mechanical": 8
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/timesheet_tasks_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.timesheet_tasks_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheets_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 27,
+   "field_classes": {
+    "mechanical": 25,
+    "assisted": 1,
+    "redesign": 1
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/timesheets_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.timesheets_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "timesheets_forecast_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 9,
+   "field_classes": {
+    "mechanical": 9
+   },
+   "construct": "view:table",
+   "file": "views/timesheets_forecast_fact.view.lkml",
+   "line": 2,
+   "sql_table_name": "`ra-development.analytics.timesheets_forecast_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "transactions_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 15,
+   "field_classes": {
+    "mechanical": 15
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/transactions_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.transactions_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "users_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 11,
+   "field_classes": {
+    "mechanical": 11
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/users_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.users_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "web_events_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "fields": 83,
+   "field_classes": {
+    "mechanical": 79,
+    "redesign": 1,
+    "assisted": 3
+   },
+   "construct": "view:derived_table",
+   "file": "views/web_events_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "web_sessions_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "fields": 56,
+   "field_classes": {
+    "mechanical": 47,
+    "redesign": 4,
+    "assisted": 5
+   },
+   "construct": "view:sql_table_name_liquid",
+   "file": "views/web_sessions_fact.view.lkml",
+   "line": 1,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.web_sessions_fact`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  },
+  "website_leads": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "fields": 22,
+   "field_classes": {
+    "mechanical": 21,
+    "assisted": 1
+   },
+   "construct": "view:derived_table",
+   "file": "views/website_leads.view.lkml",
+   "line": 1,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "wh_sessions_attribution": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 28,
+   "field_classes": {
+    "mechanical": 28
+   },
+   "construct": "view:derived_table",
+   "file": "views/wh_sessions_attribution.view.lkml",
+   "line": 2,
+   "sql_table_name": null,
+   "derived": true,
+   "pdt": false,
+   "extends": []
+  },
+  "workstations_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "fields": 21,
+   "field_classes": {
+    "mechanical": 21
+   },
+   "construct": "view:table",
+   "file": "views/workstations_dim.view.lkml",
+   "line": 1,
+   "sql_table_name": "`ra-development.analytics.workstations_dim`",
+   "derived": false,
+   "pdt": false,
+   "extends": []
+  }
+ },
+ "explores": {
+  "kpi_scorecard": {
+   "base_view": "kpi_scorecard",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 21,
+   "joins": [],
+   "views_reached": [
+    "kpi_scorecard"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "organic_posts_dim": {
+   "base_view": "organic_posts_dim",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "Content Marketing",
+   "file": "models/analytics.model.lkml",
+   "line": 23,
+   "joins": [
+    {
+     "join": "organic_post_performance_fact",
+     "view": "organic_post_performance_fact",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 26
+    }
+   ],
+   "views_reached": [
+    "organic_post_performance_fact",
+    "organic_posts_dim"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "ad_campaign_performance_fact": {
+   "base_view": "ad_campaign_performance_fact",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": "Campaign Performance",
+   "file": "models/analytics.model.lkml",
+   "line": 34,
+   "joins": [
+    {
+     "join": "ad_campaigns_dim",
+     "view": "ad_campaigns_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 41
+    }
+   ],
+   "views_reached": [
+    "ad_campaign_performance_fact",
+    "ad_campaigns_dim"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "site_report_by_site": {
+   "base_view": "site_report_by_site",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 49,
+   "joins": [],
+   "views_reached": [
+    "site_report_by_site"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "staff_weekly_engagement_fact": {
+   "base_view": "staff_weekly_engagement_fact",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "Staff Engagement",
+   "file": "models/analytics.model.lkml",
+   "line": 53,
+   "joins": [
+    {
+     "join": "staff_daily_engagement_fact",
+     "view": "staff_daily_engagement_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 59
+    },
+    {
+     "join": "staff_event_timeline_fact",
+     "view": "staff_event_timeline_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 69
+    }
+   ],
+   "views_reached": [
+    "staff_daily_engagement_fact",
+    "staff_event_timeline_fact",
+    "staff_weekly_engagement_fact"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "page_report": {
+   "base_view": "page_report",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 80,
+   "joins": [],
+   "views_reached": [
+    "page_report"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "src_control_repos_dim": {
+   "base_view": "src_control_repos_dim",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "Source Repositories",
+   "file": "models/analytics.model.lkml",
+   "line": 82,
+   "joins": [
+    {
+     "join": "src_control_daily_metrics_fact",
+     "view": "src_control_daily_metrics_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 85
+    },
+    {
+     "join": "src_control_pull_requests_fact",
+     "view": "src_control_pull_requests_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 91
+    },
+    {
+     "join": "persons_dim",
+     "view": "persons_dim",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": [
+      "persons_dim.person_name",
+      "persons_dim.is_contractor",
+      "persons_dim.is_staff"
+     ],
+     "line": 97
+    },
+    {
+     "join": "reviewer_persons_dim",
+     "view": "persons_dim",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 104
+    },
+    {
+     "join": "organisation",
+     "view": "companies_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 111
+    }
+   ],
+   "views_reached": [
+    "companies_dim",
+    "persons_dim",
+    "src_control_daily_metrics_fact",
+    "src_control_pull_requests_fact",
+    "src_control_repos_dim"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "engagement_renewal_analysis": {
+   "base_view": "engagement_renewal_analysis",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "Engagement Renewal Analysis",
+   "file": "models/analytics.model.lkml",
+   "line": 120,
+   "joins": [],
+   "views_reached": [
+    "engagement_renewal_analysis"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "cumulative_churned_clients": {
+   "base_view": "cumulative_churned_clients",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": "Cumulative Churned Clients",
+   "file": "models/analytics.model.lkml",
+   "line": 128,
+   "joins": [],
+   "views_reached": [
+    "cumulative_churned_clients"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "marketing_email_sends": {
+   "base_view": "email_sends_dim",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": "Marketing Emails",
+   "file": "models/analytics.model.lkml",
+   "line": 136,
+   "joins": [
+    {
+     "join": "email_send_outcomes_fact",
+     "view": "email_send_outcomes_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 140
+    }
+   ],
+   "views_reached": [
+    "email_send_outcomes_fact",
+    "email_sends_dim"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "page_keyword_performance": {
+   "base_view": "page_keyword_performance",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 148,
+   "joins": [],
+   "views_reached": [
+    "page_keyword_performance"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "project_engagements": {
+   "base_view": "project_engagements",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 152,
+   "joins": [],
+   "views_reached": [
+    "project_engagements"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "contacts": {
+   "base_view": "contacts_dim",
+   "class": "assisted",
+   "reason": "sql_always_where: confirm references resolve on the topic (always_where_sql); hidden: yes",
+   "hidden": true,
+   "label": "         Delivery Team",
+   "file": "models/analytics.model.lkml",
+   "line": 157,
+   "joins": [
+    {
+     "join": "timesheets_fact",
+     "view": "timesheets_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 164
+    },
+    {
+     "join": "messages_fact",
+     "view": "messages_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 170
+    },
+    {
+     "join": "customer_meetings",
+     "view": "customer_meetings",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 176
+    },
+    {
+     "join": "meeting_contact_lines_fact",
+     "view": "meeting_contact_lines_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 182
+    },
+    {
+     "join": "projects_delivered",
+     "view": "timesheet_projects_dim",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 188
+    },
+    {
+     "join": "projects_delivered_clients",
+     "view": "companies_dim",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 195
+    },
+    {
+     "join": "timesheet_tasks_dim",
+     "view": "timesheet_tasks_dim",
+     "relationship": "many_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 203
+    },
+    {
+     "join": "projects_invoiced",
+     "view": "invoices_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 209
+    },
+    {
+     "join": "exchange_rates",
+     "view": "exchange_rates",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 216
+    },
+    {
+     "join": "delivery_tasks_fact",
+     "view": "delivery_tasks_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 221
+    },
+    {
+     "join": "projects_managed",
+     "view": "delivery_projects_dim",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 227
+    },
+    {
+     "join": "delivered_companies_dim",
+     "view": "companies_dim",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 234
+    },
+    {
+     "join": "payments_fact",
+     "view": "payments_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 242
+    }
+   ],
+   "views_reached": [
+    "companies_dim",
+    "contacts_dim",
+    "customer_meetings",
+    "delivery_projects_dim",
+    "delivery_tasks_fact",
+    "exchange_rates",
+    "invoices_fact",
+    "meeting_contact_lines_fact",
+    "messages_fact",
+    "payments_fact",
+    "timesheet_projects_dim",
+    "timesheet_tasks_dim",
+    "timesheets_fact"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": "${contact_is_staff} or ${contact_is_contractor}",
+   "access_filter": null,
+   "fields": null
+  },
+  "monzo_bank_transactions_enriched": {
+   "base_view": "monzo_bank_transactions_enriched",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": "Banking",
+   "file": "models/analytics.model.lkml",
+   "line": 250,
+   "joins": [],
+   "views_reached": [
+    "monzo_bank_transactions_enriched"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "icp_lookalike_audience_uk_ie_eu_only": {
+   "base_view": "icp_lookalike_audience_uk_ie_eu_only",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": "ICP Target List",
+   "file": "models/analytics.model.lkml",
+   "line": 256,
+   "joins": [],
+   "views_reached": [
+    "icp_lookalike_audience_uk_ie_eu_only"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "monthly_resource_revenue_forecast_fact": {
+   "base_view": "monthly_resource_revenue_forecast_fact",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": "Monthly Forecast",
+   "file": "models/analytics.model.lkml",
+   "line": 261,
+   "joins": [],
+   "views_reached": [
+    "monthly_resource_revenue_forecast_fact"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "timesheet_project_monthly_forecast_billing_fact": {
+   "base_view": "timesheet_project_monthly_forecast_billing_fact",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 266,
+   "joins": [],
+   "views_reached": [
+    "timesheet_project_monthly_forecast_billing_fact"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "looker_usage_stats": {
+   "base_view": "looker_usage_stats",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 270,
+   "joins": [],
+   "views_reached": [
+    "looker_usage_stats"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "fathom_meetings": {
+   "base_view": "fathom_meetings",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 274,
+   "joins": [
+    {
+     "join": "fathom_meeting_actions",
+     "view": "fathom_meeting_actions",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 277
+    }
+   ],
+   "views_reached": [
+    "fathom_meeting_actions",
+    "fathom_meetings"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "people": {
+   "base_view": "contacts_dim",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": "     Contacts",
+   "file": "models/analytics.model.lkml",
+   "line": 285,
+   "joins": [
+    {
+     "join": "recruiting_job_applications_fact",
+     "view": "recruiting_job_applications_fact",
+     "relationship": "many_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 291
+    },
+    {
+     "join": "recruiting_jobs_dim",
+     "view": "recruiting_jobs_dim",
+     "relationship": "many_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 297
+    },
+    {
+     "join": "recruiting_application_stages_dim",
+     "view": "recruiting_application_stages_dim",
+     "relationship": "many_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 303
+    },
+    {
+     "join": "contact_engagements_fact",
+     "view": "contact_engagements_fact",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 309
+    },
+    {
+     "join": "contact_engagement_deal_fact",
+     "view": "deals_fact",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 315
+    },
+    {
+     "join": "contact_bio",
+     "view": "contact_bio",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 322
+    },
+    {
+     "join": "contact_meetings_fact",
+     "view": "contact_meetings_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 328
+    },
+    {
+     "join": "contact_meetings_fact__all_attendee_person_pk",
+     "view": "contact_meetings_fact__all_attendee_person_pk",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 334
+    },
+    {
+     "join": "contacts_attended_dim",
+     "view": "contacts_dim",
+     "relationship": "many_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 339
+    },
+    {
+     "join": "contacts_engaged_dim",
+     "view": "contacts_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 346
+    },
+    {
+     "join": "looker_usage_fact",
+     "view": "looker_usage_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 353
+    },
+    {
+     "join": "contact_deals_fact",
+     "view": "contact_deals_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 359
+    },
+    {
+     "join": "deals_fact",
+     "view": "deals_fact",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 364
+    },
+    {
+     "join": "contacts_influencer_list_xa",
+     "view": "contacts_influencer_list_xa",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 370
+    },
+    {
+     "join": "contacts_web_event_history_xa",
+     "view": "contacts_web_event_history_xa",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 376
+    },
+    {
+     "join": "contacts_web_interests_xa",
+     "view": "contacts_web_interests_xa",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 382
+    },
+    {
+     "join": "marketing_interactions_fact",
+     "view": "marketing_interactions_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 388
+    },
+    {
+     "join": "marketing_content_dim",
+     "view": "marketing_content_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 394
+    },
+    {
+     "join": "contact_contracts",
+     "view": "contracts_fact",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 400
+    },
+    {
+     "join": "contact_nps_survey_fact",
+     "view": "contact_nps_survey_fact",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 407
+    }
+   ],
+   "views_reached": [
+    "contact_bio",
+    "contact_deals_fact",
+    "contact_engagements_fact",
+    "contact_meetings_fact",
+    "contact_meetings_fact__all_attendee_person_pk",
+    "contact_nps_survey_fact",
+    "contacts_dim",
+    "contacts_influencer_list_xa",
+    "contacts_web_event_history_xa",
+    "contacts_web_interests_xa",
+    "contracts_fact",
+    "deals_fact",
+    "looker_usage_fact",
+    "marketing_content_dim",
+    "marketing_interactions_fact",
+    "recruiting_application_stages_dim",
+    "recruiting_job_applications_fact",
+    "recruiting_jobs_dim"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "company_comparison": {
+   "base_view": "company_comparison",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 415,
+   "joins": [],
+   "views_reached": [
+    "company_comparison"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "revenue_and_forecast": {
+   "base_view": "revenue_and_forecast",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 419,
+   "joins": [],
+   "views_reached": [
+    "revenue_and_forecast"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "nps_survey_results_fact": {
+   "base_view": "nps_survey_results_fact",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": "NPS Surveys",
+   "file": "models/analytics.model.lkml",
+   "line": 426,
+   "joins": [
+    {
+     "join": "contacts_dim",
+     "view": "contacts_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 431
+    },
+    {
+     "join": "companies_dim",
+     "view": "companies_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 437
+    },
+    {
+     "join": "engagements",
+     "view": "engagements",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 443
+    }
+   ],
+   "views_reached": [
+    "companies_dim",
+    "contacts_dim",
+    "engagements",
+    "nps_survey_results_fact"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "website_leads": {
+   "base_view": "website_leads",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": null,
+   "file": "models/analytics.model.lkml",
+   "line": 451,
+   "joins": [],
+   "views_reached": [
+    "website_leads"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "targets": {
+   "base_view": "targets",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "Targets",
+   "file": "models/analytics.model.lkml",
+   "line": 456,
+   "joins": [
+    {
+     "join": "sales_targets",
+     "view": "sales_targets",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 460
+    }
+   ],
+   "views_reached": [
+    "sales_targets",
+    "targets"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "contact_utilization_fact": {
+   "base_view": "contact_utilization_fact",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": "    Utilization",
+   "file": "models/analytics.model.lkml",
+   "line": 468,
+   "joins": [
+    {
+     "join": "staff_dim",
+     "view": "staff_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 474
+    }
+   ],
+   "views_reached": [
+    "contact_utilization_fact",
+    "staff_dim"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "web_sessions_fact": {
+   "base_view": "web_sessions_fact",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "    Web Analytics",
+   "file": "models/analytics.model.lkml",
+   "line": 482,
+   "joins": [
+    {
+     "join": "wh_sessions_attribution",
+     "view": "wh_sessions_attribution",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 487
+    },
+    {
+     "join": "page_first_published",
+     "view": "page_first_published",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 494
+    },
+    {
+     "join": "web_events_fact",
+     "view": "web_events_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 500
+    },
+    {
+     "join": "ips_enriched",
+     "view": "ips_enriched",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 506
+    },
+    {
+     "join": "has_viewed_pricing",
+     "view": "has_viewed_pricing",
+     "relationship": "one_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 512
+    },
+    {
+     "join": "is_conversion_session",
+     "view": "is_conversion_session",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 518
+    }
+   ],
+   "views_reached": [
+    "has_viewed_pricing",
+    "ips_enriched",
+    "is_conversion_session",
+    "page_first_published",
+    "web_events_fact",
+    "web_sessions_fact",
+    "wh_sessions_attribution"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "companies_dim": {
+   "base_view": "companies_dim",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "                    Business Operations",
+   "file": "models/analytics.model.lkml",
+   "line": 531,
+   "joins": [
+    {
+     "join": "company_converted_projects",
+     "view": "company_converted_projects",
+     "relationship": "one_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 538
+    },
+    {
+     "join": "src_control_repos_dim",
+     "view": "src_control_repos_dim",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 544
+    },
+    {
+     "join": "src_control_daily_metrics_fact",
+     "view": "src_control_daily_metrics_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 550
+    },
+    {
+     "join": "src_control_pull_requests_fact",
+     "view": "src_control_pull_requests_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 556
+    },
+    {
+     "join": "persons_dim",
+     "view": "persons_dim",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": [
+      "persons_dim.person_name",
+      "persons_dim.is_contractor",
+      "persons_dim.is_staff"
+     ],
+     "line": 562
+    },
+    {
+     "join": "engagements",
+     "view": "engagements",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 569
+    },
+    {
+     "join": "timesheet_project_engagements_dim__projects",
+     "view": "timesheet_project_engagements_dim__projects",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 575
+    },
+    {
+     "join": "timesheet_project_engagements_dim__projects_is_ontime",
+     "view": "projects_delivered_is_ontime",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "timesheet_project_engagements_dim__projects_is_ontime.is_ontime_project"
+     ],
+     "line": 580
+    },
+    {
+     "join": "timesheet_project_engagement_project_costs_fact",
+     "view": "timesheet_project_costs_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "timesheet_project_engagement_project_costs_fact.total_cost_gbp"
+     ],
+     "line": 588
+    },
+    {
+     "join": "engagement_details",
+     "view": "engagement_details",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 596
+    },
+    {
+     "join": "engagement_details__objectives",
+     "view": "engagement_details__objectives",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 602
+    },
+    {
+     "join": "engagement_details__deliverables",
+     "view": "engagement_details__deliverables",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 607
+    },
+    {
+     "join": "delivery_project_docs_dim",
+     "view": "delivery_project_docs_dim",
+     "relationship": "many_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 612
+    },
+    {
+     "join": "timesheet_project_engagement_rag_status_fact",
+     "view": "timesheet_project_engagement_rag_status_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 618
+    },
+    {
+     "join": "timesheet_project_engagement_rag_status_fact__month_timeline_events",
+     "view": "timesheet_project_engagement_rag_status_fact__month_timeline_events",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 624
+    },
+    {
+     "join": "timesheet_project_engagement_rag_status_fact__ra_action_points",
+     "view": "timesheet_project_engagement_rag_status_fact__ra_action_points",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 629
+    },
+    {
+     "join": "timesheet_project_engagement_rag_status_fact__client_action_points",
+     "view": "timesheet_project_engagement_rag_status_fact__client_action_points",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 634
+    },
+    {
+     "join": "project_engagements",
+     "view": "project_engagements",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 639
+    },
+    {
+     "join": "customer_meetings",
+     "view": "customer_meetings",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 645
+    },
+    {
+     "join": "timesheet_project_stakeholder_jtbd_fact",
+     "view": "timesheet_project_stakeholder_jtbd_fact",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 651
+    },
+    {
+     "join": "customer_meeting_attendees",
+     "view": "contacts_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "customer_meeting_attendees.contact_name",
+      "customer_meeting_attendees.contact_bio"
+     ],
+     "line": 657
+    },
+    {
+     "join": "timesheet_project_stakeholder_jtbd_fact__keywords",
+     "view": "timesheet_project_stakeholder_jtbd_fact__keywords",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 665
+    },
+    {
+     "join": "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+     "view": "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 670
+    },
+    {
+     "join": "messages_fact",
+     "view": "messages_fact",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 675
+    },
+    {
+     "join": "message_contacts",
+     "view": "contacts_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "message_contacts.contact_name"
+     ],
+     "line": 681
+    },
+    {
+     "join": "timesheet_project_engagements_projects_invoiced",
+     "view": "invoices_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "timesheet_project_engagements_projects_invoiced.total_invoiced_net_amount_gbp",
+      "timesheet_project_engagements_projects_invoiced.invoice_paid_date",
+      "timesheet_project_engagements_projects_invoiced.invoice_currency",
+      "timesheet_project_engagements_projects_invoiced.total_local_amount",
+      "timesheet_project_engagements_projects_invoiced.expected_payment_date",
+      "timesheet_project_engagements_projects_invoiced.invoice_due_date",
+      "timesheet_project_engagements_projects_invoiced.invoice_total_days_overdue",
+      "timesheet_project_engagements_projects_invoiced.invoice_tax_rate_pct",
+      "total_invoice_net_amount_local",
+      "total_invoice_tax_local",
+      "invoice_issued_date",
+      "invoice_seq",
+      "invoice_subject",
+      "invoice_number",
+      "total_invoice_gross_amount_local",
+      "total_invoice_tax_local"
+     ],
+     "line": 688
+    },
+    {
+     "join": "timesheet_project_engagement_timesheets",
+     "view": "timesheets_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "timesheet_project_engagement_timesheets.total_timesheet_cost_amount_gbp",
+      "timesheet_project_engagement_timesheets.timesheet_billing_date",
+      "timesheet_project_engagement_timesheets.timesheet_billing_week",
+      "timesheet_project_engagement_timesheets.timesheet_billing_month",
+      "timesheet_project_engagement_timesheets.total_timesheet_nonbillable_hours_billed",
+      "timesheet_project_engagement_timesheets.total_timesheet_billable_hours_billed"
+     ],
+     "line": 696
+    },
+    {
+     "join": "timesheet_project_engagement_recognized_revenue",
+     "view": "recognized_revenue_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "total_recognized_revenue_gbp",
+      "total_delivery_cost_gbp",
+      "total_expense_cost_gbp",
+      "total_delivery_labour_cost_gbp",
+      "hours_billed",
+      "recognized_margin_gbp",
+      "total_hours_billed",
+      "billing_month_month",
+      "engagement_month_number"
+     ],
+     "line": 704
+    },
+    {
+     "join": "timesheet_project_engagement_timesheet_users",
+     "view": "contacts_dim",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "timesheet_project_engagement_timesheet_users.contact_name",
+      "timesheet_project_engagement_timesheet_users.contact_is_contractor"
+     ],
+     "line": 713
+    },
+    {
+     "join": "timesheet_project_engagement_timesheet_tasks",
+     "view": "timesheet_tasks_dim",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "timesheet_project_engagement_timesheet_tasks.task_name"
+     ],
+     "line": 721
+    },
+    {
+     "join": "timesheet_project_engagement_timesheets_projects_dim",
+     "view": "timesheet_projects_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "timesheet_project_engagement_timesheets_projects_dim.project_name",
+      "timesheet_project_engagement_timesheets_projects_dim.project_delivery_start_ts_date",
+      "timesheet_project_engagement_timesheets_projects_dim.total_project_fee_amount",
+      "project_hours_budget",
+      "project_budget_amount"
+     ],
+     "line": 729
+    },
+    {
+     "join": "companies_dim__all_company_ids",
+     "view": "companies_dim__all_company_ids",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 737
+    },
+    {
+     "join": "nps_survey_results_fact",
+     "view": "nps_survey_results_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 742
+    },
+    {
+     "join": "client_prospect_status_dim",
+     "view": "client_prospect_status_dim",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 748
+    },
+    {
+     "join": "customer_first_order_segments",
+     "view": "customer_first_order_segments",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 754
+    },
+    {
+     "join": "rfm_model",
+     "view": "rfm_model",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 760
+    },
+    {
+     "join": "company_deal_value_attribute",
+     "view": "company_deal_value_attribute",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 766
+    },
+    {
+     "join": "projects_invoiced",
+     "view": "invoices_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 772
+    },
+    {
+     "join": "projects_delivered",
+     "view": "timesheet_projects_dim",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 779
+    },
+    {
+     "join": "exchange_rates",
+     "view": "exchange_rates",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 786
+    },
+    {
+     "join": "recognized_project_revenue",
+     "view": "recognized_revenue_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 791
+    },
+    {
+     "join": "revenue_target",
+     "view": "targets",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "revenue_target.total_revenue_target"
+     ],
+     "line": 798
+    },
+    {
+     "join": "recognized_revenue_contact",
+     "view": "contacts_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "contact_name"
+     ],
+     "line": 806
+    },
+    {
+     "join": "team_revenue_targets",
+     "view": "team_revenue_targets",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 814
+    },
+    {
+     "join": "project_invoice_timesheets",
+     "view": "timesheets_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 821
+    },
+    {
+     "join": "project_invoice_timesheet_users",
+     "view": "contacts_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 828
+    },
+    {
+     "join": "project_timesheets",
+     "view": "timesheets_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 835
+    },
+    {
+     "join": "projects_delivered_is_ontime",
+     "view": "projects_delivered_is_ontime",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 842
+    },
+    {
+     "join": "project_timesheet_users",
+     "view": "contacts_dim",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "project_timesheet_users.contact_name"
+     ],
+     "line": 848
+    },
+    {
+     "join": "project_timesheet_tasks",
+     "view": "timesheet_tasks_dim",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "project_timesheet_tasks.task_name"
+     ],
+     "line": 856
+    },
+    {
+     "join": "deals_fact",
+     "view": "deals_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 864
+    },
+    {
+     "join": "deal_targets",
+     "view": "targets",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "total_deals_closed_revenue_target"
+     ],
+     "line": 870
+    },
+    {
+     "join": "deal_pipeline_history",
+     "view": "deal_pipeline_history",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 878
+    },
+    {
+     "join": "customer_first_deal_cohorts",
+     "view": "customer_first_deal_cohorts",
+     "relationship": "one_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 884
+    },
+    {
+     "join": "projects_managed",
+     "view": "delivery_projects_dim",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 890
+    },
+    {
+     "join": "delivery_tasks_fact",
+     "view": "delivery_tasks_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 897
+    },
+    {
+     "join": "delivery_task_history",
+     "view": "delivery_task_history",
+     "relationship": "one_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 903
+    },
+    {
+     "join": "payments_fact",
+     "view": "payments_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 910
+    },
+    {
+     "join": "team_dim",
+     "view": "contacts_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": [
+      "team_dim.contact_name",
+      "team_dim.contact_is_staff",
+      "team_dim.contact_is_contractor"
+     ],
+     "line": 916
+    },
+    {
+     "join": "contact_companies_fact",
+     "view": "contact_companies_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 924
+    },
+    {
+     "join": "contact_meetings_fact",
+     "view": "contact_meetings_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 930
+    },
+    {
+     "join": "contacts",
+     "view": "contacts_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 937
+    },
+    {
+     "join": "contracts_fact",
+     "view": "contracts_fact",
+     "relationship": "one_to_many",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 944
+    },
+    {
+     "join": "timesheet_project_costs_fact",
+     "view": "timesheet_project_costs_fact",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": [
+      "timesheet_project_costs_fact.expense_amount_gbp",
+      "total_cost_gbp",
+      "timesheet_project_costs_fact.expense_category_name"
+     ],
+     "line": 950
+    },
+    {
+     "join": "expenses_exchange_rates",
+     "view": "exchange_rates",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 957
+    }
+   ],
+   "views_reached": [
+    "client_prospect_status_dim",
+    "companies_dim",
+    "companies_dim__all_company_ids",
+    "company_converted_projects",
+    "company_deal_value_attribute",
+    "contact_companies_fact",
+    "contact_meetings_fact",
+    "contacts_dim",
+    "contracts_fact",
+    "customer_first_deal_cohorts",
+    "customer_first_order_segments",
+    "customer_meetings",
+    "deal_pipeline_history",
+    "deals_fact",
+    "delivery_project_docs_dim",
+    "delivery_projects_dim",
+    "delivery_task_history",
+    "delivery_tasks_fact",
+    "engagement_details",
+    "engagement_details__deliverables",
+    "engagement_details__objectives",
+    "engagements",
+    "exchange_rates",
+    "invoices_fact",
+    "messages_fact",
+    "nps_survey_results_fact",
+    "payments_fact",
+    "persons_dim",
+    "project_engagements",
+    "projects_delivered_is_ontime",
+    "recognized_revenue_fact",
+    "rfm_model",
+    "src_control_daily_metrics_fact",
+    "src_control_pull_requests_fact",
+    "src_control_repos_dim",
+    "targets",
+    "team_revenue_targets",
+    "timesheet_project_costs_fact",
+    "timesheet_project_engagement_rag_status_fact",
+    "timesheet_project_engagement_rag_status_fact__client_action_points",
+    "timesheet_project_engagement_rag_status_fact__month_timeline_events",
+    "timesheet_project_engagement_rag_status_fact__ra_action_points",
+    "timesheet_project_engagements_dim__projects",
+    "timesheet_project_stakeholder_jtbd_fact",
+    "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+    "timesheet_project_stakeholder_jtbd_fact__keywords",
+    "timesheet_projects_dim",
+    "timesheet_tasks_dim",
+    "timesheets_fact"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "project_attribution": {
+   "base_view": "project_attribution",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "Delivery Team Contribution",
+   "file": "models/analytics.model.lkml",
+   "line": 965,
+   "joins": [
+    {
+     "join": "staff_dim",
+     "view": "staff_dim",
+     "relationship": "many_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 971
+    },
+    {
+     "join": "timesheet_projects_dim",
+     "view": "timesheet_projects_dim",
+     "relationship": "many_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 977
+    },
+    {
+     "join": "projects_invoiced",
+     "view": "invoices_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 983
+    },
+    {
+     "join": "payments_fact",
+     "view": "payments_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 990
+    },
+    {
+     "join": "exchange_rates",
+     "view": "exchange_rates",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 996
+    }
+   ],
+   "views_reached": [
+    "exchange_rates",
+    "invoices_fact",
+    "payments_fact",
+    "project_attribution",
+    "staff_dim",
+    "timesheet_projects_dim"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "chart_of_accounts_dim": {
+   "base_view": "chart_of_accounts_dim",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "Financials",
+   "file": "models/analytics.model.lkml",
+   "line": 1003,
+   "joins": [
+    {
+     "join": "general_ledger_fact",
+     "view": "general_ledger_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1008
+    },
+    {
+     "join": "profit_and_loss_report_fact",
+     "view": "profit_and_loss_report_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1014
+    },
+    {
+     "join": "bank_transactions_fact",
+     "view": "bank_transactions_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1020
+    },
+    {
+     "join": "bank_account_details",
+     "view": "bank_account_details",
+     "relationship": "many_to_one",
+     "type": "inner",
+     "class": "assisted",
+     "fields": null,
+     "line": 1026
+    }
+   ],
+   "views_reached": [
+    "bank_account_details",
+    "bank_transactions_fact",
+    "chart_of_accounts_dim",
+    "general_ledger_fact",
+    "profit_and_loss_report_fact"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "coding_agent_prompts_fact": {
+   "base_view": "coding_agent_prompts_fact",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "Claude Code Prompts",
+   "file": "models/analytics.model.lkml",
+   "line": 1040,
+   "joins": [
+    {
+     "join": "coding_agent_commands_dim",
+     "view": "coding_agent_commands_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 1046
+    },
+    {
+     "join": "workstations_dim",
+     "view": "workstations_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": null,
+     "line": 1053
+    },
+    {
+     "join": "persons_dim",
+     "view": "persons_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "mechanical",
+     "fields": [
+      "persons_dim.person_name",
+      "persons_dim.is_staff",
+      "persons_dim.is_contractor"
+     ],
+     "line": 1061
+    }
+   ],
+   "views_reached": [
+    "coding_agent_commands_dim",
+    "coding_agent_prompts_fact",
+    "persons_dim",
+    "workstations_dim"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "engagement_health_fact": {
+   "base_view": "engagement_health_fact",
+   "class": "assisted",
+   "reason": "always_filter: becomes default_filters; date expressions are never mechanical",
+   "hidden": false,
+   "label": "Engagement Health",
+   "file": "models/analytics.model.lkml",
+   "line": 1070,
+   "joins": [],
+   "views_reached": [
+    "engagement_health_fact"
+   ],
+   "always_filter": {
+    "filters__all": [
+     [
+      {
+       "engagement_health_fact.reporting_month_month": "12 months"
+      }
+     ]
+    ]
+   },
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "engagement_sprint_burn_fact": {
+   "base_view": "engagement_sprint_burn_fact",
+   "class": "assisted",
+   "reason": "always_filter: becomes default_filters; date expressions are never mechanical",
+   "hidden": false,
+   "label": "Engagement Sprint Burn",
+   "file": "models/analytics.model.lkml",
+   "line": 1082,
+   "joins": [],
+   "views_reached": [
+    "engagement_sprint_burn_fact"
+   ],
+   "always_filter": {
+    "filters__all": [
+     [
+      {
+       "engagement_sprint_burn_fact.reporting_month_month": "1 months"
+      }
+     ]
+    ]
+   },
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "engagement_burn_up_fact": {
+   "base_view": "engagement_burn_up_fact",
+   "class": "mechanical",
+   "reason": "",
+   "hidden": false,
+   "label": "Engagement Burn-up",
+   "file": "models/analytics.model.lkml",
+   "line": 1094,
+   "joins": [],
+   "views_reached": [
+    "engagement_burn_up_fact"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "engagement_actions_fact": {
+   "base_view": "engagement_actions_fact",
+   "class": "assisted",
+   "reason": "always_filter: becomes default_filters; date expressions are never mechanical",
+   "hidden": false,
+   "label": "Engagement Actions",
+   "file": "models/analytics.model.lkml",
+   "line": 1102,
+   "joins": [],
+   "views_reached": [
+    "engagement_actions_fact"
+   ],
+   "always_filter": {
+    "filters__all": [
+     [
+      {
+       "engagement_actions_fact.reporting_month_month": "1 months"
+      }
+     ]
+    ]
+   },
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "engagement_context_attribution": {
+   "base_view": "engagement_context_attribution",
+   "class": "assisted",
+   "reason": "always_filter: becomes default_filters; date expressions are never mechanical",
+   "hidden": false,
+   "label": "Engagement Context Attribution",
+   "file": "models/analytics.model.lkml",
+   "line": 1114,
+   "joins": [],
+   "views_reached": [
+    "engagement_context_attribution"
+   ],
+   "always_filter": {
+    "filters__all": [
+     [
+      {
+       "engagement_context_attribution.item_month": "3 months"
+      }
+     ]
+    ]
+   },
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "persons_dim": {
+   "base_view": "persons_dim",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": "          Unified Persons",
+   "file": "models/analytics.model.lkml",
+   "line": 1127,
+   "joins": [
+    {
+     "join": "person_timesheets",
+     "view": "timesheets_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1134
+    },
+    {
+     "join": "person_timesheet_projects",
+     "view": "timesheet_projects_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1141
+    },
+    {
+     "join": "person_timesheet_tasks",
+     "view": "timesheet_tasks_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1148
+    },
+    {
+     "join": "person_delivery_tasks",
+     "view": "delivery_tasks_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1155
+    },
+    {
+     "join": "person_delivery_projects",
+     "view": "delivery_projects_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1162
+    },
+    {
+     "join": "person_deals_bridge",
+     "view": "contact_deals_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1169
+    },
+    {
+     "join": "person_deals",
+     "view": "deals_fact",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1176
+    },
+    {
+     "join": "person_meetings",
+     "view": "contact_meetings_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1183
+    },
+    {
+     "join": "person_engagements",
+     "view": "contact_engagements_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1190
+    },
+    {
+     "join": "person_job_applications",
+     "view": "recruiting_job_applications_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1197
+    },
+    {
+     "join": "person_applied_jobs",
+     "view": "recruiting_jobs_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1204
+    },
+    {
+     "join": "person_application_stages",
+     "view": "recruiting_application_stages_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1211
+    },
+    {
+     "join": "person_marketing_interactions",
+     "view": "marketing_interactions_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1218
+    },
+    {
+     "join": "person_marketing_content",
+     "view": "marketing_content_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1225
+    },
+    {
+     "join": "person_nps_surveys",
+     "view": "contact_nps_survey_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1232
+    },
+    {
+     "join": "person_looker_usage",
+     "view": "looker_usage_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1239
+    },
+    {
+     "join": "person_messages",
+     "view": "messages_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1246
+    },
+    {
+     "join": "person_contracts",
+     "view": "contracts_fact",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1253
+    },
+    {
+     "join": "person_customer_meetings",
+     "view": "customer_meetings",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1260
+    },
+    {
+     "join": "person_manager",
+     "view": "persons_dim",
+     "relationship": "many_to_one",
+     "type": "left_outer",
+     "class": "assisted",
+     "fields": null,
+     "line": 1267
+    }
+   ],
+   "views_reached": [
+    "contact_deals_fact",
+    "contact_engagements_fact",
+    "contact_meetings_fact",
+    "contact_nps_survey_fact",
+    "contracts_fact",
+    "customer_meetings",
+    "deals_fact",
+    "delivery_projects_dim",
+    "delivery_tasks_fact",
+    "looker_usage_fact",
+    "marketing_content_dim",
+    "marketing_interactions_fact",
+    "messages_fact",
+    "persons_dim",
+    "recruiting_application_stages_dim",
+    "recruiting_job_applications_fact",
+    "recruiting_jobs_dim",
+    "timesheet_projects_dim",
+    "timesheet_tasks_dim",
+    "timesheets_fact"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "dbt_slack": {
+   "base_view": "dbt_slack",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": null,
+   "file": "views/dbt_slack.view.lkml",
+   "line": 2,
+   "joins": [
+    {
+     "join": "dbt_slack__slack_channels",
+     "view": "dbt_slack__slack_channels",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 5
+    }
+   ],
+   "views_reached": [
+    "dbt_slack",
+    "dbt_slack__slack_channels"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  },
+  "timesheet_project_stakeholder_jtbd_fact": {
+   "base_view": "timesheet_project_stakeholder_jtbd_fact",
+   "class": "mechanical",
+   "reason": "hidden: yes",
+   "hidden": true,
+   "label": null,
+   "file": "views/timesheet_project_stakeholder_jtbd_fact.view.lkml",
+   "line": 2,
+   "joins": [
+    {
+     "join": "timesheet_project_stakeholder_jtbd_fact__keywords",
+     "view": "timesheet_project_stakeholder_jtbd_fact__keywords",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 4
+    },
+    {
+     "join": "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+     "view": "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+     "relationship": "one_to_many",
+     "type": "left_outer",
+     "class": "redesign",
+     "fields": null,
+     "line": 9
+    }
+   ],
+   "views_reached": [
+    "timesheet_project_stakeholder_jtbd_fact",
+    "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+    "timesheet_project_stakeholder_jtbd_fact__keywords"
+   ],
+   "always_filter": null,
+   "conditionally_filter": null,
+   "sql_always_where": null,
+   "access_filter": null,
+   "fields": null
+  }
+ }
+}

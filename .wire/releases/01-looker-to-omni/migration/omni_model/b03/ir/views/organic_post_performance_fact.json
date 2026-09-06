@@ -1,0 +1,218 @@
+{
+  "identity": "looker:analytics:view:organic_post_performance_fact",
+  "name": "organic_post_performance_fact",
+  "schema": "analytics",
+  "table_name": "organic_post_performance_fact",
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/organic_post_performance_fact.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:organic_post_performance_fact:organic_post_fk",
+      "name": "organic_post_fk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.organic_post_fk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_post_performance_fact.view.lkml",
+        "view": "organic_post_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_post_performance_fact:pk",
+      "name": "pk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "concat(${organic_post_fk},${post_ts_date}",
+      "references": [
+        "organic_post_performance_fact.organic_post_fk",
+        "organic_post_performance_fact.post_ts_date"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true,
+        "sql": "concat(${organic_post_fk},${post_ts[date]}",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_post_performance_fact.view.lkml",
+        "view": "organic_post_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_post_performance_fact:organic_post_natural_key",
+      "name": "organic_post_natural_key",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.organic_post_natural_key",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_post_performance_fact.view.lkml",
+        "view": "organic_post_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_post_performance_fact:post_total_comments",
+      "name": "post_total_comments",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.post_total_comments",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_post_performance_fact.view.lkml",
+        "view": "organic_post_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_post_performance_fact:post_total_likes",
+      "name": "post_total_likes",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.post_total_likes",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_post_performance_fact.view.lkml",
+        "view": "organic_post_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_post_performance_fact:source",
+      "name": "source",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.source",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_post_performance_fact.view.lkml",
+        "view": "organic_post_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_post_performance_fact:post_ts",
+      "name": "post_ts",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.post_ts",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "timeframes": [
+          "raw",
+          "date",
+          "week",
+          "month",
+          "quarter",
+          "year"
+        ],
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_post_performance_fact.view.lkml",
+        "view": "organic_post_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_post_performance_fact:total_organic_posts",
+      "name": "total_organic_posts",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${organic_post_fk}",
+      "references": [
+        "organic_post_performance_fact.organic_post_fk"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${organic_post_fk}",
+        "aggregate_type": "count_distinct",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_post_performance_fact.view.lkml",
+        "view": "organic_post_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_post_performance_fact:total_post_comments",
+      "name": "total_post_comments",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${post_total_comments}",
+      "references": [
+        "organic_post_performance_fact.post_total_comments"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${post_total_comments}",
+        "aggregate_type": "sum",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_post_performance_fact.view.lkml",
+        "view": "organic_post_performance_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_post_performance_fact:total_post_likes",
+      "name": "total_post_likes",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "${post_total_likes}",
+      "references": [
+        "organic_post_performance_fact.post_total_likes"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${post_total_likes}",
+        "aggregate_type": "average",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_post_performance_fact.view.lkml",
+        "view": "organic_post_performance_fact"
+      }
+    }
+  ]
+}

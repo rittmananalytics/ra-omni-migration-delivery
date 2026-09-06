@@ -1,0 +1,73 @@
+{
+  "identity": "looker:analytics:topic:web_sessions_fact",
+  "name": "web_sessions_fact",
+  "base_view": "web_sessions_fact",
+  "emitted": true,
+  "fields": null,
+  "joins": [
+    {
+      "name": "wh_sessions_attribution",
+      "view": "wh_sessions_attribution",
+      "alias": null,
+      "relationship": "one_to_one",
+      "type": "left_outer",
+      "on_sql": "${web_sessions_fact.web_sessions_pk} = ${wh_sessions_attribution.web_session_fk}",
+      "emitted": true,
+      "unsupported": []
+    },
+    {
+      "name": "page_first_published",
+      "view": "page_first_published",
+      "alias": null,
+      "relationship": "one_to_one",
+      "type": "left_outer",
+      "on_sql": "${web_sessions_fact.first_page_title} = ${page_first_published.web_sessions_fact_first_page_title}",
+      "emitted": true,
+      "unsupported": []
+    },
+    {
+      "name": "web_events_fact",
+      "view": "web_events_fact",
+      "alias": null,
+      "relationship": "one_to_many",
+      "type": "left_outer",
+      "on_sql": "${web_sessions_fact.session_id} = ${web_events_fact.session_id}",
+      "emitted": true,
+      "unsupported": []
+    },
+    {
+      "name": "ips_enriched",
+      "view": "ips_enriched",
+      "alias": null,
+      "relationship": "many_to_one",
+      "type": "left_outer",
+      "on_sql": "${web_events_fact.ip} = ${ips_enriched.ip}",
+      "emitted": true,
+      "unsupported": []
+    },
+    {
+      "name": "has_viewed_pricing",
+      "view": "has_viewed_pricing",
+      "alias": null,
+      "relationship": "one_to_one",
+      "type": "inner",
+      "on_sql": "${web_sessions_fact.blended_user_id} = ${has_viewed_pricing.web_sessions_fact_blended_user_id}",
+      "emitted": true,
+      "unsupported": []
+    },
+    {
+      "name": "is_conversion_session",
+      "view": "is_conversion_session",
+      "alias": null,
+      "relationship": "one_to_one",
+      "type": "left_outer",
+      "on_sql": "${web_sessions_fact.session_id} = ${is_conversion_session.web_events_fact_session_id}",
+      "emitted": true,
+      "unsupported": []
+    }
+  ],
+  "unsupported": [],
+  "source": {
+    "file": "models/analytics.model.lkml"
+  }
+}

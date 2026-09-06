@@ -1,0 +1,71 @@
+{
+  "identity": "looker:analytics:view:has_viewed_pricing",
+  "name": "has_viewed_pricing",
+  "schema": "analytics",
+  "table_name": null,
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/has_viewed_pricing.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:has_viewed_pricing:web_sessions_fact_blended_user_id",
+      "name": "web_sessions_fact_blended_user_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.web_sessions_fact_blended_user_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true,
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/has_viewed_pricing.view.lkml",
+        "view": "has_viewed_pricing"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:has_viewed_pricing:user_has_viewed_pricing",
+      "name": "user_has_viewed_pricing",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "true",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "true",
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/has_viewed_pricing.view.lkml",
+        "view": "has_viewed_pricing"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:has_viewed_pricing:count",
+      "name": "count",
+      "kind": "measure",
+      "lookml_type": "count",
+      "source_sql": null,
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "aggregate_type": "count"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/has_viewed_pricing.view.lkml",
+        "view": "has_viewed_pricing"
+      }
+    }
+  ]
+}

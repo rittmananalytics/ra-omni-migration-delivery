@@ -1,0 +1,71 @@
+{
+  "identity": "looker:analytics:view:page_first_published",
+  "name": "page_first_published",
+  "schema": "analytics",
+  "table_name": null,
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/page_first_published.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:page_first_published:web_sessions_fact_first_page_title",
+      "name": "web_sessions_fact_first_page_title",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.web_sessions_fact_first_page_title",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/page_first_published.view.lkml",
+        "view": "page_first_published"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:page_first_published:page_first_session_start_ts",
+      "name": "page_first_session_start_ts",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.page_first_session_start_ts",
+      "references": [],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "timeframes": [
+          "raw",
+          "day_of_week_name",
+          "date",
+          "day_of_year",
+          "week",
+          "month",
+          "month_num",
+          "year"
+        ]
+      },
+      "unsupported": [
+        {
+          "construct": "timeframe",
+          "class": "assisted",
+          "reason": "timeframe 'hour4' has no Omni equivalent; dropped from the list"
+        },
+        {
+          "construct": "timeframe",
+          "class": "assisted",
+          "reason": "timeframe 'week_of_year' has no Omni equivalent; dropped from the list"
+        }
+      ],
+      "source": {
+        "file": "views/page_first_published.view.lkml",
+        "view": "page_first_published"
+      }
+    }
+  ]
+}

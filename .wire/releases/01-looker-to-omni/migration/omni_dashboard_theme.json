@@ -1,0 +1,19 @@
+{
+  "_wire": {
+    "release": "01-looker-to-omni",
+    "derived_at": "2026-09-06",
+    "derived_from": "colour usage across the three in-scope Looker dashboards (audit/raw/dashboard_267.json, dashboard_416.json, dashboard_255.json): #4a80bc blue is the most used non-semantic series colour (32 uses); #7bc739, #d13452 and #e48522 are the RAG green, red and amber kept for status tiles; text colour #3a4245 is the one explicit text colour set; no dashboard sets a background, title colour or font",
+    "status": "draft; import per dashboard through the editor's Import button and confirm the property names against the instance before relying on them (omni_patterns.md, Dashboard themes)",
+    "hand_finish": "RAG colours on status tiles, KPI comparison styling and series colours beyond the key colour stay in each content batch's hand_finish list"
+  },
+  "dashboard-key-color": "#4a80bc",
+  "dashboard-background": "#ffffff",
+  "dashboard-text-color": "#3a4245",
+  "dashboard-tile-background": "#ffffff",
+  "dashboard-tile-border-radius": "6px",
+  "dashboard-tile-margin": "12px",
+  "dashboard-tile-shadow": "0 1px 3px rgba(0, 0, 0, 0.08)",
+  "dashboard-font-family": "Inter, Helvetica, Arial, sans-serif",
+  "dashboard-title-font-family": "Inter, Helvetica, Arial, sans-serif",
+  "dashboard-series-colors": ["#4a80bc", "#7bc739", "#e48522", "#d13452", "#615894", "#b95b41", "#99d8f4", "#808080"]
+}

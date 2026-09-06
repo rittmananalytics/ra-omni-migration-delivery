@@ -1,0 +1,73 @@
+{
+  "identity": "looker:analytics:view:is_conversion_session",
+  "name": "is_conversion_session",
+  "schema": "analytics",
+  "table_name": null,
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/is_conversion_session.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:is_conversion_session:web_events_fact_session_id",
+      "name": "web_events_fact_session_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.web_events_fact_session_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true,
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/is_conversion_session.view.lkml",
+        "view": "is_conversion_session"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:is_conversion_session:is_conversion_session",
+      "name": "is_conversion_session",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.is_conversion_session",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "group_label": "Behavior",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/is_conversion_session.view.lkml",
+        "view": "is_conversion_session"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:is_conversion_session:is_goal_achieved_session",
+      "name": "is_goal_achieved_session",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.is_conversion_session",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${is_conversion_session}",
+        "group_label": "Behavior",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/is_conversion_session.view.lkml",
+        "view": "is_conversion_session"
+      }
+    }
+  ]
+}

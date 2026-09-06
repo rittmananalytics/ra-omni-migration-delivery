@@ -1,0 +1,17 @@
+{
+  "pages": [
+    { "id": "detailed", "name": "Detailed" },
+    { "id": "simple", "name": "Simple" }
+  ],
+  "artboards": [
+    { "file": "Main.dc.html", "title": "Architecture", "page": "detailed", "x": 0, "y": 0, "w": 1440, "h": 900 },
+    { "file": "DirectorOrchestrator.dc.html", "page": "detailed", "x": 1520, "y": 0, "w": 1440, "h": 900 },
+    { "file": "LaneDispatch.dc.html", "page": "detailed", "x": 0, "y": 1020, "w": 1440, "h": 900 },
+    { "file": "LaneInternals.dc.html", "page": "detailed", "x": 1520, "y": 1020, "w": 1440, "h": 900 },
+    { "file": "ArchitectureSimple.dc.html", "page": "simple", "x": 0, "y": 0, "w": 1440, "h": 900 },
+    { "file": "DirectorOrchestratorSimple.dc.html", "page": "simple", "x": 1520, "y": 0, "w": 1440, "h": 900 },
+    { "file": "LaneDispatchSimple.dc.html", "page": "simple", "x": 0, "y": 1020, "w": 1440, "h": 900 },
+    { "file": "LaneInternalsSimple.dc.html", "page": "simple", "x": 1520, "y": 1020, "w": 1440, "h": 900 }
+  ],
+  "launch": { "view": "canvas", "page": "simple" }
+}

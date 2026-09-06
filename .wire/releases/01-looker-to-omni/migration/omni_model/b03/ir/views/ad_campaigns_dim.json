@@ -1,0 +1,238 @@
+{
+  "identity": "looker:analytics:view:ad_campaigns_dim",
+  "name": "ad_campaigns_dim",
+  "schema": "analytics",
+  "table_name": null,
+  "emitted": true,
+  "class": "assisted",
+  "unsupported": [
+    {
+      "construct": "sql_table_name_liquid",
+      "class": "redesign",
+      "reason": "sql_table_name contains Liquid"
+    }
+  ],
+  "source": {
+    "file": "views/ad_campaigns_dim.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:ad_campaign_id",
+      "name": "ad_campaign_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.ad_campaign_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:ad_campaign_name",
+      "name": "ad_campaign_name",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.ad_campaign_name",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:ad_campaign_pk",
+      "name": "ad_campaign_pk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.ad_campaign_pk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:ad_campaign_status",
+      "name": "ad_campaign_status",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.ad_campaign_status",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:ad_network",
+      "name": "ad_network",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.ad_network",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:campaign_buying_type",
+      "name": "campaign_buying_type",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.campaign_buying_type",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:utm_campaign",
+      "name": "utm_campaign",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.utm_campaign",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:utm_medium",
+      "name": "utm_medium",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.utm_medium",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:utm_source",
+      "name": "utm_source",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.utm_source",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:ad_campaign_end",
+      "name": "ad_campaign_end",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.ad_campaign_end_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${ad_campaign_end[date]}",
+        "timeframes": [
+          "raw",
+          "date",
+          "week",
+          "month",
+          "quarter",
+          "year"
+        ]
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:ad_campaign_start",
+      "name": "ad_campaign_start",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.ad_campaign_start_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${ad_campaign_start[date]}",
+        "timeframes": [
+          "raw",
+          "date",
+          "week",
+          "month",
+          "quarter",
+          "year"
+        ]
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ad_campaigns_dim:count",
+      "name": "count",
+      "kind": "measure",
+      "lookml_type": "count",
+      "source_sql": null,
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "aggregate_type": "count",
+        "drill_fields": [
+          "ad_campaigns_dim.ad_campaign_name"
+        ]
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ad_campaigns_dim.view.lkml",
+        "view": "ad_campaigns_dim"
+      }
+    }
+  ]
+}

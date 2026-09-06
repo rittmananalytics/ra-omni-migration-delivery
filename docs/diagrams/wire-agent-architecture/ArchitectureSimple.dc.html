@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Google Sans', 'Inter', system-ui, sans-serif; color: #181B25; -webkit-font-smoothing: antialiased; }
+    a { color: #4F60FF; } a:hover { color: #4F5FFE; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .tier { font-size: 22px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+    .desc { font-size: 16px; font-weight: 400; line-height: 1.5; }
+    .arrow-label { font-size: 13.5px; font-weight: 500; line-height: 1.2; color: #4F5564; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; background: #FFFFFF; position: relative; overflow: hidden; box-sizing: border-box; padding: 56px; display: flex; flex-direction: column;">
+
+  <div style="flex: 1; display: flex; flex-direction: column; min-height: 0;">
+
+    <!-- Tier 1 -->
+    <div style="flex: 1; display: flex; gap: 32px; align-items: center; background: #181B25; color: #FFFFFF; border-radius: 14px; padding: 0 36px;">
+      <div class="tier" style="width: 320px; flex: none;">Release director</div>
+      <div class="desc" style="color: rgba(255,255,255,0.88);">One person per release. States intent, makes rulings, approves at gates, sets the budget. Does not run tasks.</div>
+    </div>
+
+    <div style="height: 44px; flex: none; display: flex; align-items: center; justify-content: center; gap: 48px;">
+      <div style="display: flex; gap: 10px; align-items: center;"><svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><span class="arrow-label">intent, rulings, budget</span></div>
+      <div style="display: flex; gap: 10px; align-items: center;"><svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg><span class="arrow-label">parked decisions, one report</span></div>
+    </div>
+
+    <!-- Tier 2 -->
+    <div style="flex: 1; display: flex; gap: 32px; align-items: center; background: #4F60FF; color: #FFFFFF; border-radius: 14px; padding: 0 36px;">
+      <div class="tier" style="width: 320px; flex: none;">Orchestrating session</div>
+      <div class="desc" style="color: rgba(255,255,255,0.92);">One Claude Code session. Works out what can run, dispatches lanes, and is the only writer of <span class="mono">status.md</span> and <span class="mono">execution_log.md</span>.</div>
+    </div>
+
+    <div style="height: 44px; flex: none; display: flex; align-items: center; justify-content: center; gap: 48px;">
+      <div style="display: flex; gap: 10px; align-items: center;"><svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><span class="arrow-label">lane brief</span></div>
+      <div style="display: flex; gap: 10px; align-items: center;"><svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg><span class="arrow-label">report once</span></div>
+    </div>
+
+    <!-- Tier 3 -->
+    <div style="flex: 1; display: flex; gap: 32px; align-items: center; background: #EBFFEB; color: #181B25; border-radius: 14px; padding: 0 36px;">
+      <div class="tier" style="width: 320px; flex: none;">Lane agents</div>
+      <div class="desc" style="color: #2B3041;">1 to 12 specialist subagents, flat. One scoped task each, in its own directory, with its own state file.</div>
+    </div>
+
+    <div style="height: 44px; flex: none; display: flex; align-items: center; justify-content: center; gap: 48px;">
+      <div style="display: flex; gap: 10px; align-items: center;"><svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><span class="arrow-label">runs commands, loads skills</span></div>
+    </div>
+
+    <!-- Tier 4 -->
+    <div style="flex: 1; display: flex; gap: 32px; align-items: center; background: #EFF0FF; color: #181B25; border-radius: 14px; padding: 0 36px;">
+      <div class="tier" style="width: 320px; flex: none;">Wire commands and skills</div>
+      <div class="desc" style="color: #2B3041;">331 slash commands, each behind a precondition gate. 69 skills. 12 release-type graphs that say what depends on what.</div>
+    </div>
+
+    <div style="height: 44px; flex: none; display: flex; align-items: center; justify-content: center; gap: 48px;">
+      <div style="display: flex; gap: 10px; align-items: center;"><svg width="12" height="26" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><span class="arrow-label">MCP tools, Bash, files</span></div>
+    </div>
+
+    <!-- Tier 5 -->
+    <div style="flex: 1; display: flex; gap: 32px; align-items: center; background: #F7F7FA; border: 1px solid #E1E1E9; color: #181B25; border-radius: 14px; padding: 0 36px;">
+      <div class="tier" style="width: 320px; flex: none;">Tools and runtime</div>
+      <div class="desc" style="color: #2B3041;">MCP servers, command-line tools, the Claude Code plugin, and the <span class="mono">.wire/</span> tree in git.</div>
+    </div>
+
+  </div>
+
+  <div style="height: 20px; flex: none; margin-top: 20px; display: flex; align-items: center;">
+    <img src="logo-black-blue.svg" alt="Rittman Analytics" style="height: 20px; display: block;">
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

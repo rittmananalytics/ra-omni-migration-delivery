@@ -1,0 +1,15 @@
+catalog: ra-development
+sql: "SELECT\n          web_sessions_fact.first_page_title  AS web_sessions_fact_first_page_title,\n              (MIN(web_sessions_fact.session_start_ts )) AS page_first_session_start_ts\n      FROM `analytics.web_sessions_fact`\n           AS web_sessions_fact\n      GROUP BY\n          1"
+dimensions:
+  web_sessions_fact_first_page_title:
+    primary_key: true
+  page_first_session_start_ts:
+    timeframes:
+    - raw
+    - day_of_week_name
+    - date
+    - day_of_year
+    - week
+    - month
+    - month_num
+    - year

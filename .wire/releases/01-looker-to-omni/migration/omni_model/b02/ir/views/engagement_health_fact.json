@@ -1,0 +1,2230 @@
+{
+  "identity": "looker:analytics:view:engagement_health_fact",
+  "name": "engagement_health_fact",
+  "schema": "analytics",
+  "table_name": "engagement_health_fact",
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/engagement_health_fact.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:engagement_health_pk",
+      "name": "engagement_health_pk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_health_pk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true,
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:engagement_fk",
+      "name": "engagement_fk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_fk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:engagement_code",
+      "name": "engagement_code",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_code",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Engagement Code",
+        "description": "Harvest engagement code. The key every engagement health tile filters on."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:company_name",
+      "name": "company_name",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.company_name",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Company Name",
+        "description": "The client this engagement belongs to."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:engagement_name",
+      "name": "engagement_name",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_name",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Engagement Name",
+        "description": "Engagement name as it reads on the deal."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:engagement_description",
+      "name": "engagement_description",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_description",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Engagement Description"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:as_of_date",
+      "name": "as_of_date",
+      "kind": "dimension",
+      "lookml_type": "date",
+      "source_sql": "${TABLE}.as_of_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "As At",
+        "description": "Month end, or today for the month in progress. Every to-date figure is measured to this date."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:engagement_start_date",
+      "name": "engagement_start_date",
+      "kind": "dimension",
+      "lookml_type": "date",
+      "source_sql": "${TABLE}.engagement_start_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Engagement Start"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:engagement_end_date",
+      "name": "engagement_end_date",
+      "kind": "dimension",
+      "lookml_type": "date",
+      "source_sql": "${TABLE}.engagement_end_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Engagement End"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:is_current_month",
+      "name": "is_current_month",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.reporting_month = DATE_TRUNC(CURRENT_DATE(), MONTH)",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${reporting_month} = DATE_TRUNC(CURRENT_DATE(), MONTH)",
+        "label": "Is Current Month",
+        "description": "Yes for the month in progress."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:is_live_engagement",
+      "name": "is_live_engagement",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "CURRENT_DATE() BETWEEN ${TABLE}.engagement_start_date AND ${TABLE}.engagement_end_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "CURRENT_DATE() BETWEEN ${engagement_start_date} AND ${engagement_end_date}",
+        "label": "Is Live",
+        "description": "Yes where the engagement window covers today."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:delivery_status",
+      "name": "delivery_status",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.delivery_status",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Delivery Status",
+        "description": "Worst of budget used, burn variance, sprint budget and sprint start."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:commercial_status",
+      "name": "commercial_status",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.commercial_status",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Commercial Status",
+        "description": "Worst of budget rate, realised rate, earned margin and overdue invoices."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:client_status",
+      "name": "client_status",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.client_status",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Client Status",
+        "description": "Worst of contact gap and meeting sentiment. Read alongside Client Context Basis."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:overall_status",
+      "name": "overall_status",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.overall_status",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Overall Status",
+        "description": "Worst of the three, except that client-level context is excluded because it belongs to the client rather than this engagement."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:delivery_status_block",
+      "name": "delivery_status_block",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${delivery_status}",
+      "references": [
+        "engagement_health_fact.delivery_status"
+      ],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "sql": "${delivery_status}",
+        "label": "Delivery Status Block",
+        "group_label": "Status Blocks"
+      },
+      "unsupported": [
+        {
+          "construct": "html",
+          "class": "redesign",
+          "reason": "html uses Liquid; Omni `markdown` uses Mustache; not emitted"
+        }
+      ],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:commercial_status_block",
+      "name": "commercial_status_block",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${commercial_status}",
+      "references": [
+        "engagement_health_fact.commercial_status"
+      ],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "sql": "${commercial_status}",
+        "label": "Commercial Status Block",
+        "group_label": "Status Blocks"
+      },
+      "unsupported": [
+        {
+          "construct": "html",
+          "class": "redesign",
+          "reason": "html uses Liquid; Omni `markdown` uses Mustache; not emitted"
+        }
+      ],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:client_status_block",
+      "name": "client_status_block",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${client_status}",
+      "references": [
+        "engagement_health_fact.client_status"
+      ],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "sql": "${client_status}",
+        "label": "Client Status Block",
+        "group_label": "Status Blocks"
+      },
+      "unsupported": [
+        {
+          "construct": "html",
+          "class": "redesign",
+          "reason": "html uses Liquid; Omni `markdown` uses Mustache; not emitted"
+        }
+      ],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:overall_status_block",
+      "name": "overall_status_block",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${overall_status}",
+      "references": [
+        "engagement_health_fact.overall_status"
+      ],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "sql": "${overall_status}",
+        "label": "Overall Status Block",
+        "group_label": "Status Blocks"
+      },
+      "unsupported": [
+        {
+          "construct": "html",
+          "class": "redesign",
+          "reason": "html uses Liquid; Omni `markdown` uses Mustache; not emitted"
+        }
+      ],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:delivery_status_caption",
+      "name": "delivery_status_caption",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "CONCAT(CAST(${TABLE}.budget_used_pct AS STRING), '% of budget used against ',\n                        CAST(${TABLE}.elapsed_pct AS STRING), '% elapsed. ',\n                        CAST(${TABLE}.sprints_over_budget AS STRING), ' of ',\n                        CAST(${TABLE}.sprints_with_budget AS STRING), ' sprints over budget.')",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "CONCAT(CAST(${budget_used_pct} AS STRING), '% of budget used against ',\n                        CAST(${elapsed_pct} AS STRING), '% elapsed. ',\n                        CAST(${sprints_over_budget} AS STRING), ' of ',\n                        CAST(${sprints_with_budget} AS STRING), ' sprints over budget.')",
+        "label": "Delivery Caption",
+        "group_label": "Status Blocks"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:commercial_status_caption",
+      "name": "commercial_status_caption",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "CONCAT('Realised rate £', CAST(CAST(${TABLE}.realised_hourly_rate_gbp AS INT64) AS STRING),\n                        ' against budget £', CAST(CAST(${TABLE}.budget_hourly_rate_gbp AS INT64) AS STRING),\n                        '. Earned margin ', CAST(${TABLE}.earned_margin_pct AS STRING), '%.')",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "CONCAT('Realised rate £', CAST(CAST(${realised_hourly_rate_gbp} AS INT64) AS STRING),\n                        ' against budget £', CAST(CAST(${budget_hourly_rate_gbp} AS INT64) AS STRING),\n                        '. Earned margin ', CAST(${earned_margin_pct} AS STRING), '%.')",
+        "label": "Commercial Caption",
+        "group_label": "Status Blocks"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:client_status_caption",
+      "name": "client_status_caption",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "CONCAT(CAST(${TABLE}.contact_meetings_in_month AS STRING), ' meetings, last contact ',\n                        IFNULL(CAST(${TABLE}.days_since_last_meeting AS STRING), 'unknown'), ' days ago. ',\n                        IF(${TABLE}.client_context_basis = 'client',\n                           'Client-level signal, shared with the client\\'s other live engagements.',\n                           'Attributed to this engagement.'))",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "CONCAT(CAST(${contact_meetings_in_month} AS STRING), ' meetings, last contact ',\n                        IFNULL(CAST(${days_since_last_meeting} AS STRING), 'unknown'), ' days ago. ',\n                        IF(${client_context_basis} = 'client',\n                           'Client-level signal, shared with the client\\'s other live engagements.',\n                           'Attributed to this engagement.'))",
+        "label": "Client Caption",
+        "group_label": "Status Blocks"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:overall_status_sort_order",
+      "name": "overall_status_sort_order",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "CASE ${TABLE}.overall_status WHEN 'RED' THEN 1 WHEN 'AMBER' THEN 2 ELSE 3 END",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "CASE ${overall_status} WHEN 'RED' THEN 1 WHEN 'AMBER' THEN 2 ELSE 3 END",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:budget_used_signal",
+      "name": "budget_used_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.budget_used_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Budget Used Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:burn_variance_signal",
+      "name": "burn_variance_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.burn_variance_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Burn Variance Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:sprint_budget_signal",
+      "name": "sprint_budget_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.sprint_budget_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprint Budget Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:sprint_start_signal",
+      "name": "sprint_start_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.sprint_start_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprint Start Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:budget_rate_signal",
+      "name": "budget_rate_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.budget_rate_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Budget Rate Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:realised_rate_signal",
+      "name": "realised_rate_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.realised_rate_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Realised Rate Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:margin_signal",
+      "name": "margin_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.margin_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Margin Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:overdue_signal",
+      "name": "overdue_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.overdue_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Overdue Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:contact_gap_signal",
+      "name": "contact_gap_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.contact_gap_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Contact Gap Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:sentiment_signal",
+      "name": "sentiment_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.sentiment_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sentiment Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:delivery_commentary",
+      "name": "delivery_commentary",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.delivery_commentary",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Delivery Commentary",
+        "group_label": "Commentary"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:commercial_commentary",
+      "name": "commercial_commentary",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.commercial_commentary",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Commercial Commentary",
+        "group_label": "Commentary"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:client_commentary",
+      "name": "client_commentary",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.client_commentary",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Client Commentary",
+        "group_label": "Commentary"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:commentary_parsed_ok",
+      "name": "commentary_parsed_ok",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.commentary_parsed_ok",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Commentary Parsed",
+        "description": "No means the language model returned something unparseable. Metrics and statuses are unaffected.",
+        "group_label": "Commentary"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:budget_hours",
+      "name": "budget_hours",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.budget_hours",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Budget Hours",
+        "description": "Budgeted hours across every sprint on the engagement. A whole-engagement figure.",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:hours_to_date",
+      "name": "hours_to_date",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.hours_to_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Hours To Date",
+        "description": "Billable hours booked to the month end.",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:budget_used_pct",
+      "name": "budget_used_pct",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.budget_used_pct",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Budget Used %",
+        "group_label": "Delivery",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:elapsed_pct",
+      "name": "elapsed_pct",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.elapsed_pct",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Schedule Elapsed %",
+        "group_label": "Delivery",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:burn_variance_pts",
+      "name": "burn_variance_pts",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.burn_variance_pts",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Burn Variance (pts)",
+        "description": "Budget used percentage minus schedule elapsed percentage. Positive means budget is going faster than calendar.",
+        "group_label": "Delivery",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:budget_hours_remaining",
+      "name": "budget_hours_remaining",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.budget_hours_remaining",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Budget Hours Remaining",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:budget_exhausted_date",
+      "name": "budget_exhausted_date",
+      "kind": "dimension",
+      "lookml_type": "date",
+      "source_sql": "${TABLE}.budget_exhausted_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Budget Exhausted On",
+        "description": "The day cumulative hours first reached the budget. Blank where the budget has not been reached.",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:weekly_pace_hours",
+      "name": "weekly_pace_hours",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.weekly_pace_hours",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Weekly Pace (hrs)",
+        "description": "Hours a week over the four weeks to the reporting date.",
+        "group_label": "Delivery",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:runway_weeks",
+      "name": "runway_weeks",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.runway_weeks",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Runway (weeks)",
+        "description": "Budget hours left divided by the weekly pace. Zero where the budget is spent.",
+        "group_label": "Delivery",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:weeks_remaining",
+      "name": "weeks_remaining",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.weeks_remaining",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Weeks Remaining",
+        "group_label": "Delivery",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:days_remaining",
+      "name": "days_remaining",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.days_remaining",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Days Remaining",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:projected_total_hours",
+      "name": "projected_total_hours",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.projected_total_hours",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Projected Total Hours",
+        "description": "Hours to date plus the weekly pace across the days left in the window.",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:catch_up_ratio",
+      "name": "catch_up_ratio",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.catch_up_ratio",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Catch-up Ratio",
+        "description": "How much faster the team would have to work to use the remaining budget hours in the time left. 1 means the current pace lands it. Amber from 1.2, red from 2.",
+        "group_label": "Delivery",
+        "format": "number_2"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:projected_delivery_pct",
+      "name": "projected_delivery_pct",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.projected_delivery_pct",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Projected Delivery %",
+        "description": "Hours projected at the current pace as a share of budget hours.",
+        "group_label": "Delivery",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:projected_delivery_signal",
+      "name": "projected_delivery_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.projected_delivery_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Projected Delivery Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:fee_at_risk_signal",
+      "name": "fee_at_risk_signal",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.fee_at_risk_signal",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Fee At Risk Signal",
+        "group_label": "Signals"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:sprints_total",
+      "name": "sprints_total",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.sprints_total",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprints",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:sprints_with_budget",
+      "name": "sprints_with_budget",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.sprints_with_budget",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprints With A Budget",
+        "description": "A sprint with no budget cannot be over it, so it is left out of the over-budget share.",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:sprints_over_budget_pct",
+      "name": "sprints_over_budget_pct",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.sprints_over_budget_pct",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprints Over Budget %",
+        "description": "Share of the engagement's budgeted sprints past 100 percent of their own budget. Amber at 50 percent, red at 75.",
+        "group_label": "Delivery",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:sprints_in_flight",
+      "name": "sprints_in_flight",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.sprints_in_flight",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprints In Flight",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:sprints_over_budget",
+      "name": "sprints_over_budget",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.sprints_over_budget",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprints Over Budget",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:sprints_late_start",
+      "name": "sprints_late_start",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.sprints_late_start",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprints Late To Start",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:max_sprint_days_late",
+      "name": "max_sprint_days_late",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.max_sprint_days_late",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Worst Sprint Days Late",
+        "group_label": "Delivery"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:fee_amount_gbp",
+      "name": "fee_amount_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.fee_amount_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Engagement Fee",
+        "description": "Fee across every sprint on the engagement. A whole-engagement figure.",
+        "group_label": "Commercial",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:revenue_to_date_gbp",
+      "name": "revenue_to_date_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.revenue_to_date_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Recognised Revenue To Date",
+        "group_label": "Commercial",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:labour_cost_to_date_gbp",
+      "name": "labour_cost_to_date_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.labour_cost_to_date_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Labour Cost To Date",
+        "group_label": "Commercial",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:expense_cost_to_date_gbp",
+      "name": "expense_cost_to_date_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.expense_cost_to_date_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Expenses To Date",
+        "group_label": "Commercial",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:delivery_cost_to_date_gbp",
+      "name": "delivery_cost_to_date_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.delivery_cost_to_date_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Delivery Cost To Date",
+        "description": "Labour cost plus expenses.",
+        "group_label": "Commercial",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:budget_hourly_rate_gbp",
+      "name": "budget_hourly_rate_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.budget_hourly_rate_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Budget Hourly Rate",
+        "description": "Fee divided by budgeted hours. What the work was sold at.",
+        "group_label": "Commercial",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:realised_hourly_rate_gbp",
+      "name": "realised_hourly_rate_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.realised_hourly_rate_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Realised Hourly Rate",
+        "description": "Recognised revenue to date divided by hours to date. What it is averaging today.",
+        "group_label": "Commercial",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:earned_margin_pct",
+      "name": "earned_margin_pct",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.earned_margin_pct",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Earned Margin %",
+        "description": "Revenue minus delivery cost over revenue, both to date. Earned, not projected on the full fee.",
+        "group_label": "Commercial",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:overdue_invoice_count",
+      "name": "overdue_invoice_count",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.overdue_invoice_count",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Overdue Invoices",
+        "group_label": "Commercial"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:max_days_overdue",
+      "name": "max_days_overdue",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.max_days_overdue",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Oldest Days Past Due",
+        "group_label": "Commercial"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:overdue_amount_gbp",
+      "name": "overdue_amount_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.overdue_amount_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Invoiced And Past Due",
+        "group_label": "Commercial",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:open_invoice_amount_gbp",
+      "name": "open_invoice_amount_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.open_invoice_amount_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Invoiced Not Yet Due",
+        "description": "Issued invoices not yet due. Harvest draft billing schedules are excluded.",
+        "group_label": "Commercial",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:hours_in_month",
+      "name": "hours_in_month",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.hours_in_month",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Hours In Month",
+        "group_label": "In Month"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:revenue_in_month_gbp",
+      "name": "revenue_in_month_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.revenue_in_month_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Revenue In Month",
+        "group_label": "In Month",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:delivery_cost_in_month_gbp",
+      "name": "delivery_cost_in_month_gbp",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.delivery_cost_in_month_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Delivery Cost In Month",
+        "group_label": "In Month",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:client_context_basis",
+      "name": "client_context_basis",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.client_context_basis",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Client Context Basis",
+        "description": "Engagement where meetings were tied to this engagement. Client where the signal is shared with the client's other live engagements, in which case it does not set the overall status.",
+        "group_label": "Client"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:contact_meetings_in_month",
+      "name": "contact_meetings_in_month",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.contact_meetings_in_month",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Meetings In Month",
+        "group_label": "Client"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:contact_sentiment_score",
+      "name": "contact_sentiment_score",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.contact_sentiment_score",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Meeting Sentiment",
+        "description": "Average contribution sentiment in the month, from -1 to 1.",
+        "group_label": "Client",
+        "format": "number_2"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:days_since_last_meeting",
+      "name": "days_since_last_meeting",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.days_since_last_meeting",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Days Since Last Meeting",
+        "group_label": "Client"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:docs_published_in_month",
+      "name": "docs_published_in_month",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.docs_published_in_month",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Documents Published",
+        "group_label": "Client"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:tasks_active_in_month",
+      "name": "tasks_active_in_month",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.tasks_active_in_month",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Delivery Tasks Active",
+        "group_label": "Client"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:messages_in_month",
+      "name": "messages_in_month",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.messages_in_month",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Messages Attributed",
+        "group_label": "Client"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:fanout_meeting_count",
+      "name": "fanout_meeting_count",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.fanout_meeting_count",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Generic Client Meetings",
+        "description": "Meetings that named no engagement and were counted against every live engagement for the client.",
+        "group_label": "Client"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:client_meetings_in_month",
+      "name": "client_meetings_in_month",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.client_meetings_in_month",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Client Meetings In Month",
+        "group_label": "Client"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:client_messages_in_month",
+      "name": "client_messages_in_month",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.client_messages_in_month",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Client Messages In Month",
+        "group_label": "Client"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:reporting_month",
+      "name": "reporting_month",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.reporting_month",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "timeframes": [
+          "month",
+          "quarter",
+          "year",
+          "date"
+        ],
+        "convert_tz": false,
+        "label": "Reporting",
+        "description": "The month this row reports on."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:engagement_month_count",
+      "name": "engagement_month_count",
+      "kind": "measure",
+      "lookml_type": "count",
+      "source_sql": null,
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "aggregate_type": "count",
+        "label": "Engagement Months",
+        "drill_fields": [
+          "engagement_health_fact.company_name",
+          "engagement_health_fact.engagement_name",
+          "engagement_health_fact.reporting_month[month]",
+          "engagement_health_fact.overall_status",
+          "engagement_health_fact.delivery_status",
+          "engagement_health_fact.commercial_status",
+          "engagement_health_fact.client_status",
+          "engagement_health_fact.budget_used_pct",
+          "engagement_health_fact.burn_variance_pts",
+          "engagement_health_fact.realised_hourly_rate_gbp",
+          "engagement_health_fact.earned_margin_pct",
+          "engagement_health_fact.overdue_amount_gbp"
+        ]
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:engagements_count",
+      "name": "engagements_count",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${engagement_code}",
+      "references": [
+        "engagement_health_fact.engagement_code"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${engagement_code}",
+        "aggregate_type": "count_distinct",
+        "label": "Engagements"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:red_engagements",
+      "name": "red_engagements",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${engagement_code}",
+      "references": [
+        "engagement_health_fact.engagement_code"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${engagement_code}",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "overall_status": {
+            "is": "RED"
+          }
+        },
+        "label": "Red Engagements",
+        "description": "Engagements whose overall status is RED."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:amber_engagements",
+      "name": "amber_engagements",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${engagement_code}",
+      "references": [
+        "engagement_health_fact.engagement_code"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${engagement_code}",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "overall_status": {
+            "is": "AMBER"
+          }
+        },
+        "label": "Amber Engagements"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:green_engagements",
+      "name": "green_engagements",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${engagement_code}",
+      "references": [
+        "engagement_health_fact.engagement_code"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${engagement_code}",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "overall_status": {
+            "is": "GREEN"
+          }
+        },
+        "label": "Green Engagements"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:budget_used_pct_value",
+      "name": "budget_used_pct_value",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${budget_used_pct}",
+      "references": [
+        "engagement_health_fact.budget_used_pct"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${budget_used_pct}",
+        "aggregate_type": "max",
+        "label": "Budget Used % (value)",
+        "group_label": "Tile Values",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:elapsed_pct_value",
+      "name": "elapsed_pct_value",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${elapsed_pct}",
+      "references": [
+        "engagement_health_fact.elapsed_pct"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${elapsed_pct}",
+        "aggregate_type": "max",
+        "label": "Schedule Elapsed % (value)",
+        "group_label": "Tile Values",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:burn_variance_pts_value",
+      "name": "burn_variance_pts_value",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${burn_variance_pts}",
+      "references": [
+        "engagement_health_fact.burn_variance_pts"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${burn_variance_pts}",
+        "aggregate_type": "max",
+        "label": "Burn Variance (value)",
+        "group_label": "Tile Values",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:runway_weeks_value",
+      "name": "runway_weeks_value",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${runway_weeks}",
+      "references": [
+        "engagement_health_fact.runway_weeks"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${runway_weeks}",
+        "aggregate_type": "max",
+        "label": "Runway Weeks (value)",
+        "group_label": "Tile Values",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:realised_rate_value",
+      "name": "realised_rate_value",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${realised_hourly_rate_gbp}",
+      "references": [
+        "engagement_health_fact.realised_hourly_rate_gbp"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${realised_hourly_rate_gbp}",
+        "aggregate_type": "max",
+        "label": "Realised Rate (value)",
+        "group_label": "Tile Values",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:budget_rate_value",
+      "name": "budget_rate_value",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${budget_hourly_rate_gbp}",
+      "references": [
+        "engagement_health_fact.budget_hourly_rate_gbp"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${budget_hourly_rate_gbp}",
+        "aggregate_type": "max",
+        "label": "Budget Rate (value)",
+        "group_label": "Tile Values",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:earned_margin_pct_value",
+      "name": "earned_margin_pct_value",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${earned_margin_pct}",
+      "references": [
+        "engagement_health_fact.earned_margin_pct"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${earned_margin_pct}",
+        "aggregate_type": "max",
+        "label": "Earned Margin % (value)",
+        "group_label": "Tile Values",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:overdue_amount_value",
+      "name": "overdue_amount_value",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${overdue_amount_gbp}",
+      "references": [
+        "engagement_health_fact.overdue_amount_gbp"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${overdue_amount_gbp}",
+        "aggregate_type": "max",
+        "label": "Past Due (value)",
+        "group_label": "Tile Values",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:hours_to_date_value",
+      "name": "hours_to_date_value",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${hours_to_date}",
+      "references": [
+        "engagement_health_fact.hours_to_date"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${hours_to_date}",
+        "aggregate_type": "max",
+        "label": "Hours To Date (value)",
+        "group_label": "Tile Values"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:budget_hours_value",
+      "name": "budget_hours_value",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${budget_hours}",
+      "references": [
+        "engagement_health_fact.budget_hours"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${budget_hours}",
+        "aggregate_type": "max",
+        "label": "Budget Hours (value)",
+        "group_label": "Tile Values"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:total_hours_in_month",
+      "name": "total_hours_in_month",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${hours_in_month}",
+      "references": [
+        "engagement_health_fact.hours_in_month"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${hours_in_month}",
+        "aggregate_type": "sum",
+        "label": "Hours In Month",
+        "group_label": "Portfolio"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:total_revenue_in_month_gbp",
+      "name": "total_revenue_in_month_gbp",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${revenue_in_month_gbp}",
+      "references": [
+        "engagement_health_fact.revenue_in_month_gbp"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${revenue_in_month_gbp}",
+        "aggregate_type": "sum",
+        "label": "Revenue In Month",
+        "group_label": "Portfolio",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:total_delivery_cost_in_month_gbp",
+      "name": "total_delivery_cost_in_month_gbp",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${delivery_cost_in_month_gbp}",
+      "references": [
+        "engagement_health_fact.delivery_cost_in_month_gbp"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${delivery_cost_in_month_gbp}",
+        "aggregate_type": "sum",
+        "label": "Delivery Cost In Month",
+        "group_label": "Portfolio",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:total_overdue_amount_gbp",
+      "name": "total_overdue_amount_gbp",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${overdue_amount_gbp}",
+      "references": [
+        "engagement_health_fact.overdue_amount_gbp"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${overdue_amount_gbp}",
+        "aggregate_type": "sum",
+        "label": "Invoiced And Past Due",
+        "group_label": "Portfolio",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_health_fact:average_earned_margin_pct",
+      "name": "average_earned_margin_pct",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "${earned_margin_pct}",
+      "references": [
+        "engagement_health_fact.earned_margin_pct"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${earned_margin_pct}",
+        "aggregate_type": "average",
+        "label": "Average Earned Margin %",
+        "group_label": "Portfolio",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_health_fact.view.lkml",
+        "view": "engagement_health_fact"
+      }
+    }
+  ]
+}

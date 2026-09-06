@@ -1,0 +1,67 @@
+catalog: ra-development
+schema: analytics
+table_name: engagement_burn_up_fact
+dimensions:
+  engagement_burn_up_pk:
+    primary_key: true
+    hidden: true
+  engagement_fk:
+    hidden: true
+  engagement_code:
+    label: Engagement Code
+  company_name:
+    label: Company Name
+  engagement_name:
+    label: Engagement Name
+  week_number:
+    label: Week Number
+    description: Week 1 is the week the engagement started.
+  total_weeks:
+    label: Weeks In Window
+  is_actual_week:
+    label: Is Actual Week
+    description: Yes up to the current week. No for weeks still to come, which carry the projection only.
+  week_start:
+    sql: week_start_date
+    timeframes:
+    - date
+    - week
+    - month
+    - quarter
+    - year
+    convert_tz: false
+    label: Week
+measures:
+  hours_in_week:
+    sql: hours_in_week
+    aggregate_type: sum
+    label: Hours In Week
+    format: number_1
+  cumulative_hours:
+    sql: cumulative_hours
+    aggregate_type: max
+    label: Hours Billed, Cumulative
+    description: Stops at the current week, so the actual line ends where the data ends.
+    format: number_1
+  projected_cumulative_hours:
+    sql: projected_cumulative_hours
+    aggregate_type: max
+    label: Projected At Current Pace
+    description: Picks up from the current week, so the actual and projected lines meet.
+    format: number_1
+  budget_line_hours:
+    sql: budget_line_hours
+    aggregate_type: max
+    label: Budget, Straight Line
+    description: The engagement's budget spread evenly across the weeks in the window.
+    format: number_1
+  budget_hours:
+    sql: budget_hours
+    aggregate_type: max
+    label: Budget Hours
+    format: number_1
+  weekly_pace_hours:
+    sql: weekly_pace_hours
+    aggregate_type: max
+    label: Weekly Pace (hrs)
+    format: number_1

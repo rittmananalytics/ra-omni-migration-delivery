@@ -1,0 +1,4496 @@
+{
+ "alias_views": {
+  "companies_dim.contacts": "contacts_dim",
+  "companies_dim.customer_meeting_attendees": "contacts_dim",
+  "companies_dim.deal_targets": "targets",
+  "companies_dim.expenses_exchange_rates": "exchange_rates",
+  "companies_dim.message_contacts": "contacts_dim",
+  "companies_dim.project_invoice_timesheet_users": "contacts_dim",
+  "companies_dim.project_invoice_timesheets": "timesheets_fact",
+  "companies_dim.project_timesheet_tasks": "timesheet_tasks_dim",
+  "companies_dim.project_timesheet_users": "contacts_dim",
+  "companies_dim.project_timesheets": "timesheets_fact",
+  "companies_dim.projects_delivered": "timesheet_projects_dim",
+  "companies_dim.projects_invoiced": "invoices_fact",
+  "companies_dim.projects_managed": "delivery_projects_dim",
+  "companies_dim.recognized_project_revenue": "recognized_revenue_fact",
+  "companies_dim.recognized_revenue_contact": "contacts_dim",
+  "companies_dim.revenue_target": "targets",
+  "companies_dim.team_dim": "contacts_dim",
+  "companies_dim.timesheet_project_engagement_project_costs_fact": "timesheet_project_costs_fact",
+  "companies_dim.timesheet_project_engagement_recognized_revenue": "recognized_revenue_fact",
+  "companies_dim.timesheet_project_engagement_timesheet_tasks": "timesheet_tasks_dim",
+  "companies_dim.timesheet_project_engagement_timesheet_users": "contacts_dim",
+  "companies_dim.timesheet_project_engagement_timesheets": "timesheets_fact",
+  "companies_dim.timesheet_project_engagement_timesheets_projects_dim": "timesheet_projects_dim",
+  "companies_dim.timesheet_project_engagements_dim__projects_is_ontime": "projects_delivered_is_ontime",
+  "companies_dim.timesheet_project_engagements_projects_invoiced": "invoices_fact",
+  "contacts.delivered_companies_dim": "companies_dim",
+  "contacts.projects_delivered": "timesheet_projects_dim",
+  "contacts.projects_delivered_clients": "companies_dim",
+  "contacts.projects_invoiced": "invoices_fact",
+  "contacts.projects_managed": "delivery_projects_dim"
+ },
+ "assisted_in_scope": [
+  {
+   "construct": "explore",
+   "explore": "contacts",
+   "field": "",
+   "reason": "sql_always_where: confirm references resolve on the topic (always_where_sql); hidden: yes",
+   "type": "explore",
+   "uri": "looker:analytics:explore:contacts",
+   "view": "contacts_dim"
+  },
+  {
+   "construct": "explore",
+   "explore": "engagement_actions_fact",
+   "field": "",
+   "reason": "always_filter: becomes default_filters; date expressions are never mechanical",
+   "type": "explore",
+   "uri": "looker:analytics:explore:engagement_actions_fact",
+   "view": "engagement_actions_fact"
+  },
+  {
+   "construct": "explore",
+   "explore": "engagement_health_fact",
+   "field": "",
+   "reason": "always_filter: becomes default_filters; date expressions are never mechanical",
+   "type": "explore",
+   "uri": "looker:analytics:explore:engagement_health_fact",
+   "view": "engagement_health_fact"
+  },
+  {
+   "construct": "explore",
+   "explore": "engagement_sprint_burn_fact",
+   "field": "",
+   "reason": "always_filter: becomes default_filters; date expressions are never mechanical",
+   "type": "explore",
+   "uri": "looker:analytics:explore:engagement_sprint_burn_fact",
+   "view": "engagement_sprint_burn_fact"
+  },
+  {
+   "construct": "join:many_to_one:inner",
+   "explore": "chart_of_accounts_dim",
+   "field": "bank_account_details",
+   "reason": "type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:chart_of_accounts_dim:bank_account_details",
+   "view": "bank_account_details"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "chart_of_accounts_dim",
+   "field": "bank_transactions_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:chart_of_accounts_dim:bank_transactions_fact",
+   "view": "bank_transactions_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "chart_of_accounts_dim",
+   "field": "general_ledger_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:chart_of_accounts_dim:general_ledger_fact",
+   "view": "general_ledger_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "chart_of_accounts_dim",
+   "field": "profit_and_loss_report_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:chart_of_accounts_dim:profit_and_loss_report_fact",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "join:one_to_one:inner",
+   "explore": "companies_dim",
+   "field": "company_converted_projects",
+   "reason": "type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:company_converted_projects",
+   "view": "company_converted_projects"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "contact_companies_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:contact_companies_fact",
+   "view": "contact_companies_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "contact_meetings_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:contact_meetings_fact",
+   "view": "contact_meetings_fact"
+  },
+  {
+   "construct": "join:many_to_one:left_outer",
+   "explore": "companies_dim",
+   "field": "contacts",
+   "reason": "aliased join (from: contacts_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:contacts",
+   "view": "contacts_dim"
+  },
+  {
+   "construct": "join:many_to_one:left_outer",
+   "explore": "companies_dim",
+   "field": "customer_meeting_attendees",
+   "reason": "aliased join (from: contacts_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:customer_meeting_attendees",
+   "view": "contacts_dim"
+  },
+  {
+   "construct": "join:many_to_one:left_outer",
+   "explore": "companies_dim",
+   "field": "message_contacts",
+   "reason": "aliased join (from: contacts_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:message_contacts",
+   "view": "contacts_dim"
+  },
+  {
+   "construct": "join:many_to_one:left_outer",
+   "explore": "companies_dim",
+   "field": "project_invoice_timesheet_users",
+   "reason": "aliased join (from: contacts_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:project_invoice_timesheet_users",
+   "view": "contacts_dim"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "project_timesheet_users",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: contacts_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:project_timesheet_users",
+   "view": "contacts_dim"
+  },
+  {
+   "construct": "join:many_to_one:left_outer",
+   "explore": "companies_dim",
+   "field": "recognized_revenue_contact",
+   "reason": "aliased join (from: contacts_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:recognized_revenue_contact",
+   "view": "contacts_dim"
+  },
+  {
+   "construct": "join:many_to_one:left_outer",
+   "explore": "companies_dim",
+   "field": "team_dim",
+   "reason": "aliased join (from: contacts_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:team_dim",
+   "view": "contacts_dim"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagement_timesheet_users",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: contacts_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagement_timesheet_users",
+   "view": "contacts_dim"
+  },
+  {
+   "construct": "join:one_to_many:inner",
+   "explore": "companies_dim",
+   "field": "contracts_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:contracts_fact",
+   "view": "contracts_fact"
+  },
+  {
+   "construct": "join:one_to_one:inner",
+   "explore": "companies_dim",
+   "field": "customer_first_deal_cohorts",
+   "reason": "type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:customer_first_deal_cohorts",
+   "view": "customer_first_deal_cohorts"
+  },
+  {
+   "construct": "join:one_to_many:inner",
+   "explore": "companies_dim",
+   "field": "customer_meetings",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:customer_meetings",
+   "view": "customer_meetings"
+  },
+  {
+   "construct": "join:one_to_many:inner",
+   "explore": "companies_dim",
+   "field": "deal_pipeline_history",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:deal_pipeline_history",
+   "view": "deal_pipeline_history"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "deals_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:deals_fact",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "join:many_to_one:inner",
+   "explore": "companies_dim",
+   "field": "delivery_project_docs_dim",
+   "reason": "type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:delivery_project_docs_dim",
+   "view": "delivery_project_docs_dim"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "projects_managed",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: delivery_projects_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:projects_managed",
+   "view": "delivery_projects_dim"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "delivery_tasks_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:delivery_tasks_fact",
+   "view": "delivery_tasks_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "engagements",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:engagements",
+   "view": "engagements"
+  },
+  {
+   "construct": "join:many_to_one:left_outer",
+   "explore": "companies_dim",
+   "field": "expenses_exchange_rates",
+   "reason": "aliased join (from: exchange_rates): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:expenses_exchange_rates",
+   "view": "exchange_rates"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "projects_invoiced",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: invoices_fact): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:projects_invoiced",
+   "view": "invoices_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagements_projects_invoiced",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: invoices_fact): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagements_projects_invoiced",
+   "view": "invoices_fact"
+  },
+  {
+   "construct": "join:one_to_many:inner",
+   "explore": "companies_dim",
+   "field": "messages_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:messages_fact",
+   "view": "messages_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "nps_survey_results_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:nps_survey_results_fact",
+   "view": "nps_survey_results_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "payments_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:payments_fact",
+   "view": "payments_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "project_engagements",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:project_engagements",
+   "view": "project_engagements"
+  },
+  {
+   "construct": "join:one_to_one:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagements_dim__projects_is_ontime",
+   "reason": "aliased join (from: projects_delivered_is_ontime): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagements_dim__projects_is_ontime",
+   "view": "projects_delivered_is_ontime"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "recognized_project_revenue",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: recognized_revenue_fact): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:recognized_project_revenue",
+   "view": "recognized_revenue_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagement_recognized_revenue",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: recognized_revenue_fact): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagement_recognized_revenue",
+   "view": "recognized_revenue_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "src_control_daily_metrics_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:src_control_daily_metrics_fact",
+   "view": "src_control_daily_metrics_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "src_control_pull_requests_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:src_control_pull_requests_fact",
+   "view": "src_control_pull_requests_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "src_control_repos_dim",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:src_control_repos_dim",
+   "view": "src_control_repos_dim"
+  },
+  {
+   "construct": "join:many_to_one:left_outer",
+   "explore": "companies_dim",
+   "field": "deal_targets",
+   "reason": "aliased join (from: targets): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:deal_targets",
+   "view": "targets"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "revenue_target",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: targets): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:revenue_target",
+   "view": "targets"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "team_revenue_targets",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:team_revenue_targets",
+   "view": "team_revenue_targets"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagement_project_costs_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: timesheet_project_costs_fact): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagement_project_costs_fact",
+   "view": "timesheet_project_costs_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagement_rag_status_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagement_rag_status_fact",
+   "view": "timesheet_project_engagement_rag_status_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "projects_delivered",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: timesheet_projects_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:projects_delivered",
+   "view": "timesheet_projects_dim"
+  },
+  {
+   "construct": "join:many_to_one:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagement_timesheets_projects_dim",
+   "reason": "aliased join (from: timesheet_projects_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagement_timesheets_projects_dim",
+   "view": "timesheet_projects_dim"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "project_timesheet_tasks",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: timesheet_tasks_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:project_timesheet_tasks",
+   "view": "timesheet_tasks_dim"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagement_timesheet_tasks",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: timesheet_tasks_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagement_timesheet_tasks",
+   "view": "timesheet_tasks_dim"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "project_invoice_timesheets",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: timesheets_fact): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:project_invoice_timesheets",
+   "view": "timesheets_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "project_timesheets",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: timesheets_fact): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:project_timesheets",
+   "view": "timesheets_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagement_timesheets",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: timesheets_fact): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagement_timesheets",
+   "view": "timesheets_fact"
+  },
+  {
+   "construct": "join:one_to_many:inner",
+   "explore": "contacts",
+   "field": "delivered_companies_dim",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; type: inner; aliased join (from: companies_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:delivered_companies_dim",
+   "view": "companies_dim"
+  },
+  {
+   "construct": "join:one_to_many:inner",
+   "explore": "contacts",
+   "field": "projects_delivered_clients",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; type: inner; aliased join (from: companies_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:projects_delivered_clients",
+   "view": "companies_dim"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "contacts",
+   "field": "customer_meetings",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:customer_meetings",
+   "view": "customer_meetings"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "contacts",
+   "field": "projects_managed",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: delivery_projects_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:projects_managed",
+   "view": "delivery_projects_dim"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "contacts",
+   "field": "delivery_tasks_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:delivery_tasks_fact",
+   "view": "delivery_tasks_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "contacts",
+   "field": "projects_invoiced",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: invoices_fact): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:projects_invoiced",
+   "view": "invoices_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "contacts",
+   "field": "meeting_contact_lines_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:meeting_contact_lines_fact",
+   "view": "meeting_contact_lines_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "contacts",
+   "field": "messages_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:messages_fact",
+   "view": "messages_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "contacts",
+   "field": "payments_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:payments_fact",
+   "view": "payments_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "contacts",
+   "field": "projects_delivered",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; aliased join (from: timesheet_projects_dim): join_to_view_as",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:projects_delivered",
+   "view": "timesheet_projects_dim"
+  },
+  {
+   "construct": "join:many_to_one:inner",
+   "explore": "contacts",
+   "field": "timesheet_tasks_dim",
+   "reason": "type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:timesheet_tasks_dim",
+   "view": "timesheet_tasks_dim"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "contacts",
+   "field": "timesheets_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:contacts:timesheets_fact",
+   "view": "timesheets_fact"
+  },
+  {
+   "construct": "join:one_to_many:inner",
+   "explore": "nps_survey_results_fact",
+   "field": "engagements",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:nps_survey_results_fact:engagements",
+   "view": "engagements"
+  },
+  {
+   "construct": "join:one_to_many:inner",
+   "explore": "organic_posts_dim",
+   "field": "organic_post_performance_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key; type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:organic_posts_dim:organic_post_performance_fact",
+   "view": "organic_post_performance_fact"
+  },
+  {
+   "construct": "join:one_to_one:inner",
+   "explore": "web_sessions_fact",
+   "field": "has_viewed_pricing",
+   "reason": "type: inner",
+   "type": "join",
+   "uri": "looker:analytics:join:web_sessions_fact:has_viewed_pricing",
+   "view": "has_viewed_pricing"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "web_sessions_fact",
+   "field": "web_events_fact",
+   "reason": "relationship one_to_many: fan-out join, joined view needs primary_key",
+   "type": "join",
+   "uri": "looker:analytics:join:web_sessions_fact:web_events_fact",
+   "view": "web_events_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "buyer_confirmed_budget_available",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:buyer_confirmed_budget_available",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "days_to_close_won",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:days_to_close_won",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_closed_lost_reason",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_closed_lost_reason",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_components",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_components",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_currency_code",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_currency_code",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_description",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_description",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_end_ts",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_end_ts",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_id",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_id",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_is_deleted",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_is_deleted",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_jumpstart_type",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_jumpstart_type",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_last_meeting_booked_date",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_last_meeting_booked_date",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_name",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_name",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_sales_email_last_replied",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_sales_email_last_replied",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_source",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_source",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_stage_closed_lost",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_stage_closed_lost",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_stage_closed_won",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_stage_closed_won",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_stage_display_order",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_stage_display_order",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_stage_probability",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_stage_probability",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "deal_type",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:deal_type",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "forecast_probability",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:forecast_probability",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "forecasted_duration_months",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:forecasted_duration_months",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "forecasted_monthly_hours",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:forecasted_monthly_hours",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "funding_partner_name",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:funding_partner_name",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "license_referral",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:license_referral",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "managed_services",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:managed_services",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "manual_forecast_category",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:manual_forecast_category",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "number_of_sprints",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:number_of_sprints",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "owner_email",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:owner_email",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "owner_full_name",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:owner_full_name",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "partner_deal_contact_name",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:partner_deal_contact_name",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "partner_funding_scheme",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:partner_funding_scheme",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "partner_referral",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:partner_referral",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "pipeline_label",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:pipeline_label",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "pipeline_stage_closed_won",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:pipeline_stage_closed_won",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "pipeline_stage_display_order",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:pipeline_stage_display_order",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "pipeline_stage_label",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:pipeline_stage_label",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "predicted_amount",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:predicted_amount",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "pricing_model",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:pricing_model",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "products_in_solution",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:products_in_solution",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "services",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:services",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "spend_agreed_with_buyer",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:spend_agreed_with_buyer",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "sprint_type",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:sprint_type",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "training",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension",
+   "uri": "looker:analytics:field:deals_fact:training",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "sprint_name",
+   "reason": "link: confirm Omni links syntax and Mustache tokens",
+   "type": "dimension",
+   "uri": "looker:analytics:field:delivery_tasks_fact:sprint_name",
+   "view": "delivery_tasks_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "task_name",
+   "reason": "link: confirm Omni links syntax and Mustache tokens",
+   "type": "dimension",
+   "uri": "looker:analytics:field:delivery_tasks_fact:task_name",
+   "view": "delivery_tasks_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "invoice_currency_rate",
+   "reason": "cross-view field reference (exchange_rates): confirm every exposing topic joins it",
+   "type": "dimension",
+   "uri": "looker:analytics:field:invoices_fact:invoice_currency_rate",
+   "view": "invoices_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "person_linkedin_url",
+   "reason": "link: confirm Omni links syntax and Mustache tokens",
+   "type": "dimension",
+   "uri": "looker:analytics:field:persons_dim:person_linkedin_url",
+   "view": "persons_dim"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "engagement_name",
+   "reason": "link: confirm Omni links syntax and Mustache tokens",
+   "type": "dimension",
+   "uri": "looker:analytics:field:timesheet_project_engagement_rag_status_fact:engagement_name",
+   "view": "timesheet_project_engagement_rag_status_fact"
+  },
+  {
+   "construct": "dimension",
+   "explore": "",
+   "field": "referrer_days_since_post",
+   "reason": "cross-view field reference (page_first_published): confirm every exposing topic joins it",
+   "type": "dimension",
+   "uri": "looker:analytics:field:web_sessions_fact:referrer_days_since_post",
+   "view": "web_sessions_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "deal_month_ts",
+   "reason": "timeframes with no Omni equivalent dropped: fiscal_month_num",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deal_pipeline_history:deal_month_ts",
+   "view": "deal_pipeline_history"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "deal_closed",
+   "reason": "timeframes with no Omni equivalent dropped: week_of_year; Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:deal_closed",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "deal_created",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:deal_created",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "deal_last_modified_ts",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:deal_last_modified_ts",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "deal_pipeline_stage",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:deal_pipeline_stage",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "delivery_schedule_ts",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:delivery_schedule_ts",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "dt_entered_1_initial_enquiry",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:dt_entered_1_initial_enquiry",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "dt_entered_2_project_scoping",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:dt_entered_2_project_scoping",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "dt_entered_3_sow_drafted",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:dt_entered_3_sow_drafted",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "dt_entered_4_partner_funding_agreed",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:dt_entered_4_partner_funding_agreed",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "dt_entered_5_customer_agreed_sow",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:dt_entered_5_customer_agreed_sow",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "dt_entered_6_partner_funding_signoff",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:dt_entered_6_partner_funding_signoff",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "dt_entered_7_sow_customer_docusigned",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:dt_entered_7_sow_customer_docusigned",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "dt_entered_8_in_delivery",
+   "reason": "Liquid in group_label, view_label or description: resolve to a literal by hand",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:deals_fact:dt_entered_8_in_delivery",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "sprint_start",
+   "reason": "timeframes with no Omni equivalent dropped: fiscal_month_num",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:delivery_tasks_fact:sprint_start",
+   "view": "delivery_tasks_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "journal",
+   "reason": "timeframes with no Omni equivalent dropped: fiscal_quarter_of_year, fiscal_month_num",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:general_ledger_fact:journal",
+   "view": "general_ledger_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "invoice_issued",
+   "reason": "timeframes with no Omni equivalent dropped: fiscal_month_num, fiscal_quarter_of_year",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:invoices_fact:invoice_issued",
+   "view": "invoices_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "invoice_payment",
+   "reason": "cross-view field reference (payments_fact)",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:invoices_fact:invoice_payment",
+   "view": "invoices_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "nps_survey_ts",
+   "reason": "timeframes with no Omni equivalent dropped: fiscal_month_num, fiscal_quarter_of_year",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:nps_survey_results_fact:nps_survey_ts",
+   "view": "nps_survey_results_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "page_first_session_start_ts",
+   "reason": "timeframes with no Omni equivalent dropped: hour4, week_of_year",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:page_first_published:page_first_session_start_ts",
+   "view": "page_first_published"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "period",
+   "reason": "timeframes with no Omni equivalent dropped: fiscal_month_num, fiscal_quarter_of_year",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:period",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "booking",
+   "reason": "timeframes with no Omni equivalent dropped: fiscal_month_num",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:project_engagements:booking",
+   "view": "project_engagements"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "billing_month",
+   "reason": "timeframes with no Omni equivalent dropped: fiscal_month_num, fiscal_quarter_of_year",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:recognized_revenue_fact:billing_month",
+   "view": "recognized_revenue_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "timesheet_billing",
+   "reason": "timeframes with no Omni equivalent dropped: week_of_year, fiscal_month_num, fiscal_quarter_of_year",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:timesheets_fact:timesheet_billing",
+   "view": "timesheets_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "event_ts",
+   "reason": "timeframes with no Omni equivalent dropped: hour3",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:web_events_fact:event_ts",
+   "view": "web_events_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "session_end_ts",
+   "reason": "timeframes with no Omni equivalent dropped: hour4, week_of_year",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:web_sessions_fact:session_end_ts",
+   "view": "web_sessions_fact"
+  },
+  {
+   "construct": "dimension_group:time",
+   "explore": "",
+   "field": "session_start_ts",
+   "reason": "timeframes with no Omni equivalent dropped: hour4, week_of_year, fiscal_month_num, fiscal_quarter_of_year",
+   "type": "dimension_group",
+   "uri": "looker:analytics:field:web_sessions_fact:session_start_ts",
+   "view": "web_sessions_fact"
+  },
+  {
+   "construct": "measure:number",
+   "explore": "",
+   "field": "sprint_budget_used_pct",
+   "reason": "derived measure (type: number): validate confirms it resolves on the branch",
+   "type": "measure",
+   "uri": "looker:analytics:field:engagement_sprint_burn_fact:sprint_budget_used_pct",
+   "view": "engagement_sprint_burn_fact"
+  },
+  {
+   "construct": "measure:untyped",
+   "explore": "",
+   "field": "count",
+   "reason": "measure without type: confirm intended aggregate",
+   "type": "measure",
+   "uri": "looker:analytics:field:ips_enriched:count",
+   "view": "ips_enriched"
+  },
+  {
+   "construct": "measure:number",
+   "explore": "",
+   "field": "recognized_margin_gbp",
+   "reason": "derived measure (type: number): validate confirms it resolves on the branch",
+   "type": "measure",
+   "uri": "looker:analytics:field:recognized_revenue_fact:recognized_margin_gbp",
+   "view": "recognized_revenue_fact"
+  },
+  {
+   "construct": "measure:number",
+   "explore": "",
+   "field": "total_delivery_cost_gbp",
+   "reason": "derived measure (type: number): validate confirms it resolves on the branch",
+   "type": "measure",
+   "uri": "looker:analytics:field:recognized_revenue_fact:total_delivery_cost_gbp",
+   "view": "recognized_revenue_fact"
+  },
+  {
+   "construct": "measure:number",
+   "explore": "",
+   "field": "avg_days_issue_open",
+   "reason": "derived measure (type: number): validate confirms it resolves on the branch",
+   "type": "measure",
+   "uri": "looker:analytics:field:src_control_daily_metrics_fact:avg_days_issue_open",
+   "view": "src_control_daily_metrics_fact"
+  },
+  {
+   "construct": "measure:number",
+   "explore": "",
+   "field": "avg_days_pr_open",
+   "reason": "derived measure (type: number): validate confirms it resolves on the branch",
+   "type": "measure",
+   "uri": "looker:analytics:field:src_control_daily_metrics_fact:avg_days_pr_open",
+   "view": "src_control_daily_metrics_fact"
+  },
+  {
+   "construct": "measure:sum_distinct",
+   "explore": "",
+   "field": "total_revenue_target",
+   "reason": "distinct measure without sql_distinct_key",
+   "type": "measure",
+   "uri": "looker:analytics:field:targets:total_revenue_target",
+   "view": "targets"
+  },
+  {
+   "construct": "measure:sum_distinct",
+   "explore": "",
+   "field": "revenue_target",
+   "reason": "distinct measure without sql_distinct_key",
+   "type": "measure",
+   "uri": "looker:analytics:field:team_revenue_targets:revenue_target",
+   "view": "team_revenue_targets"
+  },
+  {
+   "construct": "measure:average_distinct",
+   "explore": "",
+   "field": "utilisation_target",
+   "reason": "distinct measure without sql_distinct_key",
+   "type": "measure",
+   "uri": "looker:analytics:field:team_revenue_targets:utilisation_target",
+   "view": "team_revenue_targets"
+  },
+  {
+   "construct": "measure:number",
+   "explore": "",
+   "field": "avg_session_value",
+   "reason": "derived measure (type: number): validate confirms it resolves on the branch; cross-view field reference (web_sessions_fact)",
+   "type": "measure",
+   "uri": "looker:analytics:field:web_events_fact:avg_session_value",
+   "view": "web_events_fact"
+  },
+  {
+   "construct": "measure:count_distinct",
+   "explore": "",
+   "field": "total_unique_users",
+   "reason": "drill_fields across views",
+   "type": "measure",
+   "uri": "looker:analytics:field:web_events_fact:total_unique_users",
+   "view": "web_events_fact"
+  },
+  {
+   "construct": "measure:number",
+   "explore": "",
+   "field": "bounced_session_rate",
+   "reason": "derived measure (type: number): validate confirms it resolves on the branch",
+   "type": "measure",
+   "uri": "looker:analytics:field:web_sessions_fact:bounced_session_rate",
+   "view": "web_sessions_fact"
+  },
+  {
+   "construct": "measure:average",
+   "explore": "",
+   "field": "total_session_duration_in_s",
+   "reason": "custom value_format 'mm:ss' not in mapping table",
+   "type": "measure",
+   "uri": "looker:analytics:field:web_sessions_fact:total_session_duration_in_s",
+   "view": "web_sessions_fact"
+  }
+ ],
+ "counts": {
+  "assisted_by_construct": {
+   "dimension": 49,
+   "dimension_group:time": 27,
+   "explore": 4,
+   "join:many_to_one:inner": 3,
+   "join:many_to_one:left_outer": 9,
+   "join:one_to_many:inner": 8,
+   "join:one_to_many:left_outer": 41,
+   "join:one_to_one:inner": 3,
+   "join:one_to_one:left_outer": 1,
+   "measure:average": 1,
+   "measure:average_distinct": 1,
+   "measure:count_distinct": 1,
+   "measure:number": 7,
+   "measure:sum_distinct": 2,
+   "measure:untyped": 1
+  },
+  "assisted_in_scope": 158,
+  "explores_dropped": 24,
+  "explores_in_scope": 15,
+  "fields_in_scope": 1643,
+  "redesign_by_construct": {
+   "dimension:html": 11,
+   "dimension:liquid": 2,
+   "dimension:location": 2,
+   "filter_field": 1,
+   "join:one_to_many:left_outer": 9,
+   "measure:date": 1,
+   "measure:number": 1,
+   "measure:period_over_period": 16,
+   "measure:sum": 1,
+   "parameter": 5,
+   "view:native_derived_table": 1,
+   "view:sql_table_name_liquid": 11
+  },
+  "redesign_in_scope": 61,
+  "unresolved_fields": 4,
+  "views_dropped": 117,
+  "views_in_scope": 73
+ },
+ "drop_list_explores": [
+  "coding_agent_prompts_fact",
+  "company_comparison",
+  "contact_utilization_fact",
+  "cumulative_churned_clients",
+  "dbt_slack",
+  "engagement_context_attribution",
+  "engagement_renewal_analysis",
+  "fathom_meetings",
+  "icp_lookalike_audience_uk_ie_eu_only",
+  "kpi_scorecard",
+  "looker_usage_stats",
+  "marketing_email_sends",
+  "monzo_bank_transactions_enriched",
+  "page_keyword_performance",
+  "page_report",
+  "people",
+  "persons_dim",
+  "project_attribution",
+  "site_report_by_site",
+  "src_control_repos_dim",
+  "staff_weekly_engagement_fact",
+  "timesheet_project_monthly_forecast_billing_fact",
+  "timesheet_project_stakeholder_jtbd_fact",
+  "website_leads"
+ ],
+ "drop_list_views": [
+  "actuals_v_targets",
+  "ad_performance_snapshot_fact",
+  "ad_roi_summary_fact",
+  "ads_dim",
+  "ads_dim__ad_conversion_specs",
+  "ads_dim__ad_creative",
+  "ads_dim__ad_recommendations",
+  "ads_dim__ad_targeting",
+  "ads_dim__ad_targeting__geo_locations",
+  "ads_dim__ad_targeting__geo_locations__cities",
+  "ads_dim__ad_targeting__geo_locations__regions",
+  "ads_dim__ad_tracking_specs",
+  "adsets_dim",
+  "adsets_dim__adset_targeting",
+  "adsets_dim__adset_targeting__geo_locations",
+  "adsets_dim__adset_targeting__geo_locations__cities",
+  "adsets_dim__adset_targeting__geo_locations__regions",
+  "anomaly_detection",
+  "attribution_fact",
+  "certification_progress",
+  "coding_agent_commands_dim",
+  "coding_agent_prompts_fact",
+  "companies_dim__all_company_addresses",
+  "companies_dim_ideal_customer",
+  "company_comparison",
+  "company_hubspot_id",
+  "consultant_revenue_attribution",
+  "consulting_companies",
+  "contact_bio",
+  "contact_deals_fact",
+  "contact_engagements_fact",
+  "contact_meetings_fact__all_attendee_person_pk",
+  "contact_meetings_fact__all_company_pk",
+  "contact_nps_survey_fact",
+  "contact_utilization_fact",
+  "contacts_influencer_list_xa",
+  "contacts_segments_xa",
+  "contacts_web_event_history_xa",
+  "contacts_web_interests_xa",
+  "content_performance",
+  "cumulative_churned_clients",
+  "currency_dim",
+  "date_spine_dim",
+  "dates",
+  "dbt_slack",
+  "dbt_slack__slack_channels",
+  "delivery_project_cycle_times",
+  "delivery_project_cycle_times_hkm",
+  "delivery_team_fact_xa",
+  "dim_countries",
+  "dim_dates",
+  "dim_providers",
+  "dynamic_monthly_stats",
+  "dynamic_web_stats",
+  "email_contacts_dim",
+  "email_lists_dim",
+  "email_send_outcomes_fact",
+  "email_sends_dim",
+  "employee_pto",
+  "engagement_context_attribution",
+  "engagement_renewal_analysis",
+  "fathom_meeting_actions",
+  "fathom_meetings",
+  "fct_boost_transactions",
+  "ga_multi_cycle_multi_touch_attribution",
+  "gcp_billing_fact",
+  "hr_survey_results_fact",
+  "icp_lookalike_audience_uk_ie_eu_only",
+  "ideal_customer_2025",
+  "ideal_customers",
+  "journals_fact",
+  "keyword_page_report",
+  "kpi_scorecard",
+  "linkedin_company_pages",
+  "looker_usage_fact",
+  "looker_usage_stats",
+  "marketing_content_dim",
+  "marketing_interactions_fact",
+  "monthly_performance_fact",
+  "monzo_bank_transactions_enriched",
+  "page_keyword_performance",
+  "page_report",
+  "performance_narrative_fact",
+  "persons_dim__all_addresses",
+  "persons_dim__all_emails",
+  "persons_dim__current_roles",
+  "pipeline_history",
+  "pl_reports",
+  "podcast_transcriptions",
+  "product_usage_fact",
+  "products_dim",
+  "profit_and_loss_demo_fact",
+  "profit_and_loss_report_account_group",
+  "project_attribution",
+  "project_metrics",
+  "recruiting_application_stages_dim",
+  "recruiting_job_applications_fact",
+  "recruiting_jobs_dim",
+  "revenue_attribution",
+  "sales_funnel_xa",
+  "site_report_by_page",
+  "site_report_by_site",
+  "src_control_commits_fact",
+  "src_control_issues_fact",
+  "staff_daily_engagement_fact",
+  "staff_dim",
+  "staff_event_timeline_fact",
+  "staff_weekly_engagement_fact",
+  "timesheet_project_engagement_progress_fact",
+  "timesheet_project_engagement_progress_fact__deliverables",
+  "timesheet_project_engagement_progress_fact__objectives",
+  "timesheet_project_monthly_forecast_billing_fact",
+  "timesheets_forecast_fact",
+  "transactions_fact",
+  "users_dim",
+  "website_leads",
+  "workstations_dim"
+ ],
+ "explore_set": [
+  "ad_campaign_performance_fact",
+  "chart_of_accounts_dim",
+  "companies_dim",
+  "contacts",
+  "engagement_actions_fact",
+  "engagement_burn_up_fact",
+  "engagement_health_fact",
+  "engagement_sprint_burn_fact",
+  "monthly_resource_revenue_forecast_fact",
+  "nps_survey_results_fact",
+  "organic_posts_dim",
+  "project_engagements",
+  "revenue_and_forecast",
+  "targets",
+  "web_sessions_fact"
+ ],
+ "explores": {
+  "ad_campaign_performance_fact": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "ad_campaign_performance_fact",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": true,
+   "join_classes": {
+    "mechanical": 1
+   },
+   "joins": 1,
+   "label": "Campaign Performance",
+   "reason": "hidden: yes",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "ad_campaign_performance_fact",
+    "ad_campaigns_dim"
+   ]
+  },
+  "chart_of_accounts_dim": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "chart_of_accounts_dim",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": false,
+   "join_classes": {
+    "assisted": 4
+   },
+   "joins": 4,
+   "label": "Financials",
+   "reason": "",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "bank_account_details",
+    "bank_transactions_fact",
+    "chart_of_accounts_dim",
+    "general_ledger_fact",
+    "profit_and_loss_report_fact"
+   ]
+  },
+  "companies_dim": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "companies_dim",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": false,
+   "join_classes": {
+    "assisted": 45,
+    "mechanical": 11,
+    "redesign": 9
+   },
+   "joins": 65,
+   "label": "                    Business Operations",
+   "reason": "",
+   "redesign_joins": [
+    [
+     "timesheet_project_engagements_dim__projects",
+     "timesheet_project_engagements_dim__projects",
+     "one_to_many",
+     "left_outer"
+    ],
+    [
+     "engagement_details__objectives",
+     "engagement_details__objectives",
+     "one_to_many",
+     "left_outer"
+    ],
+    [
+     "engagement_details__deliverables",
+     "engagement_details__deliverables",
+     "one_to_many",
+     "left_outer"
+    ],
+    [
+     "timesheet_project_engagement_rag_status_fact__month_timeline_events",
+     "timesheet_project_engagement_rag_status_fact__month_timeline_events",
+     "one_to_many",
+     "left_outer"
+    ],
+    [
+     "timesheet_project_engagement_rag_status_fact__ra_action_points",
+     "timesheet_project_engagement_rag_status_fact__ra_action_points",
+     "one_to_many",
+     "left_outer"
+    ],
+    [
+     "timesheet_project_engagement_rag_status_fact__client_action_points",
+     "timesheet_project_engagement_rag_status_fact__client_action_points",
+     "one_to_many",
+     "left_outer"
+    ],
+    [
+     "timesheet_project_stakeholder_jtbd_fact__keywords",
+     "timesheet_project_stakeholder_jtbd_fact__keywords",
+     "one_to_many",
+     "left_outer"
+    ],
+    [
+     "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+     "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+     "one_to_many",
+     "left_outer"
+    ],
+    [
+     "companies_dim__all_company_ids",
+     "companies_dim__all_company_ids",
+     "one_to_many",
+     "left_outer"
+    ]
+   ],
+   "sql_always_where": null,
+   "views_reached": [
+    "client_prospect_status_dim",
+    "companies_dim",
+    "companies_dim__all_company_ids",
+    "company_converted_projects",
+    "company_deal_value_attribute",
+    "contact_companies_fact",
+    "contact_meetings_fact",
+    "contacts_dim",
+    "contracts_fact",
+    "customer_first_deal_cohorts",
+    "customer_first_order_segments",
+    "customer_meetings",
+    "deal_pipeline_history",
+    "deals_fact",
+    "delivery_project_docs_dim",
+    "delivery_projects_dim",
+    "delivery_task_history",
+    "delivery_tasks_fact",
+    "engagement_details",
+    "engagement_details__deliverables",
+    "engagement_details__objectives",
+    "engagements",
+    "exchange_rates",
+    "invoices_fact",
+    "messages_fact",
+    "nps_survey_results_fact",
+    "payments_fact",
+    "persons_dim",
+    "project_engagements",
+    "projects_delivered_is_ontime",
+    "recognized_revenue_fact",
+    "rfm_model",
+    "src_control_daily_metrics_fact",
+    "src_control_pull_requests_fact",
+    "src_control_repos_dim",
+    "targets",
+    "team_revenue_targets",
+    "timesheet_project_costs_fact",
+    "timesheet_project_engagement_rag_status_fact",
+    "timesheet_project_engagement_rag_status_fact__client_action_points",
+    "timesheet_project_engagement_rag_status_fact__month_timeline_events",
+    "timesheet_project_engagement_rag_status_fact__ra_action_points",
+    "timesheet_project_engagements_dim__projects",
+    "timesheet_project_stakeholder_jtbd_fact",
+    "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+    "timesheet_project_stakeholder_jtbd_fact__keywords",
+    "timesheet_projects_dim",
+    "timesheet_tasks_dim",
+    "timesheets_fact"
+   ]
+  },
+  "contacts": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "contacts_dim",
+   "class": "assisted",
+   "fields": null,
+   "hidden": true,
+   "join_classes": {
+    "assisted": 12,
+    "mechanical": 1
+   },
+   "joins": 13,
+   "label": "         Delivery Team",
+   "reason": "sql_always_where: confirm references resolve on the topic (always_where_sql); hidden: yes",
+   "redesign_joins": [],
+   "sql_always_where": "${contact_is_staff} or ${contact_is_contractor}",
+   "views_reached": [
+    "companies_dim",
+    "contacts_dim",
+    "customer_meetings",
+    "delivery_projects_dim",
+    "delivery_tasks_fact",
+    "exchange_rates",
+    "invoices_fact",
+    "meeting_contact_lines_fact",
+    "messages_fact",
+    "payments_fact",
+    "timesheet_projects_dim",
+    "timesheet_tasks_dim",
+    "timesheets_fact"
+   ]
+  },
+  "engagement_actions_fact": {
+   "access_filter": null,
+   "always_filter": {
+    "filters__all": [
+     [
+      {
+       "engagement_actions_fact.reporting_month_month": "1 months"
+      }
+     ]
+    ]
+   },
+   "base_view": "engagement_actions_fact",
+   "class": "assisted",
+   "fields": null,
+   "hidden": false,
+   "join_classes": {},
+   "joins": 0,
+   "label": "Engagement Actions",
+   "reason": "always_filter: becomes default_filters; date expressions are never mechanical",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "engagement_actions_fact"
+   ]
+  },
+  "engagement_burn_up_fact": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "engagement_burn_up_fact",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": false,
+   "join_classes": {},
+   "joins": 0,
+   "label": "Engagement Burn-up",
+   "reason": "",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "engagement_burn_up_fact"
+   ]
+  },
+  "engagement_health_fact": {
+   "access_filter": null,
+   "always_filter": {
+    "filters__all": [
+     [
+      {
+       "engagement_health_fact.reporting_month_month": "12 months"
+      }
+     ]
+    ]
+   },
+   "base_view": "engagement_health_fact",
+   "class": "assisted",
+   "fields": null,
+   "hidden": false,
+   "join_classes": {},
+   "joins": 0,
+   "label": "Engagement Health",
+   "reason": "always_filter: becomes default_filters; date expressions are never mechanical",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "engagement_health_fact"
+   ]
+  },
+  "engagement_sprint_burn_fact": {
+   "access_filter": null,
+   "always_filter": {
+    "filters__all": [
+     [
+      {
+       "engagement_sprint_burn_fact.reporting_month_month": "1 months"
+      }
+     ]
+    ]
+   },
+   "base_view": "engagement_sprint_burn_fact",
+   "class": "assisted",
+   "fields": null,
+   "hidden": false,
+   "join_classes": {},
+   "joins": 0,
+   "label": "Engagement Sprint Burn",
+   "reason": "always_filter: becomes default_filters; date expressions are never mechanical",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "engagement_sprint_burn_fact"
+   ]
+  },
+  "monthly_resource_revenue_forecast_fact": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "monthly_resource_revenue_forecast_fact",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": true,
+   "join_classes": {},
+   "joins": 0,
+   "label": "Monthly Forecast",
+   "reason": "hidden: yes",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "monthly_resource_revenue_forecast_fact"
+   ]
+  },
+  "nps_survey_results_fact": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "nps_survey_results_fact",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": true,
+   "join_classes": {
+    "assisted": 1,
+    "mechanical": 2
+   },
+   "joins": 3,
+   "label": "NPS Surveys",
+   "reason": "hidden: yes",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "companies_dim",
+    "contacts_dim",
+    "engagements",
+    "nps_survey_results_fact"
+   ]
+  },
+  "organic_posts_dim": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "organic_posts_dim",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": false,
+   "join_classes": {
+    "assisted": 1
+   },
+   "joins": 1,
+   "label": "Content Marketing",
+   "reason": "",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "organic_post_performance_fact",
+    "organic_posts_dim"
+   ]
+  },
+  "project_engagements": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "project_engagements",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": true,
+   "join_classes": {},
+   "joins": 0,
+   "label": null,
+   "reason": "hidden: yes",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "project_engagements"
+   ]
+  },
+  "revenue_and_forecast": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "revenue_and_forecast",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": true,
+   "join_classes": {},
+   "joins": 0,
+   "label": null,
+   "reason": "hidden: yes",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "revenue_and_forecast"
+   ]
+  },
+  "targets": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "targets",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": false,
+   "join_classes": {
+    "mechanical": 1
+   },
+   "joins": 1,
+   "label": "Targets",
+   "reason": "",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "sales_targets",
+    "targets"
+   ]
+  },
+  "web_sessions_fact": {
+   "access_filter": null,
+   "always_filter": null,
+   "base_view": "web_sessions_fact",
+   "class": "mechanical",
+   "fields": null,
+   "hidden": false,
+   "join_classes": {
+    "assisted": 2,
+    "mechanical": 4
+   },
+   "joins": 6,
+   "label": "    Web Analytics",
+   "reason": "",
+   "redesign_joins": [],
+   "sql_always_where": null,
+   "views_reached": [
+    "has_viewed_pricing",
+    "ips_enriched",
+    "is_conversion_session",
+    "page_first_published",
+    "web_events_fact",
+    "web_sessions_fact",
+    "wh_sessions_attribution"
+   ]
+  }
+ },
+ "in_scope_dashboards": {
+  "255": {
+   "api_view_count": 120,
+   "explores": [
+    "ad_campaign_performance_fact",
+    "organic_posts_dim",
+    "web_sessions_fact"
+   ],
+   "explores_other_models": [],
+   "fields": [
+    "ad_campaign_performance_fact.average_actual_cpc",
+    "ad_campaign_performance_fact.average_actual_ctr",
+    "ad_campaign_performance_fact.average_reported_cpc",
+    "ad_campaign_performance_fact.campaign_date",
+    "ad_campaign_performance_fact.campaign_week",
+    "ad_campaign_performance_fact.total_clicks",
+    "ad_campaign_performance_fact.total_reported_clicks",
+    "ad_campaign_performance_fact.total_reported_cost",
+    "ad_campaign_performance_fact.total_reported_impressions",
+    "ad_campaign_performance_fact.total_session_case_study_page_views",
+    "ad_campaign_performance_fact.total_session_marketing_page_views",
+    "ad_campaign_performance_fact.total_session_page_views",
+    "ad_campaign_performance_fact.total_session_services_page_views",
+    "ad_campaign_performance_fact.total_unique_users",
+    "ad_campaigns_dim.ad_network",
+    "ad_campaigns_dim.utm_campaign",
+    "ad_campaigns_dim.utm_medium",
+    "ad_campaigns_dim.utm_source",
+    "organic_post_performance_fact.total_organic_posts",
+    "organic_post_performance_fact.total_post_comments",
+    "organic_post_performance_fact.total_post_likes",
+    "organic_posts_dim.post_content",
+    "organic_posts_dim.post_ts_date",
+    "organic_posts_dim.source",
+    "web_events_fact.total_blended_user_id",
+    "web_events_fact.total_blog_page_views",
+    "web_events_fact.total_case_study_page_views",
+    "web_events_fact.total_conversions",
+    "web_events_fact.total_goal_achieveds",
+    "web_events_fact.total_marketing_page_views",
+    "web_events_fact.total_page_views",
+    "web_events_fact.total_services_page_views",
+    "web_events_fact.total_session_conversions",
+    "web_events_fact.total_session_goal_achieveds",
+    "web_events_fact.total_sessions",
+    "web_events_fact.total_unique_users",
+    "web_events_fact.total_user_conversions",
+    "web_events_fact.total_user_goal_achieveds",
+    "web_events_fact.total_visitor_value",
+    "web_sessions_fact.blended_user_id",
+    "web_sessions_fact.channel",
+    "web_sessions_fact.channel_category",
+    "web_sessions_fact.first_page_category",
+    "web_sessions_fact.first_page_title",
+    "web_sessions_fact.is_converted_user",
+    "web_sessions_fact.last_page_category",
+    "web_sessions_fact.last_page_title",
+    "web_sessions_fact.referrer_host",
+    "web_sessions_fact.referrer_source",
+    "web_sessions_fact.session_start_ts_date",
+    "web_sessions_fact.session_start_ts_week",
+    "web_sessions_fact.session_utm_campaign",
+    "web_sessions_fact.session_utm_medium",
+    "web_sessions_fact.session_utm_source",
+    "web_sessions_fact.total_sessions",
+    "web_sessions_fact.total_web_sessions_pk",
+    "web_sessions_fact.user_session_number",
+    "wh_sessions_attribution.even_click_first_conversions",
+    "wh_sessions_attribution.first_click_first_conversions",
+    "wh_sessions_attribution.first_click_goals_achieved",
+    "wh_sessions_attribution.first_click_repeat_conversions",
+    "wh_sessions_attribution.first_non_direct_click_first_conversions",
+    "wh_sessions_attribution.last_non_direct_click_first_conversions",
+    "wh_sessions_attribution.total_converter_first_order_revenue",
+    "wh_sessions_attribution.total_converter_ltv_revenue"
+   ],
+   "filters": [
+    {
+     "default": "90 day",
+     "dimension": "web_sessions_fact.session_start_ts_date",
+     "explore": "web_sessions_fact",
+     "model": "analytics",
+     "name": "Session Start Date",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "inline",
+      "options": [],
+      "type": "relative_timeframes"
+     }
+    },
+    {
+     "default": "",
+     "dimension": "web_sessions_fact.channel",
+     "explore": "web_sessions_fact",
+     "model": "analytics",
+     "name": "Channel",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "popover",
+      "type": "checkboxes"
+     }
+    },
+    {
+     "default": "",
+     "dimension": "web_sessions_fact.session_utm_source",
+     "explore": "web_sessions_fact",
+     "model": "analytics",
+     "name": "Session UTM Source",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "popover",
+      "type": "tag_list"
+     }
+    },
+    {
+     "default": "",
+     "dimension": "web_sessions_fact.channel_category",
+     "explore": "web_sessions_fact",
+     "model": "analytics",
+     "name": "Channel Category",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "inline",
+      "type": "button_group"
+     }
+    },
+    {
+     "default": "",
+     "dimension": "web_sessions_fact.session_utm_medium",
+     "explore": "web_sessions_fact",
+     "model": "analytics",
+     "name": "Session UTM Medium",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "popover",
+      "type": "checkboxes"
+     }
+    },
+    {
+     "default": "",
+     "dimension": "web_sessions_fact.session_utm_campaign",
+     "explore": "web_sessions_fact",
+     "model": "analytics",
+     "name": "Session UTM Campaign",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "popover",
+      "type": "tag_list"
+     }
+    },
+    {
+     "default": "",
+     "dimension": "web_sessions_fact.first_page_category",
+     "explore": "web_sessions_fact",
+     "model": "analytics",
+     "name": "Entrance Page Category",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "popover",
+      "type": "tag_list"
+     }
+    },
+    {
+     "default": "",
+     "dimension": "web_sessions_fact.last_page_category",
+     "explore": "web_sessions_fact",
+     "model": "analytics",
+     "name": "Exit Page Category",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "popover",
+      "type": "tag_list"
+     }
+    }
+   ],
+   "folder": "Shared",
+   "last_viewed": "2026-09-06",
+   "lookml_link_id": null,
+   "owner": "Mark Rittman",
+   "tiles_custom_vis": [],
+   "tiles_from_looks": [],
+   "tiles_merged_results": 4,
+   "tiles_other": 0,
+   "tiles_text": 3,
+   "tiles_total": 31,
+   "tiles_vis": 28,
+   "tiles_with_dynamic_fields": 23,
+   "title": "Web Performance & Marketing Attribution",
+   "updated_at": "2026-08-30T22:38:06+00:00",
+   "views_90d": 18,
+   "vis_types": {
+    "looker_bar": 4,
+    "looker_column": 3,
+    "looker_grid": 4,
+    "looker_pie": 7,
+    "single_value": 10
+   }
+  },
+  "267": {
+   "api_view_count": 2724,
+   "explores": [
+    "chart_of_accounts_dim",
+    "companies_dim",
+    "contacts",
+    "monthly_resource_revenue_forecast_fact",
+    "nps_survey_results_fact",
+    "project_engagements",
+    "revenue_and_forecast",
+    "targets"
+   ],
+   "explores_other_models": [],
+   "fields": [
+    "companies_dim.company_name",
+    "consultant_revenue_attribution.attributed_project_cost_gbp",
+    "consultant_revenue_attribution.attributed_project_revenue_gbp",
+    "contacts.contact_is_staff",
+    "contacts.contact_name",
+    "customer_meetings.average_contribution_sentiment_score",
+    "customer_meetings.avg_meeting_engagement_level",
+    "customer_meetings.meeting_start_date",
+    "customer_meetings.meeting_start_week",
+    "deal_pipeline_history.deal_month_ts_month",
+    "deal_pipeline_history.total_weighted_amount_gbp",
+    "deals_fact.count_deals",
+    "deals_fact.deal_closed_date",
+    "deals_fact.deal_closed_month",
+    "deals_fact.deal_is_deleted",
+    "deals_fact.deal_name",
+    "deals_fact.deal_pipeline_stage_date",
+    "deals_fact.deal_type",
+    "deals_fact.owner_full_name",
+    "deals_fact.partner_referral",
+    "deals_fact.pipeline_stage_label",
+    "deals_fact.sprint_type",
+    "deals_fact.total_closed_won_deal_amount_gbp",
+    "deals_fact.total_oppportunity_deal_amount",
+    "deals_fact.total_weighted_opportunity_deal_amount",
+    "engagements.deal_name",
+    "engagements.engagement_end_ts_date",
+    "monthly_resource_revenue_forecast_fact.buyer_confirmed_budget_available",
+    "monthly_resource_revenue_forecast_fact.dynamic_measure",
+    "monthly_resource_revenue_forecast_fact.dynamic_split",
+    "monthly_resource_revenue_forecast_fact.forecast_month",
+    "monthly_resource_revenue_forecast_fact.selected_measure",
+    "monthly_resource_revenue_forecast_fact.selected_split",
+    "monthly_resource_revenue_forecast_fact.spend_agreed_with_buyer",
+    "nps_survey_results_fact.average_nps_score",
+    "nps_survey_results_fact.nps_survey_ts_date",
+    "nps_survey_results_fact.nps_survey_ts_month",
+    "profit_and_loss_report_fact.account_report_category",
+    "profit_and_loss_report_fact.amount",
+    "profit_and_loss_report_fact.period_month",
+    "project_engagements.booked_revenue",
+    "project_engagements.booking_month",
+    "projects_delivered.project_is_billable",
+    "recognized_project_revenue.billing_month_month",
+    "recognized_project_revenue.total_hours_billed",
+    "recognized_project_revenue.total_recognized_revenue_gbp",
+    "recognized_revenue_contact.contact_name",
+    "revenue_and_forecast.booked_and_forecast_revenue",
+    "revenue_and_forecast.booked_revenue",
+    "revenue_and_forecast.delivery_costs",
+    "revenue_and_forecast.dividends",
+    "revenue_and_forecast.forecast_net_profit",
+    "revenue_and_forecast.forecast_revenue",
+    "revenue_and_forecast.forecast_taxation",
+    "revenue_and_forecast.overheads",
+    "revenue_and_forecast.period_month",
+    "revenue_and_forecast.target_revenue",
+    "targets.ae_revenue_target",
+    "targets.period_month",
+    "targets.prn_revenue_target",
+    "targets.sae_revenue_target",
+    "targets.total_deals_closed_revenue_target",
+    "targets.total_retained_earnings_target",
+    "team_revenue_targets.revenue_target",
+    "timesheets_fact.timesheet_billing_date",
+    "timesheets_fact.timesheet_billing_week",
+    "timesheets_fact.total_timesheet_billable_hours_billed",
+    "timesheets_fact.total_timesheet_hours_billed",
+    "timesheets_fact.total_timesheet_nonbillable_hours_billed"
+   ],
+   "filters": [
+    {
+     "default": "total^_forecast^_revenue^_gbp",
+     "dimension": "monthly_resource_revenue_forecast_fact.selected_measure",
+     "explore": "monthly_resource_revenue_forecast_fact",
+     "model": "analytics",
+     "name": "Selected Measure",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "popover",
+      "type": "advanced"
+     }
+    },
+    {
+     "default": "forecast^_type",
+     "dimension": "monthly_resource_revenue_forecast_fact.selected_split",
+     "explore": "monthly_resource_revenue_forecast_fact",
+     "model": "analytics",
+     "name": "Selected Split",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "popover",
+      "type": "advanced"
+     }
+    },
+    {
+     "default": "",
+     "dimension": "monthly_resource_revenue_forecast_fact.buyer_confirmed_budget_available",
+     "explore": "monthly_resource_revenue_forecast_fact",
+     "model": "analytics",
+     "name": "Budget Confirmed?",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "inline",
+      "type": "radio_buttons"
+     }
+    },
+    {
+     "default": "",
+     "dimension": "monthly_resource_revenue_forecast_fact.spend_agreed_with_buyer",
+     "explore": "monthly_resource_revenue_forecast_fact",
+     "model": "analytics",
+     "name": "Spend Agreed?",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "inline",
+      "type": "radio_buttons"
+     }
+    }
+   ],
+   "folder": "Shared",
+   "last_viewed": "2026-09-06",
+   "lookml_link_id": null,
+   "owner": "Mark Rittman",
+   "tiles_custom_vis": [
+    [
+     "2682",
+     "marketplace_viz_calendar_heatmap::calendar_heatmap-marketplace"
+    ]
+   ],
+   "tiles_from_looks": [],
+   "tiles_merged_results": 8,
+   "tiles_other": 4,
+   "tiles_text": 1,
+   "tiles_total": 22,
+   "tiles_vis": 17,
+   "tiles_with_dynamic_fields": 13,
+   "title": "Business Summary",
+   "updated_at": "2026-08-29T18:39:51+00:00",
+   "views_90d": 488,
+   "vis_types": {
+    "looker_column": 5,
+    "looker_grid": 1,
+    "looker_line": 4,
+    "marketplace_viz_calendar_heatmap::calendar_heatmap-marketplace": 1,
+    "single_value": 6
+   }
+  },
+  "416": {
+   "api_view_count": 13,
+   "explores": [
+    "engagement_actions_fact",
+    "engagement_burn_up_fact",
+    "engagement_health_fact",
+    "engagement_sprint_burn_fact"
+   ],
+   "explores_other_models": [],
+   "fields": [
+    "engagement_actions_fact.action",
+    "engagement_actions_fact.company_name",
+    "engagement_actions_fact.engagement_name",
+    "engagement_actions_fact.owner",
+    "engagement_actions_fact.priority",
+    "engagement_actions_fact.reporting_month_month",
+    "engagement_actions_fact.status_area",
+    "engagement_actions_fact.status_area_status",
+    "engagement_actions_fact.status_sort_order",
+    "engagement_actions_fact.triggered_by",
+    "engagement_burn_up_fact.budget_line_hours",
+    "engagement_burn_up_fact.company_name",
+    "engagement_burn_up_fact.cumulative_hours",
+    "engagement_burn_up_fact.engagement_name",
+    "engagement_burn_up_fact.projected_cumulative_hours",
+    "engagement_burn_up_fact.week_start_date",
+    "engagement_health_fact.budget_exhausted_date",
+    "engagement_health_fact.budget_used_pct_value",
+    "engagement_health_fact.client_commentary",
+    "engagement_health_fact.client_status_block",
+    "engagement_health_fact.client_status_caption",
+    "engagement_health_fact.commercial_commentary",
+    "engagement_health_fact.commercial_status_block",
+    "engagement_health_fact.commercial_status_caption",
+    "engagement_health_fact.company_name",
+    "engagement_health_fact.delivery_commentary",
+    "engagement_health_fact.delivery_status_block",
+    "engagement_health_fact.delivery_status_caption",
+    "engagement_health_fact.earned_margin_pct_value",
+    "engagement_health_fact.elapsed_pct_value",
+    "engagement_health_fact.engagement_code",
+    "engagement_health_fact.engagement_name",
+    "engagement_health_fact.max_days_overdue",
+    "engagement_health_fact.open_invoice_amount_gbp",
+    "engagement_health_fact.overall_status_block",
+    "engagement_health_fact.overdue_amount_gbp",
+    "engagement_health_fact.overdue_amount_value",
+    "engagement_health_fact.overdue_invoice_count",
+    "engagement_health_fact.realised_rate_value",
+    "engagement_health_fact.reporting_month_month",
+    "engagement_health_fact.total_delivery_cost_in_month_gbp",
+    "engagement_health_fact.total_hours_in_month",
+    "engagement_health_fact.total_revenue_in_month_gbp",
+    "engagement_sprint_burn_fact.company_name",
+    "engagement_sprint_burn_fact.engagement_name",
+    "engagement_sprint_burn_fact.last_hours_booked_date",
+    "engagement_sprint_burn_fact.reporting_month_month",
+    "engagement_sprint_burn_fact.sprint_budget_hours",
+    "engagement_sprint_burn_fact.sprint_budget_used_pct",
+    "engagement_sprint_burn_fact.sprint_end_date",
+    "engagement_sprint_burn_fact.sprint_hours_to_date",
+    "engagement_sprint_burn_fact.sprint_name",
+    "engagement_sprint_burn_fact.sprint_start_date",
+    "engagement_sprint_burn_fact.sprint_state",
+    "engagement_sprint_burn_fact.sprint_window"
+   ],
+   "filters": [
+    {
+     "default": "",
+     "dimension": "engagement_health_fact.company_name",
+     "explore": "engagement_health_fact",
+     "model": "analytics",
+     "name": "Company Name",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "inline",
+      "type": "dropdown_menu"
+     }
+    },
+    {
+     "default": "",
+     "dimension": "engagement_health_fact.engagement_name",
+     "explore": "engagement_health_fact",
+     "model": "analytics",
+     "name": "Engagement Name",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "inline",
+      "type": "dropdown_menu"
+     }
+    },
+    {
+     "default": "1 months",
+     "dimension": "engagement_health_fact.reporting_month_month",
+     "explore": "engagement_health_fact",
+     "model": "analytics",
+     "name": "Reporting Month",
+     "type": "field_filter",
+     "ui_config": {
+      "display": "inline",
+      "options": [],
+      "type": "relative_timeframes"
+     }
+    }
+   ],
+   "folder": "Shared",
+   "last_viewed": "2026-08-28",
+   "lookml_link_id": "analytics::engagement_health",
+   "owner": "Mark Rittman",
+   "tiles_custom_vis": [],
+   "tiles_from_looks": [],
+   "tiles_merged_results": 0,
+   "tiles_other": 0,
+   "tiles_text": 0,
+   "tiles_total": 17,
+   "tiles_vis": 17,
+   "tiles_with_dynamic_fields": 0,
+   "title": "Engagement RAG Status 2026",
+   "updated_at": "2026-08-28T18:08:42+00:00",
+   "views_90d": 1,
+   "vis_types": {
+    "looker_column": 1,
+    "looker_grid": 7,
+    "looker_line": 1,
+    "looker_timeline": 1,
+    "single_value": 7
+   }
+  }
+ },
+ "redesign_in_scope": [
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/ad_campaign_performance_fact.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:ad_campaign_performance_fact",
+   "view": "ad_campaign_performance_fact"
+  },
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/ad_campaigns_dim.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:ad_campaigns_dim",
+   "view": "ad_campaigns_dim"
+  },
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/companies_dim.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:companies_dim",
+   "view": "companies_dim"
+  },
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/contact_companies_fact.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:contact_companies_fact",
+   "view": "contact_companies_fact"
+  },
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/deals_fact.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:deals_fact",
+   "view": "deals_fact"
+  },
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/delivery_projects_dim.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:delivery_projects_dim",
+   "view": "delivery_projects_dim"
+  },
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/invoices_fact.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:invoices_fact",
+   "view": "invoices_fact"
+  },
+  {
+   "construct": "view:native_derived_table",
+   "explore": "",
+   "field": "",
+   "file": "views/rfm_model.view.lkml",
+   "line": "1",
+   "reason": "native derived table (explore_source): rebuild as Omni query view",
+   "type": "view",
+   "uri": "looker:analytics:view:rfm_model",
+   "view": "rfm_model"
+  },
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/timesheet_projects_dim.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:timesheet_projects_dim",
+   "view": "timesheet_projects_dim"
+  },
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/timesheet_tasks_dim.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:timesheet_tasks_dim",
+   "view": "timesheet_tasks_dim"
+  },
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/timesheets_fact.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:timesheets_fact",
+   "view": "timesheets_fact"
+  },
+  {
+   "construct": "view:sql_table_name_liquid",
+   "explore": "",
+   "field": "",
+   "file": "views/web_sessions_fact.view.lkml",
+   "line": "1",
+   "reason": "Liquid in sql_table_name",
+   "type": "view",
+   "uri": "looker:analytics:view:web_sessions_fact",
+   "view": "web_sessions_fact"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "companies_dim__all_company_ids",
+   "file": "models/analytics.model.lkml",
+   "line": "737",
+   "reason": "join without sql_on (custom sql join, e.g. LEFT JOIN UNNEST): no Omni relationship form",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:companies_dim__all_company_ids",
+   "view": "companies_dim__all_company_ids"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "engagement_details__deliverables",
+   "file": "models/analytics.model.lkml",
+   "line": "607",
+   "reason": "join without sql_on (custom sql join, e.g. LEFT JOIN UNNEST): no Omni relationship form",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:engagement_details__deliverables",
+   "view": "engagement_details__deliverables"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "engagement_details__objectives",
+   "file": "models/analytics.model.lkml",
+   "line": "602",
+   "reason": "join without sql_on (custom sql join, e.g. LEFT JOIN UNNEST): no Omni relationship form",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:engagement_details__objectives",
+   "view": "engagement_details__objectives"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagement_rag_status_fact__client_action_points",
+   "file": "models/analytics.model.lkml",
+   "line": "634",
+   "reason": "join without sql_on (custom sql join, e.g. LEFT JOIN UNNEST): no Omni relationship form",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagement_rag_status_fact__client_action_points",
+   "view": "timesheet_project_engagement_rag_status_fact__client_action_points"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagement_rag_status_fact__month_timeline_events",
+   "file": "models/analytics.model.lkml",
+   "line": "624",
+   "reason": "join without sql_on (custom sql join, e.g. LEFT JOIN UNNEST): no Omni relationship form",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagement_rag_status_fact__month_timeline_events",
+   "view": "timesheet_project_engagement_rag_status_fact__month_timeline_events"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagement_rag_status_fact__ra_action_points",
+   "file": "models/analytics.model.lkml",
+   "line": "629",
+   "reason": "join without sql_on (custom sql join, e.g. LEFT JOIN UNNEST): no Omni relationship form",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagement_rag_status_fact__ra_action_points",
+   "view": "timesheet_project_engagement_rag_status_fact__ra_action_points"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_engagements_dim__projects",
+   "file": "models/analytics.model.lkml",
+   "line": "575",
+   "reason": "join without sql_on (custom sql join, e.g. LEFT JOIN UNNEST): no Omni relationship form",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_engagements_dim__projects",
+   "view": "timesheet_project_engagements_dim__projects"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+   "file": "models/analytics.model.lkml",
+   "line": "670",
+   "reason": "join without sql_on (custom sql join, e.g. LEFT JOIN UNNEST): no Omni relationship form",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+   "view": "timesheet_project_stakeholder_jtbd_fact__identified_jtbds"
+  },
+  {
+   "construct": "join:one_to_many:left_outer",
+   "explore": "companies_dim",
+   "field": "timesheet_project_stakeholder_jtbd_fact__keywords",
+   "file": "models/analytics.model.lkml",
+   "line": "665",
+   "reason": "join without sql_on (custom sql join, e.g. LEFT JOIN UNNEST): no Omni relationship form",
+   "type": "join",
+   "uri": "looker:analytics:join:companies_dim:timesheet_project_stakeholder_jtbd_fact__keywords",
+   "view": "timesheet_project_stakeholder_jtbd_fact__keywords"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "client_status_block",
+   "file": "views/engagement_health_fact.view.lkml",
+   "line": "159",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:engagement_health_fact:client_status_block",
+   "view": "engagement_health_fact"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "commercial_status_block",
+   "file": "views/engagement_health_fact.view.lkml",
+   "line": "149",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:engagement_health_fact:commercial_status_block",
+   "view": "engagement_health_fact"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "delivery_status_block",
+   "file": "views/engagement_health_fact.view.lkml",
+   "line": "139",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:engagement_health_fact:delivery_status_block",
+   "view": "engagement_health_fact"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "overall_status_block",
+   "file": "views/engagement_health_fact.view.lkml",
+   "line": "169",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:engagement_health_fact:overall_status_block",
+   "view": "engagement_health_fact"
+  },
+  {
+   "construct": "dimension:location",
+   "explore": "",
+   "field": "ip_location",
+   "file": "views/ips_enriched.view.lkml",
+   "line": "61",
+   "reason": "type: location has no Omni equivalent",
+   "type": "dimension",
+   "uri": "looker:analytics:field:ips_enriched:ip_location",
+   "view": "ips_enriched"
+  },
+  {
+   "construct": "dimension:liquid",
+   "explore": "",
+   "field": "dynamic_split",
+   "file": "views/monthly_resource_revenue_forecast_fact.view.lkml",
+   "line": "80",
+   "reason": "Liquid in sql or label: templated filter or dashboard control",
+   "type": "dimension",
+   "uri": "looker:analytics:field:monthly_resource_revenue_forecast_fact:dynamic_split",
+   "view": "monthly_resource_revenue_forecast_fact"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "data_quality_qa_rag_status",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": "123",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:timesheet_project_engagement_rag_status_fact:data_quality_qa_rag_status",
+   "view": "timesheet_project_engagement_rag_status_fact"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "financials_rag_status",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": "79",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:timesheet_project_engagement_rag_status_fact:financials_rag_status",
+   "view": "timesheet_project_engagement_rag_status_fact"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "overall_rag_status",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": "21",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:timesheet_project_engagement_rag_status_fact:overall_rag_status",
+   "view": "timesheet_project_engagement_rag_status_fact"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "resourcing_rag_status",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": "57",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:timesheet_project_engagement_rag_status_fact:resourcing_rag_status",
+   "view": "timesheet_project_engagement_rag_status_fact"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "schedule_rag_status",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": "137",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:timesheet_project_engagement_rag_status_fact:schedule_rag_status",
+   "view": "timesheet_project_engagement_rag_status_fact"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "scope_rag_status",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": "101",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:timesheet_project_engagement_rag_status_fact:scope_rag_status",
+   "view": "timesheet_project_engagement_rag_status_fact"
+  },
+  {
+   "construct": "dimension:html",
+   "explore": "",
+   "field": "technology_rag_status",
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "line": "170",
+   "reason": "html (Liquid) withheld; the dimension itself is still emitted",
+   "type": "dimension",
+   "uri": "looker:analytics:field:timesheet_project_engagement_rag_status_fact:technology_rag_status",
+   "view": "timesheet_project_engagement_rag_status_fact"
+  },
+  {
+   "construct": "dimension:location",
+   "explore": "",
+   "field": "map_location",
+   "file": "views/web_events_fact.view.lkml",
+   "line": "93",
+   "reason": "type: location has no Omni equivalent",
+   "type": "dimension",
+   "uri": "looker:analytics:field:web_events_fact:map_location",
+   "view": "web_events_fact"
+  },
+  {
+   "construct": "dimension:liquid",
+   "explore": "",
+   "field": "period",
+   "file": "views/web_sessions_fact.view.lkml",
+   "line": "46",
+   "reason": "Liquid in sql or label: templated filter or dashboard control",
+   "type": "dimension",
+   "uri": "looker:analytics:field:web_sessions_fact:period",
+   "view": "web_sessions_fact"
+  },
+  {
+   "construct": "measure:number",
+   "explore": "",
+   "field": "dynamic_measure",
+   "file": "views/monthly_resource_revenue_forecast_fact.view.lkml",
+   "line": "57",
+   "reason": "Liquid in measure sql or label",
+   "type": "measure",
+   "uri": "looker:analytics:field:monthly_resource_revenue_forecast_fact:dynamic_measure",
+   "view": "monthly_resource_revenue_forecast_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "cost_of_delivery_prior_month",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "164",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:cost_of_delivery_prior_month",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "cost_of_delivery_prior_quarter",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "238",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:cost_of_delivery_prior_quarter",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "cost_of_delivery_prior_year",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "312",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:cost_of_delivery_prior_year",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "dividends_prior_month",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "200",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:dividends_prior_month",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "dividends_prior_quarter",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "274",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:dividends_prior_quarter",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "overheads_prior_month",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "176",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:overheads_prior_month",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "overheads_prior_quarter",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "250",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:overheads_prior_quarter",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "overheads_prior_year",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "324",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:overheads_prior_year",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "retained_earnings_prior_month",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "212",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:retained_earnings_prior_month",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "retained_earnings_prior_quarter",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "286",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:retained_earnings_prior_quarter",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "retained_earnings_prior_year",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "336",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:retained_earnings_prior_year",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:sum",
+   "explore": "",
+   "field": "revenue_dynamic_prior_period",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "372",
+   "reason": "Liquid in measure sql or label",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:revenue_dynamic_prior_period",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "revenue_prior_month",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "152",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:revenue_prior_month",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "revenue_prior_quarter",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "226",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:revenue_prior_quarter",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "revenue_prior_year",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "300",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:revenue_prior_year",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "taxation_prior_month",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "188",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:taxation_prior_month",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:period_over_period",
+   "explore": "",
+   "field": "taxation_prior_quarter",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "262",
+   "reason": "measure type 'period_over_period' has no Omni aggregate_type",
+   "type": "measure",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:taxation_prior_quarter",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "measure:date",
+   "explore": "",
+   "field": "last_timesheet_billing_date",
+   "file": "views/timesheets_fact.view.lkml",
+   "line": "68",
+   "reason": "type: date has no Omni aggregate_type: table calculation on the tile",
+   "type": "measure",
+   "uri": "looker:analytics:field:timesheets_fact:last_timesheet_billing_date",
+   "view": "timesheets_fact"
+  },
+  {
+   "construct": "filter_field",
+   "explore": "",
+   "field": "date_filter",
+   "file": "views/web_sessions_fact.view.lkml",
+   "line": "38",
+   "reason": "filter-only field: becomes a dashboard filter control or templated filter",
+   "type": "filter",
+   "uri": "looker:analytics:field:web_sessions_fact:date_filter",
+   "view": "web_sessions_fact"
+  },
+  {
+   "construct": "parameter",
+   "explore": "",
+   "field": "selected_measure",
+   "file": "views/monthly_resource_revenue_forecast_fact.view.lkml",
+   "line": "7",
+   "reason": "parameter: templated filter (Mustache) or a FIELD_SELECTION control",
+   "type": "parameter",
+   "uri": "looker:analytics:field:monthly_resource_revenue_forecast_fact:selected_measure",
+   "view": "monthly_resource_revenue_forecast_fact"
+  },
+  {
+   "construct": "parameter",
+   "explore": "",
+   "field": "selected_split",
+   "file": "views/monthly_resource_revenue_forecast_fact.view.lkml",
+   "line": "36",
+   "reason": "parameter: templated filter (Mustache) or a FIELD_SELECTION control",
+   "type": "parameter",
+   "uri": "looker:analytics:field:monthly_resource_revenue_forecast_fact:selected_split",
+   "view": "monthly_resource_revenue_forecast_fact"
+  },
+  {
+   "construct": "parameter",
+   "explore": "",
+   "field": "comparison_period",
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "line": "352",
+   "reason": "parameter: templated filter (Mustache) or a FIELD_SELECTION control",
+   "type": "parameter",
+   "uri": "looker:analytics:field:profit_and_loss_report_fact:comparison_period",
+   "view": "profit_and_loss_report_fact"
+  },
+  {
+   "construct": "parameter",
+   "explore": "",
+   "field": "period_selector",
+   "file": "views/web_sessions_fact.view.lkml",
+   "line": "24",
+   "reason": "parameter: templated filter (Mustache) or a FIELD_SELECTION control",
+   "type": "parameter",
+   "uri": "looker:analytics:field:web_sessions_fact:period_selector",
+   "view": "web_sessions_fact"
+  },
+  {
+   "construct": "parameter",
+   "explore": "",
+   "field": "time_range",
+   "file": "views/web_sessions_fact.view.lkml",
+   "line": "129",
+   "reason": "parameter: templated filter (Mustache) or a FIELD_SELECTION control",
+   "type": "parameter",
+   "uri": "looker:analytics:field:web_sessions_fact:time_range",
+   "view": "web_sessions_fact"
+  }
+ ],
+ "unresolved_fields": [
+  {
+   "dashboard": "267",
+   "field": "consultant_revenue_attribution.attributed_project_cost_gbp",
+   "kind": "field exists but its view is not joined to any explore the dashboard queries"
+  },
+  {
+   "dashboard": "267",
+   "field": "consultant_revenue_attribution.attributed_project_revenue_gbp",
+   "kind": "field exists but its view is not joined to any explore the dashboard queries"
+  },
+  {
+   "dashboard": "267",
+   "field": "deals_fact.total_oppportunity_deal_amount",
+   "kind": "field not in LookML project"
+  },
+  {
+   "dashboard": "255",
+   "field": "web_sessions_fact.total_web_sessions_pk",
+   "kind": "field not in LookML project"
+  }
+ ],
+ "view_set": [
+  "ad_campaign_performance_fact",
+  "ad_campaigns_dim",
+  "bank_account_details",
+  "bank_transactions_fact",
+  "chart_of_accounts_dim",
+  "client_prospect_status_dim",
+  "companies_dim",
+  "companies_dim__all_company_ids",
+  "company_converted_projects",
+  "company_deal_value_attribute",
+  "contact_companies_fact",
+  "contact_meetings_fact",
+  "contacts_dim",
+  "contracts_fact",
+  "customer_first_deal_cohorts",
+  "customer_first_order_segments",
+  "customer_meetings",
+  "deal_pipeline_history",
+  "deals_fact",
+  "delivery_project_docs_dim",
+  "delivery_projects_dim",
+  "delivery_task_history",
+  "delivery_tasks_fact",
+  "engagement_actions_fact",
+  "engagement_burn_up_fact",
+  "engagement_details",
+  "engagement_details__deliverables",
+  "engagement_details__objectives",
+  "engagement_health_fact",
+  "engagement_sprint_burn_fact",
+  "engagements",
+  "exchange_rates",
+  "general_ledger_fact",
+  "has_viewed_pricing",
+  "invoices_fact",
+  "ips_enriched",
+  "is_conversion_session",
+  "meeting_contact_lines_fact",
+  "messages_fact",
+  "monthly_resource_revenue_forecast_fact",
+  "nps_survey_results_fact",
+  "organic_post_performance_fact",
+  "organic_posts_dim",
+  "page_first_published",
+  "payments_fact",
+  "persons_dim",
+  "profit_and_loss_report_fact",
+  "project_engagements",
+  "projects_delivered_is_ontime",
+  "recognized_revenue_fact",
+  "revenue_and_forecast",
+  "rfm_model",
+  "sales_targets",
+  "src_control_daily_metrics_fact",
+  "src_control_pull_requests_fact",
+  "src_control_repos_dim",
+  "targets",
+  "team_revenue_targets",
+  "timesheet_project_costs_fact",
+  "timesheet_project_engagement_rag_status_fact",
+  "timesheet_project_engagement_rag_status_fact__client_action_points",
+  "timesheet_project_engagement_rag_status_fact__month_timeline_events",
+  "timesheet_project_engagement_rag_status_fact__ra_action_points",
+  "timesheet_project_engagements_dim__projects",
+  "timesheet_project_stakeholder_jtbd_fact",
+  "timesheet_project_stakeholder_jtbd_fact__identified_jtbds",
+  "timesheet_project_stakeholder_jtbd_fact__keywords",
+  "timesheet_projects_dim",
+  "timesheet_tasks_dim",
+  "timesheets_fact",
+  "web_events_fact",
+  "web_sessions_fact",
+  "wh_sessions_attribution"
+ ],
+ "views": {
+  "ad_campaign_performance_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "mechanical": 23
+   },
+   "fields": 23,
+   "file": "views/ad_campaign_performance_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.ad_campaign_performance_fact`",
+   "used_by_explores": [
+    "ad_campaign_performance_fact"
+   ]
+  },
+  "ad_campaigns_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "mechanical": 12
+   },
+   "fields": 12,
+   "file": "views/ad_campaigns_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.ad_campaigns_dim`",
+   "used_by_explores": [
+    "ad_campaign_performance_fact"
+   ]
+  },
+  "bank_account_details": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 5
+   },
+   "fields": 5,
+   "file": "views/bank_account_details.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "chart_of_accounts_dim"
+   ]
+  },
+  "bank_transactions_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 27
+   },
+   "fields": 27,
+   "file": "views/bank_transactions_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.bank_transactions_fact`",
+   "used_by_explores": [
+    "chart_of_accounts_dim"
+   ]
+  },
+  "chart_of_accounts_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 24
+   },
+   "fields": 24,
+   "file": "views/chart_of_accounts_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.chart_of_accounts_dim`",
+   "used_by_explores": [
+    "chart_of_accounts_dim"
+   ]
+  },
+  "client_prospect_status_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 6
+   },
+   "fields": 6,
+   "file": "views/client_prospect_status_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "companies_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "mechanical": 17
+   },
+   "fields": 17,
+   "file": "views/companies_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.companies_dim`",
+   "used_by_explores": [
+    "companies_dim",
+    "contacts",
+    "nps_survey_results_fact"
+   ]
+  },
+  "companies_dim__all_company_ids": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:no_table",
+   "field_classes": {
+    "mechanical": 1
+   },
+   "fields": 1,
+   "file": "views/companies_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "company_converted_projects": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 7
+   },
+   "fields": 7,
+   "file": "views/company_converted_projects.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "company_deal_value_attribute": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 5
+   },
+   "fields": 5,
+   "file": "views/company_deal_value_attribute.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "contact_companies_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "mechanical": 5
+   },
+   "fields": 5,
+   "file": "views/contact_companies_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.contact_companies_fact`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "contact_meetings_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 13
+   },
+   "fields": 13,
+   "file": "views/contact_meetings_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.contact_sales_meetings_fact`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "contacts_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 129
+   },
+   "fields": 129,
+   "file": "views/contacts_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.contacts_dim`",
+   "used_by_explores": [
+    "companies_dim",
+    "contacts",
+    "nps_survey_results_fact"
+   ]
+  },
+  "contracts_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 23
+   },
+   "fields": 23,
+   "file": "views/contracts_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.contracts_fact`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "customer_first_deal_cohorts": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 5
+   },
+   "fields": 5,
+   "file": "views/customer_first_deal_cohorts.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "customer_first_order_segments": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 20
+   },
+   "fields": 20,
+   "file": "views/customer_first_order_segments.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "customer_meetings": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 16
+   },
+   "fields": 16,
+   "file": "views/customer_meetings.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim",
+    "contacts"
+   ]
+  },
+  "deal_pipeline_history": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 9
+   },
+   "fields": 10,
+   "file": "views/deal_pipeline_history.view.lkml",
+   "pdt": false,
+   "sql_table_name": "analytics.deal_pipeline_history_fact",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "deals_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "assisted": 56,
+    "mechanical": 27
+   },
+   "fields": 83,
+   "file": "views/deals_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.deals_fact`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "delivery_project_docs_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 11
+   },
+   "fields": 11,
+   "file": "views/delivery_project_docs_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.delivery_project_docs_dim`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "delivery_projects_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "mechanical": 12
+   },
+   "fields": 12,
+   "file": "views/delivery_projects_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.delivery_projects_dim`",
+   "used_by_explores": [
+    "companies_dim",
+    "contacts"
+   ]
+  },
+  "delivery_task_history": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 16
+   },
+   "fields": 16,
+   "file": "views/delivery_task_history.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "delivery_tasks_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "assisted": 3,
+    "mechanical": 62
+   },
+   "fields": 65,
+   "file": "views/delivery_tasks_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim",
+    "contacts"
+   ]
+  },
+  "engagement_actions_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 15
+   },
+   "fields": 15,
+   "file": "views/engagement_actions_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.engagement_actions_fact`",
+   "used_by_explores": [
+    "engagement_actions_fact"
+   ]
+  },
+  "engagement_burn_up_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 15
+   },
+   "fields": 15,
+   "file": "views/engagement_burn_up_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.engagement_burn_up_fact`",
+   "used_by_explores": [
+    "engagement_burn_up_fact"
+   ]
+  },
+  "engagement_details": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 8
+   },
+   "fields": 8,
+   "file": "views/engagement_details.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics_docai_europe_west2.engagement_details`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "engagement_details__deliverables": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:no_table",
+   "field_classes": {
+    "mechanical": 5
+   },
+   "fields": 5,
+   "file": "views/engagement_details.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "engagement_details__objectives": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:no_table",
+   "field_classes": {
+    "mechanical": 5
+   },
+   "fields": 5,
+   "file": "views/engagement_details.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "engagement_health_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 102,
+    "redesign": 4
+   },
+   "fields": 106,
+   "file": "views/engagement_health_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.engagement_health_fact`",
+   "used_by_explores": [
+    "engagement_health_fact"
+   ]
+  },
+  "engagement_sprint_burn_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 23
+   },
+   "fields": 24,
+   "file": "views/engagement_sprint_burn_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.engagement_sprint_burn_fact`",
+   "used_by_explores": [
+    "engagement_sprint_burn_fact"
+   ]
+  },
+  "engagements": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 34
+   },
+   "fields": 34,
+   "file": "views/engagements.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim",
+    "nps_survey_results_fact"
+   ]
+  },
+  "exchange_rates": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 2
+   },
+   "fields": 2,
+   "file": "views/exchange_rates.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics_seed.exchange_rates`",
+   "used_by_explores": [
+    "companies_dim",
+    "contacts"
+   ]
+  },
+  "general_ledger_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 28
+   },
+   "fields": 29,
+   "file": "views/general_ledger_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.general_ledger_fact`",
+   "used_by_explores": [
+    "chart_of_accounts_dim"
+   ]
+  },
+  "has_viewed_pricing": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 3
+   },
+   "fields": 3,
+   "file": "views/has_viewed_pricing.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "web_sessions_fact"
+   ]
+  },
+  "invoices_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "assisted": 3,
+    "mechanical": 47
+   },
+   "fields": 50,
+   "file": "views/invoices_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.invoices_fact`",
+   "used_by_explores": [
+    "companies_dim",
+    "contacts"
+   ]
+  },
+  "ips_enriched": {
+   "class": "mechanical",
+   "complexity": "High",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 13,
+    "redesign": 1
+   },
+   "fields": 15,
+   "file": "views/ips_enriched.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics_seed.ips_enriched`",
+   "used_by_explores": [
+    "web_sessions_fact"
+   ]
+  },
+  "is_conversion_session": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 3
+   },
+   "fields": 3,
+   "file": "views/is_conversion_session.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "web_sessions_fact"
+   ]
+  },
+  "meeting_contact_lines_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 10
+   },
+   "fields": 10,
+   "file": "views/meeting_contact_lines_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.meeting_contact_lines_fact`",
+   "used_by_explores": [
+    "contacts"
+   ]
+  },
+  "messages_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 17
+   },
+   "fields": 17,
+   "file": "views/messages_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.messages_fact`",
+   "used_by_explores": [
+    "companies_dim",
+    "contacts"
+   ]
+  },
+  "monthly_resource_revenue_forecast_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 20,
+    "redesign": 4
+   },
+   "fields": 24,
+   "file": "views/monthly_resource_revenue_forecast_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "monthly_resource_revenue_forecast_fact"
+   ]
+  },
+  "nps_survey_results_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 10
+   },
+   "fields": 11,
+   "file": "views/nps_survey_results_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.nps_survey_results_fact`",
+   "used_by_explores": [
+    "companies_dim",
+    "nps_survey_results_fact"
+   ]
+  },
+  "organic_post_performance_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 10
+   },
+   "fields": 10,
+   "file": "views/organic_post_performance_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.organic_post_performance_fact`",
+   "used_by_explores": [
+    "organic_posts_dim"
+   ]
+  },
+  "organic_posts_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 8
+   },
+   "fields": 8,
+   "file": "views/organic_posts_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.organic_posts_dim`",
+   "used_by_explores": [
+    "organic_posts_dim"
+   ]
+  },
+  "page_first_published": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 1
+   },
+   "fields": 2,
+   "file": "views/page_first_published.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "web_sessions_fact"
+   ]
+  },
+  "payments_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 22
+   },
+   "fields": 22,
+   "file": "views/payments_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.payments_fact`",
+   "used_by_explores": [
+    "companies_dim",
+    "contacts"
+   ]
+  },
+  "persons_dim": {
+   "class": "mechanical",
+   "complexity": "High",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 99
+   },
+   "fields": 100,
+   "file": "views/persons_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.persons_dim`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "profit_and_loss_report_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 25,
+    "redesign": 18
+   },
+   "fields": 44,
+   "file": "views/profit_and_loss_report_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.profit_and_loss_report_fact`",
+   "used_by_explores": [
+    "chart_of_accounts_dim"
+   ]
+  },
+  "project_engagements": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 5
+   },
+   "fields": 6,
+   "file": "views/project_engagements_monthly_revenue.view.lkml",
+   "pdt": false,
+   "sql_table_name": "ra-development.analytics.timesheet_project_engagements_monthly_revenue_fact",
+   "used_by_explores": [
+    "companies_dim",
+    "project_engagements"
+   ]
+  },
+  "projects_delivered_is_ontime": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 3
+   },
+   "fields": 3,
+   "file": "views/projects_delivered_is_ontime.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "recognized_revenue_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 3,
+    "mechanical": 20
+   },
+   "fields": 23,
+   "file": "views/recognized_revenue_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.recognized_revenue_fact`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "revenue_and_forecast": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 13
+   },
+   "fields": 13,
+   "file": "views/revenue_and_forecast.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "revenue_and_forecast"
+   ]
+  },
+  "rfm_model": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:native_derived_table",
+   "field_classes": {
+    "mechanical": 9
+   },
+   "fields": 9,
+   "file": "views/rfm_model.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "sales_targets": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 22
+   },
+   "fields": 22,
+   "file": "views/sales_targets.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics_seed.sales_targets`",
+   "used_by_explores": [
+    "targets"
+   ]
+  },
+  "src_control_daily_metrics_fact": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 2,
+    "mechanical": 22
+   },
+   "fields": 24,
+   "file": "views/src_control_daily_metrics_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.src_control_daily_metrics_fact`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "src_control_pull_requests_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 47
+   },
+   "fields": 47,
+   "file": "views/src_control_pull_requests_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.src_control_pull_requests_fact`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "src_control_repos_dim": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 26
+   },
+   "fields": 26,
+   "file": "views/src_control_repos_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.src_control_repos_dim`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "targets": {
+   "class": "mechanical",
+   "complexity": "High",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 52
+   },
+   "fields": 53,
+   "file": "views/targets.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics_seed.targets`",
+   "used_by_explores": [
+    "companies_dim",
+    "targets"
+   ]
+  },
+  "team_revenue_targets": {
+   "class": "mechanical",
+   "complexity": "Medium",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 2,
+    "mechanical": 6
+   },
+   "fields": 8,
+   "file": "views/team_revenue_targets.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics_seed.consultant_targets_grades`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "timesheet_project_costs_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 24
+   },
+   "fields": 24,
+   "file": "views/timesheet_project_costs_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.timesheet_project_costs_fact`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "timesheet_project_engagement_rag_status_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "construct": "view:table",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 21,
+    "redesign": 7
+   },
+   "fields": 29,
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.timesheet_project_engagement_rag_status_fact`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "timesheet_project_engagement_rag_status_fact__client_action_points": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:no_table",
+   "field_classes": {
+    "mechanical": 3
+   },
+   "fields": 3,
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "timesheet_project_engagement_rag_status_fact__month_timeline_events": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:no_table",
+   "field_classes": {
+    "mechanical": 3
+   },
+   "fields": 3,
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "timesheet_project_engagement_rag_status_fact__ra_action_points": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:no_table",
+   "field_classes": {
+    "mechanical": 3
+   },
+   "fields": 3,
+   "file": "views/timesheet_project_engagement_rag_status_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "timesheet_project_engagements_dim__projects": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:no_table",
+   "field_classes": {
+    "mechanical": 5
+   },
+   "fields": 5,
+   "file": "views/engagements.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "timesheet_project_stakeholder_jtbd_fact": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:table",
+   "field_classes": {
+    "mechanical": 7
+   },
+   "fields": 7,
+   "file": "views/timesheet_project_stakeholder_jtbd_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`ra-development.analytics.timesheet_project_stakeholder_jtbd_fact`",
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "timesheet_project_stakeholder_jtbd_fact__identified_jtbds": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:no_table",
+   "field_classes": {
+    "mechanical": 3
+   },
+   "fields": 3,
+   "file": "views/timesheet_project_stakeholder_jtbd_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "timesheet_project_stakeholder_jtbd_fact__keywords": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:no_table",
+   "field_classes": {
+    "mechanical": 2
+   },
+   "fields": 2,
+   "file": "views/timesheet_project_stakeholder_jtbd_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "companies_dim"
+   ]
+  },
+  "timesheet_projects_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "mechanical": 31
+   },
+   "fields": 31,
+   "file": "views/timesheet_projects_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.timesheet_projects_dim`",
+   "used_by_explores": [
+    "companies_dim",
+    "contacts"
+   ]
+  },
+  "timesheet_tasks_dim": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "mechanical": 8
+   },
+   "fields": 8,
+   "file": "views/timesheet_tasks_dim.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.timesheet_tasks_dim`",
+   "used_by_explores": [
+    "companies_dim",
+    "contacts"
+   ]
+  },
+  "timesheets_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "assisted": 1,
+    "mechanical": 25,
+    "redesign": 1
+   },
+   "fields": 27,
+   "file": "views/timesheets_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.timesheets_fact`",
+   "used_by_explores": [
+    "companies_dim",
+    "contacts"
+   ]
+  },
+  "web_events_fact": {
+   "class": "mechanical",
+   "complexity": "High",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "assisted": 3,
+    "mechanical": 79,
+    "redesign": 1
+   },
+   "fields": 83,
+   "file": "views/web_events_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "web_sessions_fact"
+   ]
+  },
+  "web_sessions_fact": {
+   "class": "redesign",
+   "complexity": "High",
+   "construct": "view:sql_table_name_liquid",
+   "field_classes": {
+    "assisted": 5,
+    "mechanical": 47,
+    "redesign": 4
+   },
+   "fields": 56,
+   "file": "views/web_sessions_fact.view.lkml",
+   "pdt": false,
+   "sql_table_name": "`{{ _user_attributes['dataset'] }}.web_sessions_fact`",
+   "used_by_explores": [
+    "web_sessions_fact"
+   ]
+  },
+  "wh_sessions_attribution": {
+   "class": "mechanical",
+   "complexity": "Low",
+   "construct": "view:derived_table",
+   "field_classes": {
+    "mechanical": 28
+   },
+   "fields": 28,
+   "file": "views/wh_sessions_attribution.view.lkml",
+   "pdt": false,
+   "sql_table_name": null,
+   "used_by_explores": [
+    "web_sessions_fact"
+   ]
+  }
+ }
+}

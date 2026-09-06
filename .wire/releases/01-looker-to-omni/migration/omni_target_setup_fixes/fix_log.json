@@ -1,0 +1,100 @@
+{
+ "files": [
+  {
+   "file": "ra-development.analytics/delivery_tasks_fact.view",
+   "result": "removed start_end_ts",
+   "removed_lines": 1,
+   "write_response_keys": [
+    "fileName",
+    "success"
+   ]
+  },
+  {
+   "file": "ra-development.analytics_integration/int_delivery_tasks.view",
+   "result": "removed start_end_ts",
+   "removed_lines": 1,
+   "write_response_keys": [
+    "fileName",
+    "success"
+   ]
+  },
+  {
+   "file": "ra-development.analytics_staging/stg_jira_booksy_projects_tasks.view",
+   "result": "removed start_end_ts",
+   "removed_lines": 1,
+   "write_response_keys": [
+    "fileName",
+    "success"
+   ]
+  },
+  {
+   "file": "ra-development.analytics_staging/stg_jira_hkm_projects_tasks.view",
+   "result": "removed start_end_ts",
+   "removed_lines": 1,
+   "write_response_keys": [
+    "fileName",
+    "success"
+   ]
+  },
+  {
+   "file": "ra-development.analytics_staging/stg_jira_projects_tasks.view",
+   "result": "removed start_end_ts",
+   "removed_lines": 1,
+   "write_response_keys": [
+    "fileName",
+    "success"
+   ]
+  },
+  {
+   "file": "omni_dbt/delivery_tasks_fact.view",
+   "result": "removed start_end_ts",
+   "removed_lines": 1,
+   "write_response_keys": [
+    "fileName",
+    "success"
+   ]
+  },
+  {
+   "file": "omni_dbt_integration/int_delivery_tasks.view",
+   "result": "removed start_end_ts",
+   "removed_lines": 1,
+   "write_response_keys": [
+    "fileName",
+    "success"
+   ]
+  },
+  {
+   "file": "omni_dbt_staging/stg_jira_booksy_projects_tasks.view",
+   "result": "removed start_end_ts",
+   "removed_lines": 1,
+   "write_response_keys": [
+    "fileName",
+    "success"
+   ]
+  },
+  {
+   "file": "omni_dbt_staging/stg_jira_hkm_projects_tasks.view",
+   "result": "removed start_end_ts",
+   "removed_lines": 1,
+   "write_response_keys": [
+    "fileName",
+    "success"
+   ]
+  },
+  {
+   "file": "omni_dbt_staging/stg_jira_projects_tasks.view",
+   "result": "removed start_end_ts",
+   "removed_lines": 1,
+   "write_response_keys": [
+    "fileName",
+    "success"
+   ]
+  }
+ ],
+ "validate_after": {
+  "issues": 0,
+  "blocking": 0,
+  "warnings": 0
+ },
+ "remaining": []
+}

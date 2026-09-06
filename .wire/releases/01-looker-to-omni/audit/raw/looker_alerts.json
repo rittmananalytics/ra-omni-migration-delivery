@@ -1,0 +1,120 @@
+[
+ {
+  "cron": "0 * * * *",
+  "custom_title": null,
+  "dashboard_element_id": "324",
+  "id": "1",
+  "lookml_dashboard_id": "61",
+  "lookml_link_id": null,
+  "applied_dashboard_filters": [],
+  "comparison_type": "LESS_THAN_OR_EQUAL_TO",
+  "query_id": null,
+  "custom_url_base": null,
+  "custom_url_params": null,
+  "custom_url_label": null,
+  "show_custom_url": false,
+  "description": null,
+  "enhancements": null,
+  "destinations": [],
+  "field": {
+   "title": "Net Profit % Total Balance",
+   "name": "monthly_chart_of_accounts_balances.total_balance",
+   "filter": [
+    {
+     "field_name": "monthly_chart_of_accounts_balances.account",
+     "field_value": "Net Profit %"
+    }
+   ]
+  },
+  "followed": false,
+  "followable": false,
+  "is_disabled": true,
+  "disabled_reason": "All recipients have been removed.",
+  "is_public": false,
+  "investigative_content_type": null,
+  "investigative_content_id": null,
+  "investigative_content_title": null,
+  "owner_id": "3",
+  "owner_display_name": "Mark Rittman",
+  "threshold": 50000000.0
+ },
+ {
+  "cron": "0 9-19/2 * * *",
+  "custom_title": "@Mike Calleja  Rixo Load Errors",
+  "dashboard_element_id": "830",
+  "id": "2",
+  "lookml_dashboard_id": "114",
+  "lookml_link_id": null,
+  "applied_dashboard_filters": [],
+  "comparison_type": "GREATER_THAN",
+  "query_id": null,
+  "custom_url_base": null,
+  "custom_url_params": null,
+  "custom_url_label": null,
+  "show_custom_url": false,
+  "description": null,
+  "enhancements": null,
+  "destinations": [
+   {
+    "destination_type": "ACTION_HUB",
+    "action_hub_integration_id": "1::slack_app",
+    "action_hub_form_params_json": "{\"workspace\":\"TASU53WHY\",\"channel\":\"C01C1J13X71\"}"
+   }
+  ],
+  "field": {
+   "title": "Rixo Load Errors",
+   "name": "rixo_load_errors.count",
+   "filter": []
+  },
+  "followed": false,
+  "followable": false,
+  "is_disabled": true,
+  "disabled_reason": "No longer using JDBC connection - need to move this over to reading DV alert tables",
+  "is_public": false,
+  "investigative_content_type": null,
+  "investigative_content_id": null,
+  "investigative_content_title": null,
+  "owner_id": "3",
+  "owner_display_name": "Mark Rittman",
+  "threshold": 0.0
+ },
+ {
+  "cron": "0 5 * * *",
+  "custom_title": null,
+  "dashboard_element_id": "2514",
+  "id": "3",
+  "lookml_dashboard_id": null,
+  "lookml_link_id": null,
+  "applied_dashboard_filters": [],
+  "comparison_type": "GREATER_THAN",
+  "query_id": null,
+  "custom_url_base": null,
+  "custom_url_params": null,
+  "custom_url_label": null,
+  "show_custom_url": false,
+  "description": null,
+  "enhancements": null,
+  "destinations": [
+   {
+    "destination_type": "EMAIL",
+    "email_address": "mark.rittman@rittmananalytics.com"
+   }
+  ],
+  "field": {
+   "title": "Sum of Booked Revenue",
+   "name": "sum_of_booked_revenue",
+   "filter": []
+  },
+  "followed": true,
+  "followable": false,
+  "is_disabled": false,
+  "disabled_reason": null,
+  "is_public": false,
+  "investigative_content_type": null,
+  "investigative_content_id": null,
+  "investigative_content_title": null,
+  "owner_id": "28",
+  "owner_display_name": "Mark Rittman",
+  "threshold": 50.0
+ }
+]

@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Google Sans', 'Inter', system-ui, sans-serif; color: #181B25; -webkit-font-smoothing: antialiased; }
+    a { color: #4F60FF; } a:hover { color: #4F5FFE; }
+    .eyebrow { font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: 0.14em; text-transform: uppercase; color: #4F60FF; }
+    .title { font-size: 28px; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; color: #181B25; margin: 8px 0 0; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .code { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11.5px; font-weight: 500; line-height: 1.4; background: #FFFFFF; border: 1px solid #E1E1E9; border-radius: 4px; padding: 2px 7px; color: #2B3041; white-space: nowrap; display: inline-flex; gap: 6px; align-items: center; }
+    .small { font-size: 11.5px; font-weight: 400; line-height: 1.4; color: #4F5564; }
+    .director { background: #181B25; color: #FFFFFF; border-radius: 12px; padding: 12px 14px; font-size: 13.5px; line-height: 1.45; font-weight: 500; }
+    .orch { background: #EFF0FF; border: 1px solid #4F60FF; border-radius: 12px; padding: 12px 14px; font-size: 13.5px; line-height: 1.45; color: #181B25; }
+    .step { font-size: 11.5px; font-weight: 500; line-height: 1; padding: 6px 10px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E1E1E9; color: #181B25; white-space: nowrap; }
+    .caption { font-size: 11.5px; font-weight: 600; line-height: 1.2; color: #4F5564; text-align: center; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex: none; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; background: #FFFFFF; position: relative; overflow: hidden; box-sizing: border-box; padding: 40px; display: flex; flex-direction: column; gap: 14px;">
+
+  <!-- Header -->
+  <div>
+    <div class="eyebrow">Tiers 1 and 2 · A directed session</div>
+    <h1 class="title">The release director and the orchestrating session</h1>
+  </div>
+
+  <!-- Column headers -->
+  <div style="display: grid; grid-template-columns: 480px 110px minmax(0, 1fr); gap: 16px; align-items: center;">
+    <div style="display: flex; gap: 10px; align-items: center; background: #181B25; color: #FFFFFF; border-radius: 999px; padding: 8px 14px; width: fit-content;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+      <span style="font-size: 12.5px; font-weight: 600;">Release director</span>
+      <span style="font-size: 11.5px; color: #C7C9D3;">one human per release</span>
+    </div>
+    <div></div>
+    <div style="display: flex; gap: 10px; align-items: center; background: #4F60FF; color: #FFFFFF; border-radius: 999px; padding: 8px 14px; width: fit-content;">
+      <span style="font-size: 12.5px; font-weight: 600;">Orchestrating session</span>
+      <span style="font-size: 11.5px; color: #D5DDFF;">a Claude Code session in the engagement repo</span>
+    </div>
+  </div>
+
+  <!-- Exchanges -->
+  <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 8px;">
+
+    <!-- 1 session start -->
+    <div style="display: grid; grid-template-columns: 480px 110px minmax(0, 1fr); gap: 16px; align-items: center;">
+      <div></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <svg width="90" height="14" viewBox="0 0 90 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M90 7H8"></path><path d="M14 1L7 7l7 6"></path></svg>
+        <span class="caption">1 · session start</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="orch">2 decisions waiting. <span class="mono" style="font-weight: 600;">PD-1</span> data_model: approve now, or park for client sign-off? <span class="mono" style="font-weight: 600;">PD-2</span> data_model: adopt the retail baseline, adopt, adapt or decline?</div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="code"><svg width="12" height="15" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg>status.md · parked_decisions</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 directive -->
+    <div style="display: grid; grid-template-columns: 480px 110px minmax(0, 1fr); gap: 16px; align-items: center;">
+      <div class="director">Run what's next. Two lanes, nothing against a warehouse, stop at decisions.</div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <svg width="90" height="14" viewBox="0 0 90 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M0 7h82"></path><path d="M76 1l7 6-7 6"></path></svg>
+        <span class="caption">2 · directive</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+          <span class="step">resolve mode</span>
+          <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M2 1l6 6-6 6"></path></svg>
+          <span class="step">resolve release</span>
+          <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M2 1l6 6-6 6"></path></svg>
+          <span class="step">re-read 4 files</span>
+          <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M2 1l6 6-6 6"></path></svg>
+          <span class="step">resolve claim</span>
+          <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M2 1l6 6-6 6"></path></svg>
+          <span class="step">compute the runnable set</span>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <span class="code"><svg width="12" height="15" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg>status.md · claim and budget block written, then echoed back</span>
+          <span class="code"><svg width="12" height="15" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg>context.md · orchestration.mode</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 names the run -->
+    <div style="display: grid; grid-template-columns: 480px 110px minmax(0, 1fr); gap: 16px; align-items: center;">
+      <div></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <svg width="90" height="14" viewBox="0 0 90 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M90 7H8"></path><path d="M14 1L7 7l7 6"></path></svg>
+        <span class="caption">3 · names the run</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="orch">Running <span class="mono" style="font-weight: 600;">conceptual_model-generate</span> as a lane and <span class="mono" style="font-weight: 600;">mockups-generate</span> in the foreground. No dependency between them.</div>
+        <div class="small">Every run is named before it happens. Nothing is written at this step.</div>
+      </div>
+    </div>
+
+    <!-- 4 one report -->
+    <div style="display: grid; grid-template-columns: 480px 110px minmax(0, 1fr); gap: 16px; align-items: center;">
+      <div></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <svg width="90" height="14" viewBox="0 0 90 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M90 7H8"></path><path d="M14 1L7 7l7 6"></path></svg>
+        <span class="caption">4 · one report</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="orch"><span class="mono" style="font-weight: 600;">conceptual_model</span>: 7 entities, validate PASS. Approve now, request changes, or park for client sign-off?</div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="code"><svg width="12" height="15" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg>execution_log.md · Session = orchestrator [id]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 ruling -->
+    <div style="display: grid; grid-template-columns: 480px 110px minmax(0, 1fr); gap: 16px; align-items: center;">
+      <div class="director">Approve internally. Skip business rules, agree at kickoff.</div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <svg width="90" height="14" viewBox="0 0 90 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M0 7h82"></path><path d="M76 1l7 6-7 6"></path></svg>
+        <span class="caption">5 · ruling</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+          <span class="step">write R-1 to decisions.md at once</span>
+          <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M2 1l6 6-6 6"></path></svg>
+          <span class="step">remove PD-1 from status.md</span>
+          <svg width="10" height="14" viewBox="0 0 10 14" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M2 1l6 6-6 6"></path></svg>
+          <span class="step">run conceptual_model-review</span>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <span class="code"><svg width="12" height="15" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg>decisions.md · R-1, under the director's name</span>
+          <span class="code"><svg width="12" height="15" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg>status.md · parked_decisions</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 control -->
+    <div style="display: grid; grid-template-columns: 480px 110px minmax(0, 1fr); gap: 16px; align-items: center;">
+      <div class="director">You drive.</div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 4px;">
+        <svg width="90" height="14" viewBox="0 0 90 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M0 7h82"></path><path d="M76 1l7 6-7 6"></path></svg>
+        <span class="caption">6 · control</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="orch">Manual for the rest of this session. Dispatch stops. Typed <span class="mono" style="font-weight: 600;">/wire:</span> commands still work.</div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span class="code"><svg width="12" height="15" viewBox="0 0 14 17" fill="none" stroke="#4F60FF" stroke-width="1.5"><path d="M1.5 1.5h7l4 4v10h-11z"></path><path d="M8.5 1.5v4h4"></path></svg>execution_log.md · mode row</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footnotes -->
+  <div style="display: flex; gap: 32px; align-items: center; background: #F7F7FA; border: 1px solid #E1E1E9; border-radius: 12px; padding: 12px 16px;">
+    <div style="display: flex; gap: 10px; align-items: center;"><span class="dot" style="background: #4F60FF;"></span><span style="font-size: 13px; font-weight: 600;">A review never runs without a ruling.</span></div>
+    <div style="display: flex; gap: 10px; align-items: center;"><span class="dot" style="background: #4F60FF;"></span><span style="font-size: 13px; font-weight: 600;">A ruling never passes a blocking gate.</span><span class="small">Only a recorded override, with a person's name and reason, does.</span></div>
+  </div>
+
+  <!-- Footer -->
+  <div style="display: flex; justify-content: space-between; align-items: center; height: 24px;">
+    <div style="display: flex; gap: 12px; align-items: center;">
+      <img src="logo-black-blue.svg" alt="Rittman Analytics" style="height: 20px; display: block;">
+      <span class="small" style="color: #6B7280;">Wire 4.0.0 · Diagram 2 of 4</span>
+    </div>
+    <span class="small mono" style="color: #6B7280;">docs/wire-agent-architecture.md</span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,1717 @@
+{
+  "identity": "looker:analytics:view:web_events_fact",
+  "name": "web_events_fact",
+  "schema": "analytics",
+  "table_name": null,
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/web_events_fact.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:web_events_fact:device",
+      "name": "device",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.device",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The specific type of device, operating system, and browser used when this event was recorded (e.g., 'iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1'). Hidden by default.",
+        "group_label": "  Audience",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:device_category",
+      "name": "device_category",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.device_category",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The general type or brand of the device used when this event was recorded (e.g., 'iPhone', 'Android', 'iPad', 'Windows'). This is a simplified version of the 'Device' field. Hidden by default.",
+        "group_label": "  Audience",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:event_details",
+      "name": "event_details",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.event_details",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "Additional details or properties associated with the specific event, if any.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:event_id",
+      "name": "event_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.event_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "A unique identifier for the individual event. Hidden by default.",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:event_in_session_seq",
+      "name": "event_in_session_seq",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.event_in_session_seq",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Session Event Num",
+        "description": "The sequential number of this event within the current user session (e.g., 1st event in session, 2nd event in session).",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:event_number",
+      "name": "event_number",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.event_seq",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${event_seq}",
+        "description": "A sequential number for the event, potentially across all events for a user or globally. Refers to event_seq. Hidden by default.",
+        "group_label": "Behavior",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:event_type",
+      "name": "event_type",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.event_type",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The type of user interaction or system event recorded (e.g., 'Page View', 'Click', 'Form Submission', 'Meeting Booked').",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:map_location",
+      "name": "map_location",
+      "kind": "dimension",
+      "lookml_type": "location",
+      "source_sql": null,
+      "references": [],
+      "class": "redesign",
+      "emitted": false,
+      "omni": null,
+      "unsupported": [
+        {
+          "construct": "type_location",
+          "class": "redesign",
+          "reason": "dimension type location has no Omni equivalent"
+        }
+      ],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:locale_code",
+      "name": "locale_code",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.locale_code",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The locale code (e.g., 'en-US', 'fr-FR') representing the language and regional settings of the user's browser or device at the time of the event.",
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:longitude",
+      "name": "longitude",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.longitude",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The geographic longitude of the event's origin. Hidden by default, used by 'map_location'.",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:metro_code",
+      "name": "metro_code",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.metro_code",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The designated market area (DMA) or metro code associated with the event's location, if available.",
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:network",
+      "name": "network",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.network",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "Information about the network (e.g., ISP, organization) from which the event originated. Hidden by default.",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:page_title",
+      "name": "page_title",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.page_title",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The title of the web page on which the event occurred. Dashes ('—') are replaced with hyphens ('-') for consistency.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:months_since_page_published",
+      "name": "months_since_page_published",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.months_since_page_title_published_at_ts",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${months_since_page_title_published_at_ts}",
+        "description": "The number of full months between when this page (identified by its title) was first published/observed and when this specific event occurred on it.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:page_total_page_views",
+      "name": "page_total_page_views",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.total_page_views",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_page_views}",
+        "description": "The total number of 'Page View' events ever recorded for this specific page title (across all users and sessions) up to the latest data point. Calculated in the derived table.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:page_total_unique_viewers",
+      "name": "page_total_unique_viewers",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.total_unique_viewers",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_unique_viewers}",
+        "description": "The total number of unique users (blended_user_id) who have ever generated a 'Page View' event for this specific page title up to the latest data point. Calculated in the derived table.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:page_url",
+      "name": "page_url",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.page_url",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The full URL of the web page on which the event occurred.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:page_url_host",
+      "name": "page_url_host",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.page_url_host",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The hostname (e.g., 'www.example.com') of the web page on which the event occurred.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:page_url_path",
+      "name": "page_url_path",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.page_url_path",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The path component (e.g., '/products/item123') of the web page URL on which the event occurred.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:page_category",
+      "name": "page_category",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.computed_page_category",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${computed_page_category}",
+        "description": "A predefined category assigned to the page where the event occurred, often based on URL structure or content type (e.g., '02: Blog', '08: Services').",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:visit_value",
+      "name": "visit_value",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "case when ${is_conversion_event} then 16 else safe_cast(split(${TABLE}.page_category,\":\")[SAFE_OFFSET(0)] as int64) end",
+      "references": [
+        "web_events_fact.is_conversion_event"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${is_conversion_event} then 16 else safe_cast(split(${page_category},\":\")[SAFE_OFFSET(0)] as int64) end",
+        "description": "A numerical score assigned to the event. Conversion events ('Meeting Booked') receive a value of 16; other events are valued based on the numerical prefix of their page_category."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:is_conversion_event",
+      "name": "is_conversion_event",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.event_type = 'Meeting Booked'",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${event_type} = 'Meeting Booked'",
+        "description": "Indicates (Yes/No) if this event is a 'Meeting Booked' event, which is considered a primary conversion.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:is_goal_achieved",
+      "name": "is_goal_achieved",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.is_goal_achieved_event",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${is_goal_achieved_event}",
+        "description": "Indicates (Yes/No) if this event signifies the achievement of a predefined goal (based on the is_goal_achieved_event flag from the source table).",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:postal_code",
+      "name": "postal_code",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.postal_code",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The postal or ZIP code associated with the event's location. Configured for US zipcode map layer."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:prev_event_type",
+      "name": "prev_event_type",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.prev_event_type",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The type of the event that occurred immediately prior to this one for the same user. Hidden by default.",
+        "group_label": "Conversions",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:search",
+      "name": "search",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.search",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The search query or keywords used by the visitor if they arrived from a search engine leading to this event or session. May be '(not provided)'. Hidden by default.",
+        "group_label": "    Acquisition",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:session_id",
+      "name": "session_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.session_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The unique identifier for the web session to which this event belongs."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:site",
+      "name": "site",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.site",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The website or domain on which the event occurred (e.g., 'rittmananalytics.com').",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:blended_user_id",
+      "name": "blended_user_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.blended_user_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "A unique identifier for a user, potentially unified across different platforms or tracking mechanisms, associated with this event. Hidden by default.",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:time_on_page_secs",
+      "name": "time_on_page_secs",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.time_on_page_secs",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The duration in seconds that the user spent on the page associated with this event before navigating away or triggering another event. Hidden by default.",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:time_zone",
+      "name": "time_zone",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.time_zone",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The time zone of the user when the event occurred (e.g., 'America/New_York'). Hidden by default.",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:user_id",
+      "name": "user_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.user_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "A user identifier, which might be specific to a certain platform or tracking system before blending (see blended_user_id)."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:utm_campaign",
+      "name": "utm_campaign",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.utm_campaign",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Event UTM Campaign",
+        "description": "The UTM campaign parameter value associated with the session or source that led to this event (e.g., 'summer_promo').",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:utm_content",
+      "name": "utm_content",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.utm_content",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Event UTM Content",
+        "description": "The UTM content parameter value associated with the session or source that led to this event, used to differentiate ads or links (e.g., 'banner_ad_1').",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:utm_medium",
+      "name": "utm_medium",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.utm_medium",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Event UTM Medium",
+        "description": "The UTM medium parameter value associated with the session or source that led to this event (e.g., 'cpc', 'email', 'social').",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:utm_source",
+      "name": "utm_source",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.utm_source",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Event UTM Source",
+        "description": "The UTM source parameter value associated with the session or source that led to this event (e.g., 'google', 'facebook', 'newsletter').",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:utm_term",
+      "name": "utm_term",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.utm_term",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Event UTM Keyword",
+        "description": "The UTM term (keyword) parameter value associated with the session or source that led to this event, often used for paid search keywords.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:visitor_id",
+      "name": "visitor_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.visitor_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Anonymous (Device) ID ",
+        "description": "An anonymous identifier, typically associated with a device or browser instance, used before a user is identified."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:web_events_pk",
+      "name": "web_events_pk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.web_events_pk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true,
+        "description": "The primary key uniquely identifying each web event record.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:event_seq",
+      "name": "event_seq",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.event_seq",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "A sequential number assigned to the event, potentially an overall sequence for the user or globally. This is the raw event_seq from the source.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:gclid",
+      "name": "gclid",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.gclid",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "Google Click Identifier (GCLID) captured for this event, used for tracking clicks from Google Ads.",
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:ip",
+      "name": "ip",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.ip",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The IP address from which the event originated. Note: IP addresses can be an approximation of location and may be anonymized.",
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:referrer_host",
+      "name": "referrer_host",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.referrer_host",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The hostname (e.g., 'google.com') of the website that referred the user to the page where this event occurred, or to the start of the session.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:referrer",
+      "name": "referrer",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "split(${TABLE}.referrer, \"?\")[SAFE_OFFSET(0)]",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "split(${referrer}, \"?\")[SAFE_OFFSET(0)]",
+        "description": "The full URL of the page that linked the user to the website for this event or session, excluding any query parameters.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:referrer_source",
+      "name": "referrer_source",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "case when ${referrer} like '%blog.rittmananalytics.com%' or ${referrer} like '%medium.com/mark-rittman%' then 'Medium' end",
+      "references": [
+        "web_events_fact.referrer"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${referrer} like '%blog.rittmananalytics.com%' or ${referrer} like '%medium.com/mark-rittman%' then 'Medium' end",
+        "description": "The classified source of the referral traffic for this event, specifically identifying 'Medium' if the referrer URL matches known Medium blog patterns.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:referrer_article_stub",
+      "name": "referrer_article_stub",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "case when ${referrer_source} = 'Medium' and ${referrer_host} = 'blog.rittmananalytics.com' then split(${referrer},'/')[safe_offset(3)]\n              when ${referrer_source} = 'Medium' and ${referrer_host} = 'medium.com' then split(${referrer},'/')[safe_offset(4)]\n          end",
+      "references": [
+        "web_events_fact.referrer_source",
+        "web_events_fact.referrer_host",
+        "web_events_fact.referrer"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${referrer_source} = 'Medium' and ${referrer_host} = 'blog.rittmananalytics.com' then split(${referrer},'/')[safe_offset(3)]\n              when ${referrer_source} = 'Medium' and ${referrer_host} = 'medium.com' then split(${referrer},'/')[safe_offset(4)]\n          end",
+        "description": "If the referrer is identified as 'Medium' (from blog.rittmananalytics.com or medium.com), this field extracts the article slug or identifier from the referrer URL.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:referrer_domain",
+      "name": "referrer_domain",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.referrer_domain",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:screen_resolution",
+      "name": "screen_resolution",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.screen_resolution",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:viewport_size",
+      "name": "viewport_size",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.viewport_size",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:partner",
+      "name": "partner",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.partner",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:blog_post_author",
+      "name": "blog_post_author",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.blog_post_author",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:blog_post_category",
+      "name": "blog_post_category",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.blog_post_category",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:blog_post_id",
+      "name": "blog_post_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.blog_post_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:blog_post_tags",
+      "name": "blog_post_tags",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.blog_post_tags",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:blog_post_title",
+      "name": "blog_post_title",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.blog_post_title",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:page_type",
+      "name": "page_type",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.page_type",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:city",
+      "name": "city",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.city",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:country",
+      "name": "country",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.country",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:country_code",
+      "name": "country_code",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.country_code",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:isp",
+      "name": "isp",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.isp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:latitude",
+      "name": "latitude",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.latitude",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:region",
+      "name": "region",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.region",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:region_code",
+      "name": "region_code",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.region_code",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:timezone",
+      "name": "timezone",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.timezone",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:event_ts",
+      "name": "event_ts",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.event_ts",
+      "references": [],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "timeframes": [
+          "raw",
+          "week",
+          "month",
+          "date",
+          "day_of_week_name",
+          "day_of_month",
+          "hour_of_day",
+          "hour",
+          "quarter_of_year",
+          "quarter",
+          "year"
+        ],
+        "description": "The exact date and time when this specific web event occurred.",
+        "group_label": "Dates"
+      },
+      "unsupported": [
+        {
+          "construct": "timeframe",
+          "class": "assisted",
+          "reason": "timeframe 'hour3' has no Omni equivalent; dropped from the list"
+        }
+      ],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:page_published",
+      "name": "page_published",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.page_title_published_at_ts",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${page_title_published_at_ts}",
+        "timeframes": [
+          "date",
+          "month",
+          "quarter",
+          "year"
+        ],
+        "description": "The date and time when the content of this page (identified by its title) was first observed/published, based on the earliest event recorded for this page title.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:prev_event_ts",
+      "name": "prev_event_ts",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.prev_event_ts",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "timeframes": [
+          "month",
+          "date"
+        ],
+        "description": "The timestamp of the event that occurred immediately prior to this one for the same user. Hidden by default.",
+        "group_label": "Dates",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_conversions",
+      "name": "total_conversions",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${web_events_pk}",
+      "references": [
+        "web_events_fact.web_events_pk"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${web_events_pk}",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "is_conversion_event": {
+            "is": true
+          }
+        },
+        "description": "The total number of unique 'Meeting Booked' events.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_goal_achieveds",
+      "name": "total_goal_achieveds",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${web_events_pk}",
+      "references": [
+        "web_events_fact.web_events_pk"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${web_events_pk}",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "is_goal_achieved": {
+            "is": true
+          }
+        },
+        "description": "The total number of unique events where a predefined goal was achieved.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_sessions",
+      "name": "total_sessions",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${session_id}",
+      "references": [
+        "web_events_fact.session_id"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${session_id}",
+        "aggregate_type": "count_distinct",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_session_conversions",
+      "name": "total_session_conversions",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${session_id}",
+      "references": [
+        "web_events_fact.session_id"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${session_id}",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "is_conversion_event": {
+            "is": true
+          }
+        },
+        "description": "The total number of unique sessions that included at least one 'Meeting Booked' event.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_blended_user_id",
+      "name": "total_blended_user_id",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${blended_user_id}",
+      "references": [
+        "web_events_fact.blended_user_id"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${blended_user_id}",
+        "aggregate_type": "count_distinct",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_user_conversions",
+      "name": "total_user_conversions",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${blended_user_id}",
+      "references": [
+        "web_events_fact.blended_user_id"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${blended_user_id}",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "is_conversion_event": {
+            "is": true
+          }
+        },
+        "description": "The total number of unique users (blended_user_id) who performed at least one 'Meeting Booked' event.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_session_goal_achieveds",
+      "name": "total_session_goal_achieveds",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${session_id}",
+      "references": [
+        "web_events_fact.session_id"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${session_id}",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "is_goal_achieved": {
+            "is": true
+          }
+        },
+        "description": "The total number of unique sessions that included at least one event where a predefined goal was achieved.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_user_goal_achieveds",
+      "name": "total_user_goal_achieveds",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${blended_user_id}",
+      "references": [
+        "web_events_fact.blended_user_id"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${blended_user_id}",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "is_goal_achieved": {
+            "is": true
+          }
+        },
+        "description": "The total number of unique users (blended_user_id) who had at least one event where a predefined goal was achieved.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_visitor_value",
+      "name": "total_visitor_value",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${visit_value}",
+      "references": [
+        "web_events_fact.visit_value"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${visit_value}",
+        "aggregate_type": "sum",
+        "description": "The sum of 'Visit Value' for all events, providing a weighted measure of engagement and conversion.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:avg_session_value",
+      "name": "avg_session_value",
+      "kind": "measure",
+      "lookml_type": "number",
+      "source_sql": "${total_visitor_value}/${web_sessions_fact.total_sessions}",
+      "references": [
+        "web_events_fact.total_visitor_value",
+        "web_sessions_fact.total_sessions"
+      ],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_visitor_value}/${web_sessions_fact.total_sessions}",
+        "description": "The average 'Visit Value' per session, calculated as Total Visitor Value divided by Total Sessions (from web_sessions_fact).",
+        "format": "number_2"
+      },
+      "unsupported": [
+        {
+          "construct": "cross_view_reference",
+          "class": "assisted",
+          "reason": "sql references another view (web_sessions_fact); confirm every topic that exposes this field joins it"
+        },
+        {
+          "construct": "measure_number",
+          "class": "assisted",
+          "reason": "derived measure (type: number) emitted without aggregate_type; validate it resolves on the branch"
+        }
+      ],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_unique_users",
+      "name": "total_unique_users",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${TABLE}.blended_user_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${blended_user_id}",
+        "aggregate_type": "count_distinct",
+        "label": "Total Unique Users",
+        "description": "The total number of distinct users (blended_user_id) who generated at least one event.",
+        "format": "number_0",
+        "drill_fields": [
+          "web_events_fact.device",
+          "web_events_fact.blended_user_id",
+          "web_events_fact.device_category",
+          "subscription_fact.channel"
+        ]
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_page_views",
+      "name": "total_page_views",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "case when ${TABLE}.event_type = 'Page View' then ${TABLE}.web_events_pk end",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${event_type} = 'Page View' then ${web_events_pk} end",
+        "aggregate_type": "count_distinct",
+        "description": "The total number of unique 'Page View' events.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_marketing_page_views",
+      "name": "total_marketing_page_views",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "case when ${TABLE}.event_type = 'Page View' then ${TABLE}.web_events_pk end",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${event_type} = 'Page View' then ${web_events_pk} end",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "page_category": {
+            "is": "04: Marketing"
+          }
+        },
+        "description": "The total number of unique 'Page View' events that occurred on pages categorized as '04: Marketing'.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_case_study_page_views",
+      "name": "total_case_study_page_views",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "case when ${TABLE}.event_type = 'Page View' then ${TABLE}.web_events_pk end",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${event_type} = 'Page View' then ${web_events_pk} end",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "page_category": {
+            "is": "06: Case Study"
+          }
+        },
+        "description": "The total number of unique 'Page View' events that occurred on pages categorized as '06: Case Study'.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_services_page_views",
+      "name": "total_services_page_views",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "case when ${TABLE}.event_type = 'Page View' then ${TABLE}.web_events_pk end",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${event_type} = 'Page View' then ${web_events_pk} end",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "page_category": {
+            "is": "08: Services"
+          }
+        },
+        "description": "The total number of unique 'Page View' events that occurred on pages categorized as '08: Services'.",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_events_fact:total_blog_page_views",
+      "name": "total_blog_page_views",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "case when ${TABLE}.event_type = 'Page View' then ${TABLE}.web_events_pk end",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${event_type} = 'Page View' then ${web_events_pk} end",
+        "aggregate_type": "count_distinct",
+        "filters": {
+          "page_category": {
+            "is": "02: Social"
+          }
+        },
+        "description": "The total number of unique 'Page View' events that occurred on pages categorized as '02: Social' (typically blog pages).",
+        "format": "number_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_events_fact.view.lkml",
+        "view": "web_events_fact"
+      }
+    }
+  ]
+}

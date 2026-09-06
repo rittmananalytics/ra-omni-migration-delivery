@@ -1,0 +1,18 @@
+{
+  "identity": "looker:analytics:topic:engagement_health_fact",
+  "name": "engagement_health_fact",
+  "base_view": "engagement_health_fact",
+  "emitted": true,
+  "fields": null,
+  "joins": [],
+  "unsupported": [
+    {
+      "construct": "always_filter",
+      "class": "assisted",
+      "reason": "Filter expression '12 months' on engagement_health_fact.reporting_month_month has no mechanical Omni operator; construct not emitted, write the filter by hand"
+    }
+  ],
+  "source": {
+    "file": "models/analytics.model.lkml"
+  }
+}

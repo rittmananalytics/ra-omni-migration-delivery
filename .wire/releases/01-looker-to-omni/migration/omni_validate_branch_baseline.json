@@ -1,0 +1,102 @@
+[
+ {
+  "message": "Column \"start_end_ts\" not found (in table or view \"ra_development_analytics__delivery_tasks_fact\")",
+  "yaml_path": "ra_development_analytics__delivery_tasks_fact.view,dimensions,start_end_ts",
+  "auto_fix": {
+   "description_short": "Remove dimension \"ra_development_analytics__delivery_tasks_fact.start_end_ts\"",
+   "description_unique": "Remove dimension \"ra_development_analytics__delivery_tasks_fact.start_end_ts\""
+  },
+  "slug": "column_not_found",
+  "is_warning": false
+ },
+ {
+  "message": "Column \"start_end_ts\" not found (in table or view \"ra_development_analytics_integration__int_delivery_tasks\")",
+  "yaml_path": "ra_development_analytics_integration__int_delivery_tasks.view,dimensions,start_end_ts",
+  "auto_fix": {
+   "description_short": "Remove dimension \"ra_development_analytics_integration__int_delivery_tasks.start_end_ts\"",
+   "description_unique": "Remove dimension \"ra_development_analytics_integration__int_delivery_tasks.start_end_ts\""
+  },
+  "slug": "column_not_found",
+  "is_warning": false
+ },
+ {
+  "message": "Column \"start_end_ts\" not found (in table or view \"ra_development_analytics_staging__stg_jira_booksy_projects_tasks\")",
+  "yaml_path": "ra_development_analytics_staging__stg_jira_booksy_projects_tasks.view,dimensions,start_end_ts",
+  "auto_fix": {
+   "description_short": "Remove dimension \"ra_development_analytics_staging__stg_jira_booksy_projects_tasks.start_end_ts\"",
+   "description_unique": "Remove dimension \"ra_development_analytics_staging__stg_jira_booksy_projects_tasks.start_end_ts\""
+  },
+  "slug": "column_not_found",
+  "is_warning": false
+ },
+ {
+  "message": "Column \"start_end_ts\" not found (in table or view \"ra_development_analytics_staging__stg_jira_hkm_projects_tasks\")",
+  "yaml_path": "ra_development_analytics_staging__stg_jira_hkm_projects_tasks.view,dimensions,start_end_ts",
+  "auto_fix": {
+   "description_short": "Remove dimension \"ra_development_analytics_staging__stg_jira_hkm_projects_tasks.start_end_ts\"",
+   "description_unique": "Remove dimension \"ra_development_analytics_staging__stg_jira_hkm_projects_tasks.start_end_ts\""
+  },
+  "slug": "column_not_found",
+  "is_warning": false
+ },
+ {
+  "message": "Column \"start_end_ts\" not found (in table or view \"ra_development_analytics_staging__stg_jira_projects_tasks\")",
+  "yaml_path": "ra_development_analytics_staging__stg_jira_projects_tasks.view,dimensions,start_end_ts",
+  "auto_fix": {
+   "description_short": "Remove dimension \"ra_development_analytics_staging__stg_jira_projects_tasks.start_end_ts\"",
+   "description_unique": "Remove dimension \"ra_development_analytics_staging__stg_jira_projects_tasks.start_end_ts\""
+  },
+  "slug": "column_not_found",
+  "is_warning": false
+ },
+ {
+  "message": "Column \"start_end_ts\" not found (in table or view \"omni_dbt__delivery_tasks_fact\")",
+  "yaml_path": "omni_dbt__delivery_tasks_fact.view,dimensions,start_end_ts",
+  "auto_fix": {
+   "description_short": "Remove dimension \"omni_dbt__delivery_tasks_fact.start_end_ts\"",
+   "description_unique": "Remove dimension \"omni_dbt__delivery_tasks_fact.start_end_ts\""
+  },
+  "slug": "column_not_found",
+  "is_warning": false
+ },
+ {
+  "message": "Column \"start_end_ts\" not found (in table or view \"omni_dbt_integration__int_delivery_tasks\")",
+  "yaml_path": "omni_dbt_integration__int_delivery_tasks.view,dimensions,start_end_ts",
+  "auto_fix": {
+   "description_short": "Remove dimension \"omni_dbt_integration__int_delivery_tasks.start_end_ts\"",
+   "description_unique": "Remove dimension \"omni_dbt_integration__int_delivery_tasks.start_end_ts\""
+  },
+  "slug": "column_not_found",
+  "is_warning": false
+ },
+ {
+  "message": "Column \"start_end_ts\" not found (in table or view \"omni_dbt_staging__stg_jira_booksy_projects_tasks\")",
+  "yaml_path": "omni_dbt_staging__stg_jira_booksy_projects_tasks.view,dimensions,start_end_ts",
+  "auto_fix": {
+   "description_short": "Remove dimension \"omni_dbt_staging__stg_jira_booksy_projects_tasks.start_end_ts\"",
+   "description_unique": "Remove dimension \"omni_dbt_staging__stg_jira_booksy_projects_tasks.start_end_ts\""
+  },
+  "slug": "column_not_found",
+  "is_warning": false
+ },
+ {
+  "message": "Column \"start_end_ts\" not found (in table or view \"omni_dbt_staging__stg_jira_hkm_projects_tasks\")",
+  "yaml_path": "omni_dbt_staging__stg_jira_hkm_projects_tasks.view,dimensions,start_end_ts",
+  "auto_fix": {
+   "description_short": "Remove dimension \"omni_dbt_staging__stg_jira_hkm_projects_tasks.start_end_ts\"",
+   "description_unique": "Remove dimension \"omni_dbt_staging__stg_jira_hkm_projects_tasks.start_end_ts\""
+  },
+  "slug": "column_not_found",
+  "is_warning": false
+ },
+ {
+  "message": "Column \"start_end_ts\" not found (in table or view \"omni_dbt_staging__stg_jira_projects_tasks\")",
+  "yaml_path": "omni_dbt_staging__stg_jira_projects_tasks.view,dimensions,start_end_ts",
+  "auto_fix": {
+   "description_short": "Remove dimension \"omni_dbt_staging__stg_jira_projects_tasks.start_end_ts\"",
+   "description_unique": "Remove dimension \"omni_dbt_staging__stg_jira_projects_tasks.start_end_ts\""
+  },
+  "slug": "column_not_found",
+  "is_warning": false
+ }
+]

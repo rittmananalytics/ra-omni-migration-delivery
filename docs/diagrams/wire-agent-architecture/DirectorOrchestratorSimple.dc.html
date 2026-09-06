@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Google Sans', 'Inter', system-ui, sans-serif; color: #181B25; -webkit-font-smoothing: antialiased; }
+    a { color: #4F60FF; } a:hover { color: #4F5FFE; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .who { font-size: 16px; font-weight: 600; line-height: 1; padding: 12px 20px; border-radius: 999px; width: fit-content; }
+    .director { background: #181B25; color: #FFFFFF; border-radius: 14px; padding: 18px 22px; font-size: 17px; line-height: 1.45; font-weight: 500; }
+    .orch { background: #EFF0FF; border: 1px solid #4F60FF; border-radius: 14px; padding: 18px 22px; font-size: 17px; line-height: 1.45; color: #181B25; }
+    .caption { font-size: 13px; font-weight: 600; line-height: 1.2; color: #4F5564; text-align: center; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; background: #FFFFFF; position: relative; overflow: hidden; box-sizing: border-box; padding: 56px; display: flex; flex-direction: column; gap: 24px;">
+
+  <!-- Who is who -->
+  <div style="display: grid; grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr); gap: 24px; align-items: center;">
+    <div class="who" style="background: #181B25; color: #FFFFFF;">Release director</div>
+    <div></div>
+    <div class="who" style="background: #4F60FF; color: #FFFFFF;">Orchestrating session</div>
+  </div>
+
+  <!-- Exchanges -->
+  <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between;">
+
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr); gap: 24px; align-items: center;">
+      <div></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <svg width="120" height="14" viewBox="0 0 120 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M120 7H8"></path><path d="M14 1L7 7l7 6"></path></svg>
+        <span class="caption">session start</span>
+      </div>
+      <div class="orch">2 decisions are waiting: PD-1 and PD-2.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr); gap: 24px; align-items: center;">
+      <div class="director">Run what's next. Two lanes, nothing against a warehouse.</div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <svg width="120" height="14" viewBox="0 0 120 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M0 7h112"></path><path d="M106 1l7 6-7 6"></path></svg>
+        <span class="caption">directive</span>
+      </div>
+      <div></div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr); gap: 24px; align-items: center;">
+      <div></div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <svg width="120" height="14" viewBox="0 0 120 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M120 7H8"></path><path d="M14 1L7 7l7 6"></path></svg>
+        <span class="caption">one report</span>
+      </div>
+      <div class="orch"><span class="mono">conceptual_model</span> is ready and validated. Approve, request changes, or park?</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr); gap: 24px; align-items: center;">
+      <div class="director">Approve. Skip business rules, agree them at kickoff.</div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <svg width="120" height="14" viewBox="0 0 120 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M0 7h112"></path><path d="M106 1l7 6-7 6"></path></svg>
+        <span class="caption">ruling, written to decisions.md at once</span>
+      </div>
+      <div></div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: minmax(0, 1fr) 160px minmax(0, 1fr); gap: 24px; align-items: center;">
+      <div class="director">You drive.</div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <svg width="120" height="14" viewBox="0 0 120 14" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M0 7h112"></path><path d="M106 1l7 6-7 6"></path></svg>
+        <span class="caption">control</span>
+      </div>
+      <div class="orch">Manual for the rest of the session. Dispatch stops.</div>
+    </div>
+
+  </div>
+
+  <div style="height: 20px; flex: none; display: flex; align-items: center;">
+    <img src="logo-black-blue.svg" alt="Rittman Analytics" style="height: 20px; display: block;">
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

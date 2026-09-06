@@ -1,0 +1,4 @@
+base_view: engagement_burn_up_fact
+label: Engagement Burn-up
+description: 'One row per engagement per week: hours booked, hours to date, the straight-line budget, and hours projected at the current pace. Feeds the budget burn-up chart.'
+group_label: '        Core Analytics'

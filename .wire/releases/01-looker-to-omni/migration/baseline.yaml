@@ -1,0 +1,13 @@
+baseline_id: b001
+written_at: "2026-09-06"
+written_by: "Mark Rittman (orchestrator 7bb027f9)"
+lookml_commit: "82b3ab594f0d8f518072f3e1cc4f4ce8ac1d576e"
+looker_deployed_revision: "82b3ab594f0d8f518072f3e1cc4f4ce8ac1d576e"   # Looker production branch master is at the same commit (checked 2026-09-06)
+looker_base_url: "https://rittman.eu.looker.com"
+omni_model_id: "67716e96-520d-402a-88ad-89f97f9bc2a0"   # R-6 (2026-09-06 22:40): shared model 'ra_data_warehouse 2'; corrected from the directive's API-key-shaped value before any Omni write
+omni_branch: null                             # set by omni-target-setup-generate
+warehouse: bigquery
+converter_version: "1.1.0"
+pair_ruleset_sha: "c1d0dfddf5a1cd4afbc80101e4bac698443b8bc52b7ea427ea4c17f3e115945c"
+comparator_version: "bi_parity.py sha256:0803a81993929500 (no version constant)"
+parity_as_of: "2026-09-05T23:59:59Z"                  # end of the last complete day before the plan, UTC (BigQuery); the first model batch may re-baseline

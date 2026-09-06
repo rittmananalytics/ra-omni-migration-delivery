@@ -1,0 +1,12 @@
+catalog: ra-development
+sql: "SELECT\n          web_sessions_fact.blended_user_id  AS web_sessions_fact_blended_user_id\n      FROM `analytics.web_sessions_fact`\n           AS web_sessions_fact\n      LEFT JOIN `analytics.web_events_fact`\n           AS web_events_fact ON web_sessions_fact.session_id = web_events_fact.session_id\n      WHERE (web_events_fact.page_url_path ) LIKE '%/about/pricing%'\n      GROUP BY\n          1\n      ORDER BY\n          1\n      LIMIT 500"
+dimensions:
+  web_sessions_fact_blended_user_id:
+    primary_key: true
+    hidden: true
+  user_has_viewed_pricing:
+    sql: 'true'
+    group_label: '  Audience'
+measures:
+  count:
+    aggregate_type: count

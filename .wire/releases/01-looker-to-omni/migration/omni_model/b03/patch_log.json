@@ -1,0 +1,358 @@
+{
+  "batch_id": "b03",
+  "patch_version": "1.0.0",
+  "rules": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "changes": [
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "dimensions.campaign.sql",
+      "before": "${campaign[date]}",
+      "after": "campaign_date",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.avg_reported_time_on_site.sql",
+      "before": "${avg_reported_time_on_site}",
+      "after": "avg_reported_time_on_site",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_clicks.sql",
+      "before": "${total_clicks}",
+      "after": "total_clicks",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_session_page_views.sql",
+      "before": "${total_session_page_views}",
+      "after": "total_session_page_views",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_session_services_page_views.sql",
+      "before": "${total_session_services_page_views}",
+      "after": "total_session_services_page_views",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_session_marketing_page_views.sql",
+      "before": "${total_session_marketing_page_views}",
+      "after": "total_session_marketing_page_views",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_session_case_study_page_views.sql",
+      "before": "${total_session_case_study_page_views}",
+      "after": "total_session_case_study_page_views",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_session_goals_achieved.sql",
+      "before": "${total_session_goals_achieved}",
+      "after": "total_session_goals_achieved",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_session_conversions.sql",
+      "before": "${total_session_conversions}",
+      "after": "total_session_conversions",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_unique_users.sql",
+      "before": "${total_unique_users}",
+      "after": "total_unique_users",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_reported_clicks.sql",
+      "before": "${total_reported_clicks}",
+      "after": "total_reported_clicks",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_reported_cost.sql",
+      "before": "${total_reported_cost}",
+      "after": "total_reported_cost",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_reported_impressions.sql",
+      "before": "${total_reported_impressions}",
+      "after": "total_reported_impressions",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "measures.total_reported_invalid_clicks.sql",
+      "before": "${total_reported_invalid_clicks}",
+      "after": "total_reported_invalid_clicks",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P2",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "schema,table_name",
+      "before": {
+        "schema": null,
+        "table_name": null
+      },
+      "after": {
+        "schema": "analytics",
+        "table_name": "ad_campaign_performance_fact"
+      },
+      "ref": "R-16"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/ad_campaign_performance_fact.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaigns_dim.view",
+      "key": "dimensions.ad_campaign_end.sql",
+      "before": "${ad_campaign_end[date]}",
+      "after": "ad_campaign_end_date",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/ad_campaigns_dim.view",
+      "key": "dimensions.ad_campaign_start.sql",
+      "before": "${ad_campaign_start[date]}",
+      "after": "ad_campaign_start_date",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P2",
+      "file": "analytics/ad_campaigns_dim.view",
+      "key": "schema,table_name",
+      "before": {
+        "schema": null,
+        "table_name": null
+      },
+      "after": {
+        "schema": "analytics",
+        "table_name": "ad_campaigns_dim"
+      },
+      "ref": "R-16"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/ad_campaigns_dim.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/has_viewed_pricing.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/is_conversion_session.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/organic_post_performance_fact.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/organic_posts_dim.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/page_first_published.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_events_fact.view",
+      "key": "dimensions.referrer.sql",
+      "before": "split(${referrer}, \"?\")[SAFE_OFFSET(0)]",
+      "after": "split(referrer, \"?\")[SAFE_OFFSET(0)]",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/web_events_fact.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "dimensions.retail_week.sql",
+      "before": "(select Retail_Week from ra-development.analytics_seed.retail_calendar c where c.`date` = date(${session_start_ts}))",
+      "after": "(select Retail_Week from ra-development.analytics_seed.retail_calendar c where c.`date` = date(session_start_ts))",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "dimensions.retail_month.sql",
+      "before": "(select Retail_Month from ra-development.analytics_seed.retail_calendar c where c.`date` = date(${session_start_ts}))",
+      "after": "(select Retail_Month from ra-development.analytics_seed.retail_calendar c where c.`date` = date(session_start_ts))",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "dimensions.retail_year.sql",
+      "before": "(select Retail_Year from ra-development.analytics_seed.retail_calendar c where c.`date` = date(${session_start_ts}))",
+      "after": "(select Retail_Year from ra-development.analytics_seed.retail_calendar c where c.`date` = date(session_start_ts))",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "dimensions.referrer.sql",
+      "before": "split(${referrer}, \"?\")[SAFE_OFFSET(0)]",
+      "after": "split(referrer, \"?\")[SAFE_OFFSET(0)]",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "dimensions.first_page_url.sql",
+      "before": "rtrim(${first_page_url},\"/\")",
+      "after": "rtrim(first_page_url,\"/\")",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "dimensions.first_page_url_path.sql",
+      "before": "rtrim(${first_page_url_path},\"/\")",
+      "after": "rtrim(first_page_url_path,\"/\")",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "dimensions.last_page_url.sql",
+      "before": "rtrim(${last_page_url},\"/\")",
+      "after": "rtrim(last_page_url,\"/\")",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "dimensions.last_page_url_path.sql",
+      "before": "rtrim(${last_page_url_path},\"/\")",
+      "after": "rtrim(last_page_url_path,\"/\")",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "dimensions.channel.sql",
+      "before": "case when ${session_utm_source} in ('linkedin','facebook') and ${session_utm_medium} = 'paid' then 'Paid Social'\n              when (${session_utm_source} = 'linkedin' or ${referrer_host} like '%linkedin%') and ${session_utm_medium} != 'paid' then 'Organic Social'\n              when ${channel} = 'Social' then 'Organic Social'\n              when ${channel} in ('facebook','linkedin') and ${session_utm_medium} = 'social' then 'Organic Social'\n              when ${session_utm_medium} = 'social' and ${channel} = 'Direct' then 'Organic Social'\n              when ${session_utm_source} = 'substack' and ${session_utm_medium} != 'email' then 'Organic Social'\n              when ${session_utm_source} like 'pocket_%' then 'Referral'\n              when (${referrer_host} like '%rittmananalytics.com%' and ${referrer_host} not like '%blog.rittmananalytics.com%') or ${referrer_host} like 'calendly.com' then 'Direct'\n              when ${referrer_host} like '%medium.com%' or ${referrer_host} like '%blog.rittmananalytics.com%'  then 'Organic Social'\n              else ${channel} end",
+      "after": "case when ${session_utm_source} in ('linkedin','facebook') and ${session_utm_medium} = 'paid' then 'Paid Social'\n              when (${session_utm_source} = 'linkedin' or ${referrer_host} like '%linkedin%') and ${session_utm_medium} != 'paid' then 'Organic Social'\n              when channel = 'Social' then 'Organic Social'\n              when channel in ('facebook','linkedin') and ${session_utm_medium} = 'social' then 'Organic Social'\n              when ${session_utm_medium} = 'social' and channel = 'Direct' then 'Organic Social'\n              when ${session_utm_source} = 'substack' and ${session_utm_medium} != 'email' then 'Organic Social'\n              when ${session_utm_source} like 'pocket_%' then 'Referral'\n              when (${referrer_host} like '%rittmananalytics.com%' and ${referrer_host} not like '%blog.rittmananalytics.com%') or ${referrer_host} like 'calendly.com' then 'Direct'\n              when ${referrer_host} like '%medium.com%' or ${referrer_host} like '%blog.rittmananalytics.com%'  then 'Organic Social'\n              else channel end",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "measures.total_session_duration_in_s.sql",
+      "before": "timestamp_diff(${session_end_ts},${session_start_ts},MINUTE)",
+      "after": "timestamp_diff(session_end_ts,session_start_ts,MINUTE)",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P2",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "schema,table_name",
+      "before": {
+        "schema": null,
+        "table_name": null
+      },
+      "after": {
+        "schema": "analytics",
+        "table_name": "web_sessions_fact"
+      },
+      "ref": "R-16"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/web_sessions_fact.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/wh_sessions_attribution.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics_seed/ips_enriched.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    }
+  ]
+}

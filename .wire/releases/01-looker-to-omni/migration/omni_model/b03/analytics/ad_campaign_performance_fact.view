@@ -1,0 +1,99 @@
+catalog: ra-development
+schema: analytics
+table_name: ad_campaign_performance_fact
+dimensions:
+  ad_campaign_fk:
+    primary_key: true
+    hidden: true
+  campaign:
+    sql: campaign_date
+    timeframes:
+    - raw
+    - date
+    - week
+    - month
+    - quarter
+    - year
+measures:
+  average_actual_cpc:
+    sql: ${actual_cpc}
+    aggregate_type: average
+    format: gbpcurrency_0
+  average_actual_ctr:
+    sql: ${actual_ctr}
+    aggregate_type: average
+    format: percent_2
+  average_actual_vs_reported_clicks_pct:
+    sql: ${actual_vs_reported_clicks_pct}
+    aggregate_type: average
+    format: percent_2
+  average_avg_reported_bounce_rate:
+    sql: ${avg_reported_bounce_rate}
+    aggregate_type: average
+    format: percent_2
+  avg_reported_time_on_site:
+    sql: avg_reported_time_on_site
+    aggregate_type: average
+    format: number_2
+  average_reported_cpc:
+    sql: ${reported_cpc}
+    aggregate_type: average
+    format: gbpcurrency_0
+  average_reported_cpm:
+    sql: ${reported_cpm}
+    aggregate_type: average
+    format: gbpcurrency_0
+  average_reported_ctr:
+    sql: ${reported_ctr}
+    aggregate_type: average
+    format: percent_2
+  total_clicks:
+    sql: total_clicks
+    aggregate_type: sum
+    format: number_0
+  total_session_page_views:
+    sql: total_session_page_views
+    aggregate_type: sum
+    format: number_0
+  total_session_services_page_views:
+    sql: total_session_services_page_views
+    aggregate_type: sum
+    format: number_0
+  total_session_marketing_page_views:
+    sql: total_session_marketing_page_views
+    aggregate_type: sum
+    format: number_0
+  total_session_case_study_page_views:
+    sql: total_session_case_study_page_views
+    aggregate_type: sum
+    format: number_0
+  total_session_goals_achieved:
+    sql: total_session_goals_achieved
+    aggregate_type: sum
+    format: number_0
+  total_session_conversions:
+    sql: total_session_conversions
+    aggregate_type: sum
+    format: number_0
+  total_unique_users:
+    sql: total_unique_users
+    aggregate_type: sum
+    format: number_0
+  total_reported_clicks:
+    sql: total_reported_clicks
+    aggregate_type: sum
+    format: number_0
+  total_reported_cost:
+    sql: total_reported_cost
+    aggregate_type: sum
+    format: gbpcurrency_0
+  total_reported_impressions:
+    sql: total_reported_impressions
+    aggregate_type: sum
+    format: number_0
+  total_reported_invalid_clicks:
+    sql: total_reported_invalid_clicks
+    aggregate_type: sum
+    format: number_0
+  count:
+    aggregate_type: count

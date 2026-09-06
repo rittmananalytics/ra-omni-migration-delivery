@@ -1,0 +1,9 @@
+base_view: engagement_actions_fact
+label: Engagement Actions
+description: One row per action for an engagement month. Only status areas that are not green produce actions.
+group_label: '        Core Analytics'
+default_filters:
+  engagement_actions_fact.reporting_month[month]:
+    time_for_duration:
+    - 1 complete months ago
+    - 1 months

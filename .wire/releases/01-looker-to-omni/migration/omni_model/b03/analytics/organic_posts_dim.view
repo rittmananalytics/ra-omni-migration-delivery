@@ -1,0 +1,22 @@
+catalog: ra-development
+schema: analytics
+table_name: organic_posts_dim
+dimensions:
+  organic_post_natural_key:
+    hidden: true
+  organic_post_pk:
+    hidden: true
+  post_content: {}
+  post_link_url: {}
+  post_title: {}
+  post_url: {}
+  source: {}
+  post_ts:
+    timeframes:
+    - raw
+    - date
+    - week
+    - month
+    - quarter
+    - year
+    label: Published

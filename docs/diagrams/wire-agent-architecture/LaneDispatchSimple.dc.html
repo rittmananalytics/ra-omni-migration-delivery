@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'Google Sans', 'Inter', system-ui, sans-serif; color: #181B25; -webkit-font-smoothing: antialiased; }
+    a { color: #4F60FF; } a:hover { color: #4F5FFE; }
+    .mono { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .tier { font-size: 22px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+    .desc { font-size: 16px; font-weight: 400; line-height: 1.5; }
+    .arrow-label { font-size: 13.5px; font-weight: 500; line-height: 1.2; color: #4F5564; }
+    .lane-name { font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 18px; font-weight: 600; line-height: 1.3; }
+    .small { font-size: 14px; font-weight: 400; line-height: 1.5; color: #4F5564; }
+  </style>
+</helmet>
+
+<div style="width: 1440px; height: 900px; background: #FFFFFF; position: relative; overflow: hidden; box-sizing: border-box; padding: 56px; display: flex; flex-direction: column; justify-content: center; gap: 0;">
+
+  <!-- Orchestrator -->
+  <div style="flex: none; display: flex; gap: 32px; align-items: center; background: #4F60FF; color: #FFFFFF; border-radius: 14px; padding: 32px 36px;">
+    <div class="tier" style="width: 320px; flex: none;">Orchestrating session</div>
+    <div class="desc" style="color: rgba(255,255,255,0.92);">Reads the release-type graph and <span class="mono">status.md</span>, works out what can run, applies the budget, and dispatches one lane per runnable artifact. Two artifacts with no dependency between them run at the same time.</div>
+  </div>
+
+  <!-- Arrows -->
+  <div style="flex: none; display: flex; flex-direction: column; gap: 10px; padding: 18px 0;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <div style="display: flex; gap: 10px; align-items: center;"><svg width="12" height="24" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><span class="arrow-label">lane brief: task, owned directory, state file, budget, report once</span></div>
+      <div style="display: flex; gap: 10px; align-items: center;"><span class="arrow-label">report once: complete, stalled, or needs a ruling</span><svg width="12" height="24" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg></div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+      <div style="display: flex; justify-content: center; gap: 18px;"><svg width="12" height="36" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><svg width="12" height="36" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg></div>
+      <div style="display: flex; justify-content: center; gap: 18px;"><svg width="12" height="36" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><svg width="12" height="36" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg></div>
+      <div style="display: flex; justify-content: center; gap: 18px;"><svg width="12" height="36" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 0v22"></path><path d="M1 21l5 6 5-6"></path></svg><svg width="12" height="36" viewBox="0 0 12 28" fill="none" stroke="#4F60FF" stroke-width="2"><path d="M6 28V6"></path><path d="M1 7l5-6 5 6"></path></svg></div>
+    </div>
+  </div>
+
+  <!-- Lanes -->
+  <div style="flex: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+    <div style="background: #EBFFEB; border-radius: 14px; padding: 28px 30px; display: flex; flex-direction: column; gap: 12px;">
+      <div class="lane-name">conceptual_model</div>
+      <div class="small">Agent <span class="mono">data-designer</span>. Runs <span class="mono">conceptual_model-generate</span>.</div>
+      <div class="small">Writes only inside <span class="mono">design/</span> and its own state file.</div>
+    </div>
+    <div style="background: #EBFFEB; border-radius: 14px; padding: 28px 30px; display: flex; flex-direction: column; gap: 12px;">
+      <div class="lane-name">dbt-developer [staging 1/2]</div>
+      <div class="small">Agent <span class="mono">dbt-developer</span>. Runs <span class="mono">dbt-generate</span> for its 5 models.</div>
+      <div class="small">Writes only inside <span class="mono">dev/</span> and its own state file.</div>
+    </div>
+    <div style="background: #EBFFEB; border-radius: 14px; padding: 28px 30px; display: flex; flex-direction: column; gap: 12px;">
+      <div class="lane-name">dbt-developer [staging 2/2]</div>
+      <div class="small">Agent <span class="mono">dbt-developer</span>. Runs <span class="mono">dbt-generate</span> for its 5 models.</div>
+      <div class="small">Writes only inside <span class="mono">dev/</span> and its own state file.</div>
+    </div>
+  </div>
+
+  <!-- Record -->
+  <div style="flex: none; margin-top: 24px; display: flex; gap: 32px; align-items: center; background: #F7F7FA; border: 1px solid #E1E1E9; border-radius: 14px; padding: 24px 36px;">
+    <div class="tier" style="width: 320px; flex: none;">The record</div>
+    <div class="desc" style="color: #2B3041;">The orchestrator reads each lane's state file, checks the work, and alone writes <span class="mono">status.md</span> and <span class="mono">execution_log.md</span>. Lanes never spawn sub-agents and never write those two files.</div>
+  </div>
+
+  <div style="position: absolute; left: 56px; bottom: 48px; height: 20px; display: flex; align-items: center;">
+    <img src="logo-black-blue.svg" alt="Rittman Analytics" style="height: 20px; display: block;">
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

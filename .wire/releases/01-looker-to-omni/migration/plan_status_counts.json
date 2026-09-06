@@ -1,0 +1,69 @@
+{
+ "batch_count": 10,
+ "objects_in_scope": 159,
+ "objects_dropped": 497,
+ "register_rows": 156,
+ "rulings_parked": 9,
+ "evidence_rows": 135,
+ "in_scope_by_type": {
+  "group": 1,
+  "access_grant": 1,
+  "user_attribute": 2,
+  "view": 73,
+  "topic": 15,
+  "dashboard": 3,
+  "tile": 62,
+  "schedule": 1,
+  "alert": 1
+ },
+ "dropped_by_type": {
+  "tile": 8,
+  "dashboard": 193,
+  "look": 148,
+  "schedule": 5,
+  "alert": 2,
+  "view": 117,
+  "topic": 24
+ },
+ "content_dep": {
+  "c01": "b07",
+  "c02": "b03",
+  "c03": "b02"
+ },
+ "batch_views": {
+  "b02": 4,
+  "b03": 11,
+  "b04": 10,
+  "b05": 15,
+  "b06": 17,
+  "b07": 16
+ },
+ "batch_topics": {
+  "b02": [
+   "engagement_health_fact",
+   "engagement_sprint_burn_fact",
+   "engagement_burn_up_fact",
+   "engagement_actions_fact"
+  ],
+  "b03": [
+   "web_sessions_fact",
+   "ad_campaign_performance_fact",
+   "organic_posts_dim"
+  ],
+  "b04": [
+   "targets",
+   "monthly_resource_revenue_forecast_fact",
+   "revenue_and_forecast",
+   "project_engagements",
+   "chart_of_accounts_dim"
+  ],
+  "b05": [
+   "nps_survey_results_fact",
+   "contacts"
+  ],
+  "b07": [
+   "companies_dim"
+  ],
+  "b06": []
+ }
+}

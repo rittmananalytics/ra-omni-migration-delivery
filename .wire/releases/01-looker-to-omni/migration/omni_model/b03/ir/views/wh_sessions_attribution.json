@@ -1,0 +1,575 @@
+{
+  "identity": "looker:analytics:view:wh_sessions_attribution",
+  "name": "wh_sessions_attribution",
+  "schema": "analytics",
+  "table_name": null,
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/wh_sessions_attribution.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:web_session_fk",
+      "name": "web_session_fk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.web_session_fk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true,
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:blended_user_id",
+      "name": "blended_user_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.blended_user_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:total_converter_ltv_revenue",
+      "name": "total_converter_ltv_revenue",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.total_ltv_revenue",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_ltv_revenue}",
+        "group_label": "Attribution",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:total_converter_first_order_revenue",
+      "name": "total_converter_first_order_revenue",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.total_first_order_revenue",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${total_first_order_revenue}",
+        "group_label": "Attribution",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_first_click_goals_achieved",
+      "name": "count_first_click_goals_achieved",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_first_click_goals_achieved",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_first_non_direct_click_goals_achieved",
+      "name": "count_first_non_direct_click_goals_achieved",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_first_non_direct_click_goals_achieved",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_first_paid_click_goals_achieved",
+      "name": "count_first_paid_click_goals_achieved",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_first_paid_click_goals_achieved",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_first_click_first_conversions",
+      "name": "count_first_click_first_conversions",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_first_click_first_conversions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_first_non_direct_click_first_conversions",
+      "name": "count_first_non_direct_click_first_conversions",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_first_non_direct_click_first_conversions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_last_non_direct_click_first_conversions",
+      "name": "count_last_non_direct_click_first_conversions",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_last_non_direct_click_first_conversions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_even_click_first_conversions",
+      "name": "count_even_click_first_conversions",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_even_click_first_conversions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_first_paid_click_first_conversions",
+      "name": "count_first_paid_click_first_conversions",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_first_paid_click_first_conversions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_first_click_repeat_conversions",
+      "name": "count_first_click_repeat_conversions",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_first_click_repeat_conversions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_first_non_direct_click_repeat_conversions",
+      "name": "count_first_non_direct_click_repeat_conversions",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_first_non_direct_click_repeat_conversions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count_first_paid_click_repeat_conversions",
+      "name": "count_first_paid_click_repeat_conversions",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.count_first_paid_click_repeat_conversions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:converted_ts",
+      "name": "converted_ts",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.converted_ts",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "timeframes": [
+          "date",
+          "week",
+          "month",
+          "quarter",
+          "year"
+        ],
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:count",
+      "name": "count",
+      "kind": "measure",
+      "lookml_type": "count",
+      "source_sql": null,
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "aggregate_type": "count"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:first_click_goals_achieved",
+      "name": "first_click_goals_achieved",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_first_click_goals_achieved}",
+      "references": [
+        "wh_sessions_attribution.count_first_click_goals_achieved"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_first_click_goals_achieved}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:first_non_direct_click_goals_achieved",
+      "name": "first_non_direct_click_goals_achieved",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_first_non_direct_click_goals_achieved}",
+      "references": [
+        "wh_sessions_attribution.count_first_non_direct_click_goals_achieved"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_first_non_direct_click_goals_achieved}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:first_paid_click_goals_achieved",
+      "name": "first_paid_click_goals_achieved",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_first_paid_click_goals_achieved}",
+      "references": [
+        "wh_sessions_attribution.count_first_paid_click_goals_achieved"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_first_paid_click_goals_achieved}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:first_click_first_conversions",
+      "name": "first_click_first_conversions",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_first_click_first_conversions}",
+      "references": [
+        "wh_sessions_attribution.count_first_click_first_conversions"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_first_click_first_conversions}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:last_non_direct_click_first_conversions",
+      "name": "last_non_direct_click_first_conversions",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_last_non_direct_click_first_conversions}",
+      "references": [
+        "wh_sessions_attribution.count_last_non_direct_click_first_conversions"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_last_non_direct_click_first_conversions}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:even_click_first_conversions",
+      "name": "even_click_first_conversions",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_even_click_first_conversions}",
+      "references": [
+        "wh_sessions_attribution.count_even_click_first_conversions"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_even_click_first_conversions}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:first_non_direct_click_first_conversions",
+      "name": "first_non_direct_click_first_conversions",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_first_non_direct_click_first_conversions}",
+      "references": [
+        "wh_sessions_attribution.count_first_non_direct_click_first_conversions"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_first_non_direct_click_first_conversions}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:first_paid_click_first_conversions",
+      "name": "first_paid_click_first_conversions",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_first_paid_click_first_conversions}",
+      "references": [
+        "wh_sessions_attribution.count_first_paid_click_first_conversions"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_first_paid_click_first_conversions}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:first_click_repeat_conversions",
+      "name": "first_click_repeat_conversions",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_first_click_repeat_conversions}",
+      "references": [
+        "wh_sessions_attribution.count_first_click_repeat_conversions"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_first_click_repeat_conversions}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:first_non_direct_click_repeat_conversions",
+      "name": "first_non_direct_click_repeat_conversions",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_first_non_direct_click_repeat_conversions}",
+      "references": [
+        "wh_sessions_attribution.count_first_non_direct_click_repeat_conversions"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_first_non_direct_click_repeat_conversions}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:wh_sessions_attribution:first_paid_click_repeat_conversions",
+      "name": "first_paid_click_repeat_conversions",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${count_first_paid_click_repeat_conversions}",
+      "references": [
+        "wh_sessions_attribution.count_first_paid_click_repeat_conversions"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${count_first_paid_click_repeat_conversions}",
+        "aggregate_type": "sum",
+        "group_label": "Attribution"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/wh_sessions_attribution.view.lkml",
+        "view": "wh_sessions_attribution"
+      }
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "batch_id": "b02",
+  "patch_version": "1.0.0",
+  "rules": [
+    "P1",
+    "P2",
+    "P3",
+    "P4"
+  ],
+  "changes": [
+    {
+      "rule": "P3",
+      "file": "analytics/engagement_actions_fact.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_burn_up_fact.view",
+      "key": "dimensions.week_start.sql",
+      "before": "${week_start[date]}",
+      "after": "week_start_date",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_burn_up_fact.view",
+      "key": "measures.hours_in_week.sql",
+      "before": "${hours_in_week}",
+      "after": "hours_in_week",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_burn_up_fact.view",
+      "key": "measures.cumulative_hours.sql",
+      "before": "${cumulative_hours}",
+      "after": "cumulative_hours",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_burn_up_fact.view",
+      "key": "measures.projected_cumulative_hours.sql",
+      "before": "${projected_cumulative_hours}",
+      "after": "projected_cumulative_hours",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_burn_up_fact.view",
+      "key": "measures.budget_line_hours.sql",
+      "before": "${budget_line_hours}",
+      "after": "budget_line_hours",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_burn_up_fact.view",
+      "key": "measures.budget_hours.sql",
+      "before": "${budget_hours}",
+      "after": "budget_hours",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_burn_up_fact.view",
+      "key": "measures.weekly_pace_hours.sql",
+      "before": "${weekly_pace_hours}",
+      "after": "weekly_pace_hours",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/engagement_burn_up_fact.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_health_fact.view",
+      "key": "dimensions.is_current_month.sql",
+      "before": "${reporting_month} = DATE_TRUNC(CURRENT_DATE(), MONTH)",
+      "after": "reporting_month = DATE_TRUNC(CURRENT_DATE(), MONTH)",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/engagement_health_fact.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_sprint_burn_fact.view",
+      "key": "measures.sprint_budget_hours.sql",
+      "before": "${sprint_budget_hours}",
+      "after": "sprint_budget_hours",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_sprint_burn_fact.view",
+      "key": "measures.sprint_hours_to_date.sql",
+      "before": "${sprint_hours_to_date}",
+      "after": "sprint_hours_to_date",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_sprint_burn_fact.view",
+      "key": "measures.sprint_hours_in_month.sql",
+      "before": "${sprint_hours_in_month}",
+      "after": "sprint_hours_in_month",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P1",
+      "file": "analytics/engagement_sprint_burn_fact.view",
+      "key": "measures.sprint_fee_amount_gbp.sql",
+      "before": "${sprint_fee_amount_gbp}",
+      "after": "sprint_fee_amount_gbp",
+      "ref": "converter 1.1.0 self-reference defect; lint L11"
+    },
+    {
+      "rule": "P3",
+      "file": "analytics/engagement_sprint_burn_fact.view",
+      "key": "catalog",
+      "before": null,
+      "after": "ra-development",
+      "ref": "Omni generated views carry catalog; connection project"
+    },
+    {
+      "rule": "P4",
+      "file": "engagement_actions_fact.topic",
+      "key": "default_filters.engagement_actions_fact.reporting_month[month]",
+      "before": null,
+      "after": {
+        "time_for_duration": [
+          "1 complete months ago",
+          "1 months"
+        ]
+      },
+      "ref": "translation guide: always_filter -> default_filters (user-removable); Looker 'N months' = N complete months before this one"
+    },
+    {
+      "rule": "P4",
+      "file": "engagement_health_fact.topic",
+      "key": "default_filters.engagement_health_fact.reporting_month[month]",
+      "before": null,
+      "after": {
+        "time_for_duration": [
+          "12 complete months ago",
+          "12 months"
+        ]
+      },
+      "ref": "translation guide: always_filter -> default_filters (user-removable); Looker 'N months' = N complete months before this one"
+    },
+    {
+      "rule": "P4",
+      "file": "engagement_sprint_burn_fact.topic",
+      "key": "default_filters.engagement_sprint_burn_fact.reporting_month[month]",
+      "before": null,
+      "after": {
+        "time_for_duration": [
+          "1 complete months ago",
+          "1 months"
+        ]
+      },
+      "ref": "translation guide: always_filter -> default_filters (user-removable); Looker 'N months' = N complete months before this one"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+# Reference this view as omni_dbt_staging__stg_jira_hkm_projects_tasks
+schema_label: ""
+
+schema: omni_dbt_staging
+table_name: stg_jira-hkm_projects_tasks
+
+dimensions:
+  task_name: {}
+  task_type: {}
+  task_description: {}
+  task_url: {}
+  task_status: {}
+  task_story_points: {}
+  task_status_workflow_stage_number: {}
+  task_status_colour: {}
+  task_is_completed: {}
+  task_completed_ts: {}
+  task_status_change_ts: {}
+  total_task_hours_to_complete: {}
+  total_task_hours_incomplete: {}
+  deliverable_type: {}
+  deliverable_category: {}
+  sprint_name: {}
+  epic_name: {}
+  sprint_board_url: {}
+  sprint_started_ts: {}
+  start_end_ts: {}
+  task_start_ts: {}
+  sprint_goal: {}
+  task_work_started_ts: {}
+  task_due_ts: {}
+  total_completed: {}
+  total_completed_within_same_sprint: {}
+  total_started_but_not_completed: {}
+  total_in_progress: {}
+  total_failed_client_qa: {}
+  total_to_do: {}
+  total_blocked: {}
+  total_in_client_qa: {}
+  total_in_qa: {}
+  total_in_design: {}
+  total_in_add_to_looker: {}
+  total_in_looker_qa: {}
+  total_delivery_tasks: {}
+  total_delivery_subtasks: {}
+  total_revision_required: {}
+  total_failed_internal_qa: {}
+  total_issues: {}
+  last_task_start_ts: {}
+  task_created_ts: {}
+  task_last_modified_ts: {}
+  is_latest_task_version: {}
+
+  task_id:
+    format: ID
+
+  parent_task_id:
+    format: ID
+
+  project_id:
+    format: ID
+
+  task_creator_user_id:
+    format: ID
+
+  task_assignee_user_id:
+    format: ID
+
+  deliverable_id:
+    format: ID
+
+measures:
+  count:
+    aggregate_type: count
+
+#The info below was pulled from your dbt repository and is read-only.
+dbt:
+  name: stg_jira-hkm_projects_tasks
+  target_schema: analytics
+  config:
+    schema: staging
+    materialized: view
+    tags: [ staging ]
+  code: |-
+    {{config(enabled = target.type == 'bigquery')}}
+    {% if var("projects_warehouse_delivery_sources") %}
+    {% if 'jira-hkm_projects' in var("projects_warehouse_delivery_sources") %}
+
+    with task_work_started as (
+      select
+        issue_id,
+        cast(min(date_day) as timestamp) as work_started_at
+      from
+        {{ source('fivetran_jira_hkm_projects', 'daily_issue_field_history') }}
+      where
+        status != 'To Do'
+      group by issue_id
+    ),
+    renamed as (
+    select
+      concat('{{ var('stg_jira-hkm_projects_id-prefix') }}', cast(i.issue_id as string)) as task_id,
+      i.parent_issue_id as parent_task_id,
+      concat('{{ var('stg_jira-hkm_projects_id-prefix') }}', cast(i.project_id as string)) as project_id,
+      coalesce(concat('{{ var('stg_jira-hkm_projects_id-prefix') }}', i.reporter_user_id), concat('{{ var('stg_jira-hkm_projects_id-prefix') }}', '-999')) as task_creator_user_id,
+      coalesce(concat('{{ var('stg_jira-hkm_projects_id-prefix') }}', i.assignee_user_id), concat('{{ var('stg_jira-hkm_projects_id-prefix') }}', '-999')) as task_assignee_user_id,
+      i.issue_name as task_name,
+      i.issue_type as task_type,
+      cast(null as {{ dbt_utils.type_string() }}) as task_description,
+      concat('{{ var('stg_jira-hkm_projects_jira_url') }}', '/browse/', i.issue_key) as task_url,
+      i.current_status as task_status,
+      cast(null as float64) as task_story_points,
+      case when i.current_status = 'To Do' then 1
+           when i.current_status = 'Design & Validation' then 2
+           when i.current_status = 'Blocked' then 3
+           when i.current_status = 'In Progress' then 4
+           when i.current_status = 'In QA' then 5
+           when i.current_status = 'Add to Looker' then 6
+           when i.current_status = 'Looker Internal QA ' then 7
+           when i.current_status = 'Failed Internal QA' then 8
+           when i.current_status = 'In Client QA' then 9
+           when i.current_status = 'Failed Client QA/QA Comment' then 10
+           when i.current_status = 'Revision Required' then 11
+           when i.current_status in ('Done','Done/Passed Client QA','Published') then 12
+           else null end as task_status_workflow_stage_number,
+      cast(null as {{ dbt_utils.type_string() }}) as task_status_colour,
+      case when i.current_status in ('Done','Done/Passed Client QA','Published') then true else false end as task_is_completed,
+      case when i.current_status in ('Done','Done/Passed Client QA','Published') then i.resolved_at end as task_completed_ts,
+      i.status_changed_at as task_status_change_ts,
+      case when i.current_status in ('Done','Done/Passed Client QA','Published') then timestamp_diff(i.resolved_at, i.created_at, HOUR)
+       end as total_task_hours_to_complete,
+      case when i.current_status not in ('Done','Done/Passed Client QA','Published') then timestamp_diff({{ dbt_utils.current_timestamp() }}, i.created_at, HOUR)
+       end as total_task_hours_incomplete,
+      cast(null as {{ dbt_utils.type_string() }}) as deliverable_id,
+      cast(null as {{ dbt_utils.type_string() }}) as deliverable_type,
+      cast(null as {{ dbt_utils.type_string() }}) as deliverable_category,
+      i.current_sprint_name as sprint_name,
+      case when i.is_parent_epic then i.parent_issue_name end as epic_name,
+      case when s.board_id is not null then concat('{{ var('stg_jira-hkm_projects_jira_url') }}', '/software/projects/', split(i.issue_key, '-')[safe_offset(0)], '/boards/', cast(s.board_id as string)) end as sprint_board_url,
+      i.sprint_started_at as sprint_started_ts,
+      i.sprint_ended_at as start_end_ts,
+      i.sprint_started_at as task_start_ts,
+      cast(null as {{ dbt_utils.type_string() }}) as sprint_goal,
+      coalesce(w.work_started_at, i.created_at) as task_work_started_ts,
+      timestamp(due_date) as task_due_ts,
+      case when i.current_status in ('Done','Done/Passed Client QA','Published') then 1 end as total_completed,
+      case when i.current_status in ('Done','Done/Passed Client QA','Published') and coalesce(w.work_started_at, i.created_at) >= i.sprint_started_at and i.resolved_at <= i.sprint_ended_at then 1 end as total_completed_within_same_sprint,
+      case when w.work_started_at is not null and i.current_status not in ('Done','Done/Passed Client QA','Published') then 1 end as total_started_but_not_completed,
+      case when i.current_status = 'In Progress' then 1 end as total_in_progress,
+      case when i.current_status = 'Failed Client QA/QA Comment' then 1 end as total_failed_client_qa,
+      case when i.current_status = 'To Do' then 1 end as total_to_do,
+      case when i.current_status = 'Blocked' then 1 end as total_blocked,
+      case when i.current_status = 'In Client QA' then 1 end as total_in_client_qa,
+      case when i.current_status = 'In QA' then 1 end as total_in_qa,
+      case when i.current_status = 'Design & Validation' then 1 end as total_in_design,
+      case when i.current_status = 'Add to Looker' then 1 end as total_in_add_to_looker,
+      case when i.current_status = 'Looker Internal QA' then 1 end as total_in_looker_qa,
+      case when i.issue_type = 'Task' then 1 end as total_delivery_tasks,
+      case when i.issue_type = 'Subtask' then 1 end as total_delivery_subtasks,
+      case when i.current_status = 'Revision Required' then 1 end as total_revision_required,
+      case when i.current_status = 'Failed Internal QA' then 1 end as total_failed_internal_qa,
+      1 as total_issues,
+      i.sprint_started_at as last_task_start_ts,
+      i.created_at as task_created_ts,
+      i.updated_at as task_last_modified_ts,
+      true as is_latest_task_version
+    from
+      {{ source('fivetran_jira_hkm_projects', 'issue_enhanced') }} i
+    left join
+      {{ source('fivetran_jira_hkm_projects', 'sprint_enhanced') }} s
+      on cast(i.current_sprint_id as string) = cast(s.sprint_id as string)
+    left join
+      task_work_started w
+      on i.issue_id = w.issue_id
+    where
+      i.project_id = {{ var('stg_jira-hkm_projects_project_id') }}
+    )
+    select
+      *
+    from
+      renamed
+
+     {% else %} {{config(enabled=false)}} {% endif %}
+     {% else %} {{config(enabled=false)}} {% endif %}
+  referenced_by: [ int_delivery_tasks ]

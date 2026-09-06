@@ -1,0 +1,36 @@
+catalog: ra-development
+schema: analytics
+table_name: ad_campaigns_dim
+dimensions:
+  ad_campaign_id: {}
+  ad_campaign_name: {}
+  ad_campaign_pk: {}
+  ad_campaign_status: {}
+  ad_network: {}
+  campaign_buying_type: {}
+  utm_campaign: {}
+  utm_medium: {}
+  utm_source: {}
+  ad_campaign_end:
+    sql: ad_campaign_end_date
+    timeframes:
+    - raw
+    - date
+    - week
+    - month
+    - quarter
+    - year
+  ad_campaign_start:
+    sql: ad_campaign_start_date
+    timeframes:
+    - raw
+    - date
+    - week
+    - month
+    - quarter
+    - year
+measures:
+  count:
+    aggregate_type: count
+    drill_fields:
+    - ad_campaigns_dim.ad_campaign_name

@@ -1,0 +1,502 @@
+{
+  "identity": "looker:analytics:view:engagement_sprint_burn_fact",
+  "name": "engagement_sprint_burn_fact",
+  "schema": "analytics",
+  "table_name": "engagement_sprint_burn_fact",
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/engagement_sprint_burn_fact.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:engagement_sprint_burn_pk",
+      "name": "engagement_sprint_burn_pk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_sprint_burn_pk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true,
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:engagement_fk",
+      "name": "engagement_fk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_fk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_fk",
+      "name": "sprint_fk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.sprint_fk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:engagement_code",
+      "name": "engagement_code",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_code",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Engagement Code"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:company_name",
+      "name": "company_name",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.company_name",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Company Name"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:engagement_name",
+      "name": "engagement_name",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_name",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Engagement Name"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_name",
+      "name": "sprint_name",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.sprint_name",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprint",
+        "description": "Harvest project name inside the engagement."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_start_date",
+      "name": "sprint_start_date",
+      "kind": "dimension",
+      "lookml_type": "date",
+      "source_sql": "${TABLE}.sprint_start_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprint Start"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_end_date",
+      "name": "sprint_end_date",
+      "kind": "dimension",
+      "lookml_type": "date",
+      "source_sql": "${TABLE}.sprint_end_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprint End"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_window",
+      "name": "sprint_window",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "CONCAT(FORMAT_DATE('%e %b', ${TABLE}.sprint_start_date), ' to ',\n      FORMAT_DATE('%e %b %Y', ${TABLE}.sprint_end_date))",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "CONCAT(FORMAT_DATE('%e %b', ${sprint_start_date}), ' to ',\n      FORMAT_DATE('%e %b %Y', ${sprint_end_date}))",
+        "label": "Delivery Window",
+        "description": "Sprint start and end, formatted for the sprint burn table."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_state",
+      "name": "sprint_state",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.sprint_state",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprint State",
+        "description": "Scheduled, Not started, Not started late, In flight, At budget in flight, Over budget in flight, Closed on budget, or Closed over budget."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_state_sort_order",
+      "name": "sprint_state_sort_order",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "CASE ${TABLE}.sprint_state\n              WHEN 'Over budget, in flight' THEN 1\n              WHEN 'Not started, late'      THEN 2\n              WHEN 'Closed over budget'     THEN 3\n              WHEN 'At budget, in flight'   THEN 4\n              WHEN 'In flight'              THEN 5\n              WHEN 'Closed on budget'       THEN 6\n              WHEN 'Not started'            THEN 7\n              ELSE 8 END",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "CASE ${sprint_state}\n              WHEN 'Over budget, in flight' THEN 1\n              WHEN 'Not started, late'      THEN 2\n              WHEN 'Closed over budget'     THEN 3\n              WHEN 'At budget, in flight'   THEN 4\n              WHEN 'In flight'              THEN 5\n              WHEN 'Closed on budget'       THEN 6\n              WHEN 'Not started'            THEN 7\n              ELSE 8 END",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_is_closed",
+      "name": "sprint_is_closed",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.sprint_is_closed",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprint Is Closed"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_is_over_budget",
+      "name": "sprint_is_over_budget",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.sprint_is_over_budget",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Sprint Is Over Budget"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:last_hours_booked_date",
+      "name": "last_hours_booked_date",
+      "kind": "dimension",
+      "lookml_type": "date",
+      "source_sql": "${TABLE}.last_hours_booked_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Last Hours Booked"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_days_late_start",
+      "name": "sprint_days_late_start",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.sprint_days_late_start",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Days Late To Start",
+        "description": "Days past the sprint start date with no hours booked."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:reporting_month",
+      "name": "reporting_month",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.reporting_month",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "timeframes": [
+          "month",
+          "quarter",
+          "year",
+          "date"
+        ],
+        "convert_tz": false,
+        "label": "Reporting"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_count",
+      "name": "sprint_count",
+      "kind": "measure",
+      "lookml_type": "count",
+      "source_sql": null,
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "aggregate_type": "count",
+        "label": "Sprints",
+        "drill_fields": [
+          "engagement_sprint_burn_fact.engagement_name",
+          "engagement_sprint_burn_fact.sprint_name",
+          "engagement_sprint_burn_fact.sprint_window",
+          "engagement_sprint_burn_fact.sprint_budget_hours",
+          "engagement_sprint_burn_fact.sprint_hours_to_date",
+          "engagement_sprint_burn_fact.sprint_budget_used_pct",
+          "engagement_sprint_burn_fact.sprint_state",
+          "engagement_sprint_burn_fact.last_hours_booked_date"
+        ]
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_budget_hours",
+      "name": "sprint_budget_hours",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.sprint_budget_hours",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${sprint_budget_hours}",
+        "aggregate_type": "sum",
+        "label": "Budget Hours",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_hours_to_date",
+      "name": "sprint_hours_to_date",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.sprint_hours_to_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${sprint_hours_to_date}",
+        "aggregate_type": "sum",
+        "label": "Hours Billed",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_hours_in_month",
+      "name": "sprint_hours_in_month",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.sprint_hours_in_month",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${sprint_hours_in_month}",
+        "aggregate_type": "sum",
+        "label": "Hours In Month",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_fee_amount_gbp",
+      "name": "sprint_fee_amount_gbp",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.sprint_fee_amount_gbp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${sprint_fee_amount_gbp}",
+        "aggregate_type": "sum",
+        "label": "Sprint Fee",
+        "format": "gbpcurrency_0"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprint_budget_used_pct",
+      "name": "sprint_budget_used_pct",
+      "kind": "measure",
+      "lookml_type": "number",
+      "source_sql": "100 * SAFE_DIVIDE(${sprint_hours_to_date}, NULLIF(${sprint_budget_hours}, 0))",
+      "references": [
+        "engagement_sprint_burn_fact.sprint_hours_to_date",
+        "engagement_sprint_burn_fact.sprint_budget_hours"
+      ],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "sql": "100 * SAFE_DIVIDE(${sprint_hours_to_date}, NULLIF(${sprint_budget_hours}, 0))",
+        "label": "Budget Used %",
+        "description": "Hours billed over budget hours, for the sprint rows in scope. Use with the data bar cell visualisation.",
+        "format": "number_0"
+      },
+      "unsupported": [
+        {
+          "construct": "measure_number",
+          "class": "assisted",
+          "reason": "derived measure (type: number) emitted without aggregate_type; validate it resolves on the branch"
+        }
+      ],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_sprint_burn_fact:sprints_over_budget",
+      "name": "sprints_over_budget",
+      "kind": "measure",
+      "lookml_type": "count",
+      "source_sql": null,
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "aggregate_type": "count",
+        "filters": {
+          "sprint_is_over_budget": {
+            "is": true
+          }
+        },
+        "label": "Sprints Over Budget"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_sprint_burn_fact.view.lkml",
+        "view": "engagement_sprint_burn_fact"
+      }
+    }
+  ]
+}

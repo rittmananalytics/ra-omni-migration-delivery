@@ -1,0 +1,52 @@
+{
+  "converter_version": "1.1.0",
+  "project": "analytics",
+  "views_emitted": 11,
+  "topics_emitted": 3,
+  "relationships_emitted": 8,
+  "needs_human": 23,
+  "needs_human_by_class": {
+    "assisted": 14,
+    "redesign": 9
+  },
+  "constructs": {
+    "derived_table": {
+      "mechanical": 5
+    },
+    "dimension": {
+      "mechanical": 164,
+      "redesign": 3
+    },
+    "dimension_group_time": {
+      "mechanical": 13
+    },
+    "dimension_tier": {
+      "mechanical": 1
+    },
+    "explore": {
+      "mechanical": 3
+    },
+    "filter_field": {
+      "redesign": 1
+    },
+    "join": {
+      "mechanical": 8
+    },
+    "measure": {
+      "mechanical": 57
+    },
+    "measure_number": {
+      "assisted": 2
+    },
+    "parameter": {
+      "redesign": 2
+    },
+    "sql_table_name": {
+      "mechanical": 3,
+      "redesign": 3
+    },
+    "view": {
+      "mechanical": 11
+    }
+  }
+}

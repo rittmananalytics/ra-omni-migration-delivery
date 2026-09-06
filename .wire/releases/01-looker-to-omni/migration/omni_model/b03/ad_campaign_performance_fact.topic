@@ -1,0 +1,7 @@
+base_view: ad_campaign_performance_fact
+label: Campaign Performance
+description: Ad Campaigns and Website Performance
+group_label: '    Analysis'
+hidden: true
+joins:
+  ad_campaigns_dim: {}

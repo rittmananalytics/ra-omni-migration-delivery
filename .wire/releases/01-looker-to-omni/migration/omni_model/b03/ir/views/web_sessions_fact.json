@@ -1,0 +1,1267 @@
+{
+  "identity": "looker:analytics:view:web_sessions_fact",
+  "name": "web_sessions_fact",
+  "schema": "analytics",
+  "table_name": null,
+  "emitted": true,
+  "class": "assisted",
+  "unsupported": [
+    {
+      "construct": "sql_table_name_liquid",
+      "class": "redesign",
+      "reason": "sql_table_name contains Liquid"
+    }
+  ],
+  "source": {
+    "file": "views/web_sessions_fact.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:retail_week",
+      "name": "retail_week",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "(select Retail_Week from ra-development.analytics_seed.retail_calendar c where c.`date` = date(${TABLE}.session_start_ts))",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "(select Retail_Week from ra-development.analytics_seed.retail_calendar c where c.`date` = date(${session_start_ts}))"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:retail_month",
+      "name": "retail_month",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "(select Retail_Month from ra-development.analytics_seed.retail_calendar c where c.`date` = date(${TABLE}.session_start_ts))",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "(select Retail_Month from ra-development.analytics_seed.retail_calendar c where c.`date` = date(${session_start_ts}))"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:retail_year",
+      "name": "retail_year",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "(select Retail_Year from ra-development.analytics_seed.retail_calendar c where c.`date` = date(${TABLE}.session_start_ts))",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "(select Retail_Year from ra-development.analytics_seed.retail_calendar c where c.`date` = date(${session_start_ts}))"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:period",
+      "name": "period",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "CASE\n        /* ---------------------------------------------------------\n           SCENARIO 1: CUSTOM DATE RANGE\n           (Uses standard Calendar Dates)\n           --------------------------------------------------------- */\n        {% if period_selector._parameter_value == \"'custom'\" %}\n\n      -- Current Period (Calendar)\n      WHEN ${session_start_ts_raw} >= {% date_start date_filter %}\n      AND ${session_start_ts_raw} < {% date_end date_filter %}\n      THEN 'Current Period'\n\n      -- Prior Year (Calendar - Shifted back 1 Year)\n      WHEN ${session_start_ts_raw} >= TIMESTAMP(DATETIME_SUB(DATETIME({% date_start date_filter %}), INTERVAL 1 YEAR))\n      AND ${session_start_ts_raw} < TIMESTAMP(DATETIME_SUB(DATETIME({% date_end date_filter %}), INTERVAL 1 YEAR))\n      THEN 'Prior Year'\n\n      /* ---------------------------------------------------------\n      SCENARIO 2: RETAIL PERIODS\n      (Uses Retail Year/Month/Week Columns)\n      --------------------------------------------------------- */\n      {% else %}\n\n      /* --- CURRENT PERIOD LOGIC --- */\n      WHEN\n      {% if period_selector._parameter_value == \"'this_retail_week'\" %}\n      ${retail_year} = (SELECT Retail_Year FROM ra-development.analytics_seed.retail_calendar WHERE date = CURRENT_DATE)\n      AND ${retail_week} = (SELECT Retail_Week FROM ra-development.analytics_seed.retail_calendar WHERE date = CURRENT_DATE)\n      {% elsif period_selector._parameter_value == \"'last_retail_week'\" %}\n      ${retail_year} = (SELECT Retail_Year FROM ra-development.analytics_seed.retail_calendar WHERE date = DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY))\n      AND ${retail_week} = (SELECT Retail_Week FROM ra-development.analytics_seed.retail_calendar WHERE date = DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY))\n      {% elsif period_selector._parameter_value == \"'last_retail_month'\" %}\n      ${retail_year} = (SELECT Retail_Year FROM ra-development.analytics_seed.retail_calendar WHERE date = DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\n      AND ${retail_month} = (SELECT Retail_Month FROM ra-development.analytics_seed.retail_calendar WHERE date = DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\n      {% elsif period_selector._parameter_value == \"'last_retail_year'\" %}\n      -- \"Last Retail Year\" usually means the full previous completed year.\n      ${retail_year} = (SELECT Retail_Year FROM ra-development.analytics_seed.retail_calendar WHERE date = CURRENT_DATE) - 1\n      {% endif %}\n      THEN 'Current Period'\n\n      /* --- PRIOR YEAR LOGIC --- */\n      /* We match the exact same criteria as above, but subtract 1 from the Retail Year */\n      WHEN\n      {% if period_selector._parameter_value == \"'this_retail_week'\" %}\n      ${retail_year} = (SELECT Retail_Year FROM ra-development.analytics_seed.retail_calendar WHERE date = CURRENT_DATE) - 1\n      AND ${retail_week} = (SELECT Retail_Week FROM ra-development.analytics_seed.retail_calendar WHERE date = CURRENT_DATE)\n      {% elsif period_selector._parameter_value == \"'last_retail_week'\" %}\n      ${retail_year} = (SELECT Retail_Year FROM ra-development.analytics_seed.retail_calendar WHERE date = DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY)) - 1\n      AND ${retail_week} = (SELECT Retail_Week FROM ra-development.analytics_seed.retail_calendar WHERE date = DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY))\n      {% elsif period_selector._parameter_value == \"'last_retail_month'\" %}\n      ${retail_year} = (SELECT Retail_Year FROM ra-development.analytics_seed.retail_calendar WHERE date = DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH)) - 1\n      AND ${retail_month} = (SELECT Retail_Month FROM ra-development.analytics_seed.retail_calendar WHERE date = DATE_SUB(CURRENT_DATE, INTERVAL 1 MONTH))\n      {% elsif period_selector._parameter_value == \"'last_retail_year'\" %}\n      ${retail_year} = (SELECT Retail_Year FROM ra-development.analytics_seed.retail_calendar WHERE date = CURRENT_DATE) - 2\n      {% endif %}\n      THEN 'Prior Year'\n\n      {% endif %}\n\n      ELSE NULL\n      END",
+      "references": [
+        "web_sessions_fact.session_start_ts_raw",
+        "web_sessions_fact.retail_year",
+        "web_sessions_fact.retail_week",
+        "web_sessions_fact.retail_month"
+      ],
+      "class": "redesign",
+      "emitted": false,
+      "omni": null,
+      "unsupported": [
+        {
+          "construct": "liquid",
+          "class": "redesign",
+          "reason": "Liquid in sql; rebuild with Omni templated filters or Mustache"
+        }
+      ],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:blended_user_id",
+      "name": "blended_user_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.blended_user_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "A unique identifier for a user, potentially unified across different platforms or tracking mechanisms.",
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:company_name",
+      "name": "company_name",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.company_name",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:device",
+      "name": "device",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.device",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The specific type of device, operating system, and browser used to access the website (e.g., 'iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.5 Mobile/15E148 Safari/604.1').",
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:device_category",
+      "name": "device_category",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.device_category",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The general type or brand of the device, such as 'iPhone', 'Android', 'iPad', or 'Windows'. This is a simplified version of the 'Device' field.",
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:duration_in_s",
+      "name": "duration_in_s",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.duration_in_s",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The total duration of the web session in seconds.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:duration_in_s_tier",
+      "name": "duration_in_s_tier",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.duration_in_s_tier",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "Categorizes session duration (in seconds) into predefined time buckets.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:referrer",
+      "name": "referrer",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "split(${TABLE}.referrer, \"?\")[SAFE_OFFSET(0)]",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "split(${referrer}, \"?\")[SAFE_OFFSET(0)]",
+        "description": "The URL of the page that linked the user to the website, excluding any query parameters.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:referrer_source",
+      "name": "referrer_source",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "case when ${referrer} like '%blog.rittmananalytics.com%' or ${referrer} like '%medium.com/mark-rittman%' then 'Medium'\n              when ${referrer_host} like '%github%' then 'Github'\n              when ${referrer_host} like '%linkedin%' then 'LinkedIn'\n              when ${referrer_host} like '%google%' or ${referrer_host} like '%bing%' or  ${referrer_host} like '%yahoo%' or ${referrer_host} like '%yandex%' then 'Organic Search'\n              when ${referrer_host} like '%t.co%' or ${referrer_host} like '%twitter%' then 'Twitter'\n              when ${first_page_url} like '%rittmananalytics.com/blog%'  then 'Squarespace'\n              when ${first_page_url} like '%https://rittmananalytics.com/drilltodetail%'  then 'Podcast'\n              else 'Direct'\n    end",
+      "references": [
+        "web_sessions_fact.referrer",
+        "web_sessions_fact.referrer_host",
+        "web_sessions_fact.first_page_url"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${referrer} like '%blog.rittmananalytics.com%' or ${referrer} like '%medium.com/mark-rittman%' then 'Medium'\n              when ${referrer_host} like '%github%' then 'Github'\n              when ${referrer_host} like '%linkedin%' then 'LinkedIn'\n              when ${referrer_host} like '%google%' or ${referrer_host} like '%bing%' or  ${referrer_host} like '%yahoo%' or ${referrer_host} like '%yandex%' then 'Organic Search'\n              when ${referrer_host} like '%t.co%' or ${referrer_host} like '%twitter%' then 'Twitter'\n              when ${first_page_url} like '%rittmananalytics.com/blog%'  then 'Squarespace'\n              when ${first_page_url} like '%https://rittmananalytics.com/drilltodetail%'  then 'Podcast'\n              else 'Direct'\n    end",
+        "description": "The classified source of the referral traffic, based on the referrer URL or first page URL for certain internal sources. Categories include 'Medium', 'Github', 'LinkedIn', 'Organic Search', 'Twitter', 'Squarespace', 'Podcast', or 'Direct'.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:referrer_article_stub",
+      "name": "referrer_article_stub",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "case when ${referrer_source} = 'Medium' and ${referrer_host} = 'blog.rittmananalytics.com' then split(${referrer},'/')[safe_offset(3)]\n              when ${referrer_source} = 'Medium' and ${referrer_host} = 'medium.com' then split(${referrer},'/')[safe_offset(4)]\n              when ${first_page_url} LIKE '%rittmananalytics.com/blog/2%' then SPLIT(first_page_url_path,'/')[safe_OFFSET(5)]\n          end",
+      "references": [
+        "web_sessions_fact.referrer_source",
+        "web_sessions_fact.referrer_host",
+        "web_sessions_fact.referrer",
+        "web_sessions_fact.first_page_url"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${referrer_source} = 'Medium' and ${referrer_host} = 'blog.rittmananalytics.com' then split(${referrer},'/')[safe_offset(3)]\n              when ${referrer_source} = 'Medium' and ${referrer_host} = 'medium.com' then split(${referrer},'/')[safe_offset(4)]\n              when ${first_page_url} LIKE '%rittmananalytics.com/blog/2%' then SPLIT(first_page_url_path,'/')[safe_OFFSET(5)]\n          end",
+        "description": "If the referrer or first page URL points to a known article (e.g., from Medium or the Rittman Analytics blog), this field provides a unique identifier or slug for that article.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:referrer_days_since_post",
+      "name": "referrer_days_since_post",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "timestamp_diff(${session_start_ts_raw},${page_first_published.page_first_session_start_ts_raw},DAY)",
+      "references": [
+        "web_sessions_fact.session_start_ts_raw",
+        "page_first_published.page_first_session_start_ts_raw"
+      ],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "sql": "timestamp_diff(${session_start_ts[raw]},${page_first_published.page_first_session_start_ts_raw},DAY)",
+        "description": "The number of days between the first publication date of the referring content (if identified and linked to page_first_published) and the start of the current session.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [
+        {
+          "construct": "cross_view_reference",
+          "class": "assisted",
+          "reason": "sql references another view (page_first_published); confirm every topic that exposes this field joins it"
+        }
+      ],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:referrer_days_since_post_tier",
+      "name": "referrer_days_since_post_tier",
+      "kind": "dimension",
+      "lookml_type": "tier",
+      "source_sql": "${referrer_days_since_post}",
+      "references": [
+        "web_sessions_fact.referrer_days_since_post"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${referrer_days_since_post}",
+        "bin_boundaries": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          14,
+          28,
+          90,
+          180,
+          365,
+          730
+        ],
+        "description": "Categorizes the 'Referrer Days Since Post' into predefined time intervals (1, 2, 3, 4, 5, 6, 7, 14, 28, 90, 180, 365, 730 days).",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:events",
+      "name": "events",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.events",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Session Events",
+        "description": "The total count of tracked events (e.g., page views, clicks) that occurred during this specific session.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:first_page_title",
+      "name": "first_page_title",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.first_page_title",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Entrance Page Title",
+        "description": "The title of the first page (entrance page) viewed by the user during this session.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:first_page_category",
+      "name": "first_page_category",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "case when ${TABLE}.first_page_url like '%blog%' or ${TABLE}.first_page_url like '%rittmananalytics.com/202%' or  ${TABLE}.first_page_title like '%Videos — Rittman Analytics%' then '01: Blog'\n                  when ${TABLE}.first_page_url like '%drilltodetail%' or ${TABLE}.first_page_url like '%podcast%' then '01: Podcast'\n                  when ${TABLE}.first_page_url = '/' or ${TABLE}.first_page_url like '%home-index%' or ${TABLE}.first_page_title like '%Scale your Analytics — Rittman Analytics%' then '01: Home Page'\n                  when ${TABLE}.first_page_url like '%/services/%' or ${TABLE}.first_page_url like '%/offers/%' or ${TABLE}.first_page_title like '%Project Discovery — Rittman Analytics%' or ${TABLE}.first_page_title like '%Looker GenAI — Rittman Analytics%' or ${TABLE}.first_page_title like '%Looker Jumpstart — Rittman Analytics%' or ${TABLE}.first_page_title like '%Generative AI — Rittman Analytics%' then '04: Service'\n                  when ${TABLE}.first_page_url like '%/about/%' or ${TABLE}.first_page_url like '%/contact%' or ${TABLE}.first_page_url like '%/faqs/%' or ${TABLE}.first_page_url like '%scv-contact-us-form%' then '08: Contact'\n                  when ${TABLE}.first_page_url like '%sidebar%' then 'Misc'\n                  when ${TABLE}.first_page_url like '%/assistant%' then '06: Assistant'\n                  when ${TABLE}.first_page_url like '%/pricing%' or ${TABLE}.first_page_url like '%/engagement-model%' or ${TABLE}.first_page_url like '%/how-we-work%' then '12: Commercials'\n                  when ${TABLE}.first_page_url like '%scv-thank-you%' or ${TABLE}.first_page_url like '%/modern-data-stack-thank-you%' then '08: Goal Achieved'\n                  when ${TABLE}.first_page_url like '%causal-analytics%' or ${TABLE}.first_page_url like '/scv-download-hubspot-form' then '02: Landing Page'\n                  when ${TABLE}.first_page_url like '%causal-analytics-video%' or ${TABLE}.first_page_url like '%download-10-ways-your-modern-data-stack-can-fail%' or ${TABLE}.first_page_url like '%download-page%' then '04: Gated Content'\n                  when ${TABLE}.first_page_url like '%industries%' or ${TABLE}.first_page_url like '%about%' or ${TABLE}.first_page_url like '%partners%' or ${TABLE}.first_page_title like '%Data Analytics Project Checklist — Rittman Analytics%' then '02: Marketing'\n                  when ${TABLE}.first_page_url like '%case-studies%' then '03: Case Study'\n                  when ${TABLE}.first_page_url like '%calendly%' then '06: Conversion'\n              end",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${first_page_url} like '%blog%' or ${first_page_url} like '%rittmananalytics.com/202%' or  ${first_page_title} like '%Videos — Rittman Analytics%' then '01: Blog'\n                  when ${first_page_url} like '%drilltodetail%' or ${first_page_url} like '%podcast%' then '01: Podcast'\n                  when ${first_page_url} = '/' or ${first_page_url} like '%home-index%' or ${first_page_title} like '%Scale your Analytics — Rittman Analytics%' then '01: Home Page'\n                  when ${first_page_url} like '%/services/%' or ${first_page_url} like '%/offers/%' or ${first_page_title} like '%Project Discovery — Rittman Analytics%' or ${first_page_title} like '%Looker GenAI — Rittman Analytics%' or ${first_page_title} like '%Looker Jumpstart — Rittman Analytics%' or ${first_page_title} like '%Generative AI — Rittman Analytics%' then '04: Service'\n                  when ${first_page_url} like '%/about/%' or ${first_page_url} like '%/contact%' or ${first_page_url} like '%/faqs/%' or ${first_page_url} like '%scv-contact-us-form%' then '08: Contact'\n                  when ${first_page_url} like '%sidebar%' then 'Misc'\n                  when ${first_page_url} like '%/assistant%' then '06: Assistant'\n                  when ${first_page_url} like '%/pricing%' or ${first_page_url} like '%/engagement-model%' or ${first_page_url} like '%/how-we-work%' then '12: Commercials'\n                  when ${first_page_url} like '%scv-thank-you%' or ${first_page_url} like '%/modern-data-stack-thank-you%' then '08: Goal Achieved'\n                  when ${first_page_url} like '%causal-analytics%' or ${first_page_url} like '/scv-download-hubspot-form' then '02: Landing Page'\n                  when ${first_page_url} like '%causal-analytics-video%' or ${first_page_url} like '%download-10-ways-your-modern-data-stack-can-fail%' or ${first_page_url} like '%download-page%' then '04: Gated Content'\n                  when ${first_page_url} like '%industries%' or ${first_page_url} like '%about%' or ${first_page_url} like '%partners%' or ${first_page_title} like '%Data Analytics Project Checklist — Rittman Analytics%' then '02: Marketing'\n                  when ${first_page_url} like '%case-studies%' then '03: Case Study'\n                  when ${first_page_url} like '%calendly%' then '06: Conversion'\n              end",
+        "label": "Entrance Page Category",
+        "description": "A predefined category for the first page (entrance page) viewed in the session, based on its URL or title. Examples include '01: Blog', '01: Podcast', '01: Home Page', '04: Service'.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:first_page_url",
+      "name": "first_page_url",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "rtrim(${TABLE}.first_page_url,\"/\")",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "rtrim(${first_page_url},\"/\")",
+        "label": "Entrance Page URL",
+        "description": "The full URL of the first page (entrance page) viewed by the user during this session, with any trailing slash removed.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:first_page_url_host",
+      "name": "first_page_url_host",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.first_page_url_host",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The hostname (e.g., 'www.example.com') of the first page (entrance page) viewed in the session. Hidden by default.",
+        "group_label": "Behavior",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:first_page_url_path",
+      "name": "first_page_url_path",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "rtrim(${TABLE}.first_page_url_path,\"/\")",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "rtrim(${first_page_url_path},\"/\")",
+        "description": "The path (e.g., '/blog/article-name') of the first page (entrance page) viewed in the session, with any trailing slash removed. Hidden by default.",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:gclid",
+      "name": "gclid",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.gclid",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "Google Click Identifier (GCLID), used for tracking clicks from Google Ads. Hidden by default.",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:is_bounced_session",
+      "name": "is_bounced_session",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.is_bounced_session",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "Indicates whether the session was a bounce (Yes/No). A bounce is typically a session with only one page view or interaction.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:last_page_title",
+      "name": "last_page_title",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.last_page_title",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Exit Page Title",
+        "description": "The title of the last page (exit page) viewed by the user before the session ended.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:last_page_url",
+      "name": "last_page_url",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "rtrim(${TABLE}.last_page_url,\"/\")",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "rtrim(${last_page_url},\"/\")",
+        "label": "Exit Page URL",
+        "description": "The full URL of the last page (exit page) viewed by the user before the session ended, with any trailing slash removed.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:last_page_category",
+      "name": "last_page_category",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "case when ${TABLE}.last_page_url like '%blog%' or ${TABLE}.last_page_url like '%rittmananalytics.com/202%' then '01: Blog'\n                  when ${TABLE}.last_page_url like '%drilltodetail%' or ${TABLE}.last_page_url like '%podcast%' then '01: Podcast'\n                  when ${TABLE}.last_page_url = '/' or ${TABLE}.last_page_url like '%home-index%' then '01: Home Page'\n                  when ${TABLE}.last_page_url like '%/services/%' or ${TABLE}.last_page_url like '%/offers/%' then '04: Service'\n                  when ${TABLE}.last_page_url like '%/about/%' or ${TABLE}.last_page_url like '%/contact%' or ${TABLE}.last_page_url like '%/faqs/%' or ${TABLE}.last_page_url like '%scv-contact-us-form%' then '08: Contact'\n                  when ${TABLE}.last_page_url like '%sidebar%' then 'Misc'\n                  when ${TABLE}.last_page_url like '%/assistant%' then '06: Assistant'\n                  when ${TABLE}.last_page_url like '%/pricing%' or ${TABLE}.last_page_url like '%/engagement-model%' or ${TABLE}.last_page_url like '%/how-we-work%' then '12: Commercials'\n                  when ${TABLE}.last_page_url like '%scv-thank-you%' or ${TABLE}.last_page_url like '%/modern-data-stack-thank-you%' then '08: Goal Achieved'\n                  when ${TABLE}.last_page_url like '%causal-analytics%' or ${TABLE}.last_page_url like '/scv-download-hubspot-form' then '02: Landing Page'\n                  when ${TABLE}.last_page_url like '%causal-analytics-video%' or ${TABLE}.last_page_url like '%download-10-ways-your-modern-data-stack-can-fail%' or ${TABLE}.last_page_url like '%download-page%' then '04: Gated Content'\n                  when ${TABLE}.last_page_url like '%industries%' or ${TABLE}.last_page_url like '%about%' or ${TABLE}.last_page_url like '%partners%'then '02: Marketing'\n                  when ${TABLE}.last_page_url like '%case-studies%' then '03: Case Study'\n                  when ${TABLE}.last_page_url like '%calendly%' then '06: Conversion'\n              end",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${last_page_url} like '%blog%' or ${last_page_url} like '%rittmananalytics.com/202%' then '01: Blog'\n                  when ${last_page_url} like '%drilltodetail%' or ${last_page_url} like '%podcast%' then '01: Podcast'\n                  when ${last_page_url} = '/' or ${last_page_url} like '%home-index%' then '01: Home Page'\n                  when ${last_page_url} like '%/services/%' or ${last_page_url} like '%/offers/%' then '04: Service'\n                  when ${last_page_url} like '%/about/%' or ${last_page_url} like '%/contact%' or ${last_page_url} like '%/faqs/%' or ${last_page_url} like '%scv-contact-us-form%' then '08: Contact'\n                  when ${last_page_url} like '%sidebar%' then 'Misc'\n                  when ${last_page_url} like '%/assistant%' then '06: Assistant'\n                  when ${last_page_url} like '%/pricing%' or ${last_page_url} like '%/engagement-model%' or ${last_page_url} like '%/how-we-work%' then '12: Commercials'\n                  when ${last_page_url} like '%scv-thank-you%' or ${last_page_url} like '%/modern-data-stack-thank-you%' then '08: Goal Achieved'\n                  when ${last_page_url} like '%causal-analytics%' or ${last_page_url} like '/scv-download-hubspot-form' then '02: Landing Page'\n                  when ${last_page_url} like '%causal-analytics-video%' or ${last_page_url} like '%download-10-ways-your-modern-data-stack-can-fail%' or ${last_page_url} like '%download-page%' then '04: Gated Content'\n                  when ${last_page_url} like '%industries%' or ${last_page_url} like '%about%' or ${last_page_url} like '%partners%'then '02: Marketing'\n                  when ${last_page_url} like '%case-studies%' then '03: Case Study'\n                  when ${last_page_url} like '%calendly%' then '06: Conversion'\n              end",
+        "label": "Exit Page Category",
+        "description": "A predefined category for the last page (exit page) viewed in the session, based on its URL. Examples include '01: Blog', '01: Podcast', '01: Home Page', '04: Service'.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:last_page_url_host",
+      "name": "last_page_url_host",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.last_page_url_host",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Exit Page URL Host",
+        "description": "The hostname (e.g., 'www.example.com') of the last page (exit page) viewed in the session.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:last_page_url_path",
+      "name": "last_page_url_path",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "rtrim(${TABLE}.last_page_url_path,\"/\")",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "rtrim(${last_page_url_path},\"/\")",
+        "label": "Exit Page URL Path",
+        "description": "The path (e.g., '/contact-us') of the last page (exit page) viewed in the session, with any trailing slash removed.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:mins_between_sessions",
+      "name": "mins_between_sessions",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.mins_between_sessions",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The time in minutes between the start of this session and the end of the user's previous session. Null if this is the user's first session.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:referrer_host",
+      "name": "referrer_host",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.referrer_host",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The hostname (e.g., 'google.com', 'linkedin.com') of the website that referred the user.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:referrer_medium",
+      "name": "referrer_medium",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.referrer_medium",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The medium of the referral source, often indicating how the user arrived (e.g., 'organic', 'cpc', 'referral', 'social'). This is typically the raw medium from the source data.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:search",
+      "name": "search",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.search",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "The search query or keywords used by the visitor if they arrived from a search engine. May be '(not provided)' or null for privacy reasons or non-search referrals.",
+        "group_label": "    Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:session_id",
+      "name": "session_id",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.session_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "A unique identifier for this specific web session.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:periods_ago",
+      "name": "periods_ago",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "FLOOR(DATE_DIFF(CURRENT_DATE(), DATE(${session_start_ts_raw}), DAY) / 30)",
+      "references": [
+        "web_sessions_fact.session_start_ts_raw"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "FLOOR(DATE_DIFF(CURRENT_DATE(), DATE(${session_start_ts[raw]}), DAY) / 30)"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:user_session_number",
+      "name": "user_session_number",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.user_session_number",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "description": "A sequential number indicating which session this is for the user (e.g., 1 for the first session, 2 for the second).",
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:new_or_returning_user",
+      "name": "new_or_returning_user",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "case when ${TABLE}.user_session_number = 1 then 'New' else 'Returning' end",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${user_session_number} = 1 then 'New' else 'Returning' end",
+        "description": "Classifies the user as 'New' (if this is their first session, user_session_number = 1) or 'Returning' (if they have had previous sessions).",
+        "group_label": "  Audience"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:web_sessions_pk",
+      "name": "web_sessions_pk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.web_sessions_pk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true,
+        "description": "The primary key uniquely identifying each web session record. Hidden by default.",
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:is_converted_user",
+      "name": "is_converted_user",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.is_converting_blended_user_id",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${is_converting_blended_user_id}",
+        "description": "Indicates (Yes/No) whether the user associated with this session (blended_user_id) has ever performed a defined conversion action.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:is_converting_session",
+      "name": "is_converting_session",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.is_conversion_session",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${is_conversion_session}",
+        "description": "Indicates (Yes/No) whether a defined conversion event occurred during this specific session.",
+        "group_label": "Behavior"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:channel",
+      "name": "channel",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "case when ${session_utm_source} in ('linkedin','facebook') and ${session_utm_medium} = 'paid' then 'Paid Social'\n              when (${session_utm_source} = 'linkedin' or ${referrer_host} like '%linkedin%') and ${session_utm_medium} != 'paid' then 'Organic Social'\n              when ${TABLE}.channel = 'Social' then 'Organic Social'\n              when ${TABLE}.channel in ('facebook','linkedin') and ${session_utm_medium} = 'social' then 'Organic Social'\n              when ${session_utm_medium} = 'social' and ${TABLE}.channel = 'Direct' then 'Organic Social'\n              when ${session_utm_source} = 'substack' and ${session_utm_medium} != 'email' then 'Organic Social'\n              when ${session_utm_source} like 'pocket_%' then 'Referral'\n              when (${referrer_host} like '%rittmananalytics.com%' and ${referrer_host} not like '%blog.rittmananalytics.com%') or ${referrer_host} like 'calendly.com' then 'Direct'\n              when ${referrer_host} like '%medium.com%' or ${referrer_host} like '%blog.rittmananalytics.com%'  then 'Organic Social'\n              else ${TABLE}.channel end",
+      "references": [
+        "web_sessions_fact.session_utm_source",
+        "web_sessions_fact.session_utm_medium",
+        "web_sessions_fact.referrer_host"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${session_utm_source} in ('linkedin','facebook') and ${session_utm_medium} = 'paid' then 'Paid Social'\n              when (${session_utm_source} = 'linkedin' or ${referrer_host} like '%linkedin%') and ${session_utm_medium} != 'paid' then 'Organic Social'\n              when ${channel} = 'Social' then 'Organic Social'\n              when ${channel} in ('facebook','linkedin') and ${session_utm_medium} = 'social' then 'Organic Social'\n              when ${session_utm_medium} = 'social' and ${channel} = 'Direct' then 'Organic Social'\n              when ${session_utm_source} = 'substack' and ${session_utm_medium} != 'email' then 'Organic Social'\n              when ${session_utm_source} like 'pocket_%' then 'Referral'\n              when (${referrer_host} like '%rittmananalytics.com%' and ${referrer_host} not like '%blog.rittmananalytics.com%') or ${referrer_host} like 'calendly.com' then 'Direct'\n              when ${referrer_host} like '%medium.com%' or ${referrer_host} like '%blog.rittmananalytics.com%'  then 'Organic Social'\n              else ${channel} end",
+        "description": "The marketing channel attributed to this session, determined by custom logic using UTM parameters and referrer information. Examples include 'Paid Social', 'Organic Social', 'Organic Search', 'Referral', 'Direct'.",
+        "group_label": " Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:channel_category",
+      "name": "channel_category",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "case when ${channel} in ('Paid Social','Paid Search') then 'Paid'\n              when ${channel} in ('Organic Social','Organic Video','Organic Search','Email','Referral') then 'Organic'\n              else ${channel} end",
+      "references": [
+        "web_sessions_fact.channel"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "case when ${channel} in ('Paid Social','Paid Search') then 'Paid'\n              when ${channel} in ('Organic Social','Organic Video','Organic Search','Email','Referral') then 'Organic'\n              else ${channel} end",
+        "description": "A higher-level grouping of the marketing channel. 'Paid' includes paid social and paid search; 'Organic' includes organic social, video, search, email, and referrals. Other channels retain their name.",
+        "group_label": " Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:session_utm_campaign",
+      "name": "session_utm_campaign",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "lower(${TABLE}.utm_campaign)",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "lower(${utm_campaign})",
+        "label": "Session UTM Campaign",
+        "description": "The UTM campaign parameter associated with this session, used to identify a specific promotion or strategic campaign (e.g., 'summer_sale', 'newsletter_q3'). Values are lowercased.",
+        "group_label": " Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:session_utm_content",
+      "name": "session_utm_content",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.utm_content",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${utm_content}",
+        "label": "Session UTM Content",
+        "description": "The UTM content parameter associated with this session, used to differentiate ads or links that point to the same URL (e.g., 'logolink', 'textlink').",
+        "group_label": " Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:session_utm_medium",
+      "name": "session_utm_medium",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "lower(${TABLE}.utm_medium)",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "lower(${utm_medium})",
+        "label": "Session UTM Medium",
+        "description": "The UTM medium parameter associated with this session, indicating the advertising or marketing medium (e.g., 'cpc', 'banner', 'email'). Values are lowercased.",
+        "group_label": " Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:session_utm_source",
+      "name": "session_utm_source",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "replace(replace(lower(${TABLE}.utm_source),'/',''),'.com','')",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "replace(replace(lower(${utm_source}),'/',''),'.com','')",
+        "label": "Session UTM Source",
+        "description": "The UTM source parameter associated with this session, indicating the referrer or origin of the traffic (e.g., 'google', 'newsletter', 'linkedin'). Values are lowercased and common suffixes like '.com' or slashes are removed.",
+        "group_label": " Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:session_utm_term",
+      "name": "session_utm_term",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.utm_term",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${utm_term}",
+        "description": "The UTM term (keyword) parameter associated with this session, typically used to identify paid search keywords.",
+        "group_label": " Acquisition"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:period_normalized",
+      "name": "period_normalized",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "CASE\n        WHEN ${period} = 'Current Period' THEN ${session_start_ts_raw}\n        WHEN ${period} = 'Prior Year' THEN TIMESTAMP(DATETIME_ADD(DATETIME(${session_start_ts_raw}), INTERVAL 1 YEAR))\n      END",
+      "references": [
+        "web_sessions_fact.period",
+        "web_sessions_fact.session_start_ts_raw"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "CASE\n        WHEN ${period} = 'Current Period' THEN ${session_start_ts[raw]}\n        WHEN ${period} = 'Prior Year' THEN TIMESTAMP(DATETIME_ADD(DATETIME(${session_start_ts[raw]}), INTERVAL 1 YEAR))\n      END",
+        "timeframes": [
+          "date",
+          "week",
+          "month"
+        ],
+        "label": "Chart Date"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:session_end_ts",
+      "name": "session_end_ts",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.session_end_ts",
+      "references": [],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "timeframes": [
+          "raw",
+          "day_of_week_name",
+          "date",
+          "day_of_year",
+          "week",
+          "month",
+          "month_num",
+          "year"
+        ],
+        "label": "Session End",
+        "description": "The exact date and time when the user's session ended.",
+        "group_label": "Dates"
+      },
+      "unsupported": [
+        {
+          "construct": "timeframe",
+          "class": "assisted",
+          "reason": "timeframe 'hour4' has no Omni equivalent; dropped from the list"
+        },
+        {
+          "construct": "timeframe",
+          "class": "assisted",
+          "reason": "timeframe 'week_of_year' has no Omni equivalent; dropped from the list"
+        }
+      ],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:session_start_ts",
+      "name": "session_start_ts",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.session_start_ts",
+      "references": [],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "timeframes": [
+          "raw",
+          "day_of_week_name",
+          "date",
+          "day_of_year",
+          "week",
+          "month",
+          "month_num",
+          "year",
+          "fiscal_quarter",
+          "fiscal_year"
+        ],
+        "label": "Session Start",
+        "description": "The exact date and time when the user's session began.",
+        "group_label": "Dates"
+      },
+      "unsupported": [
+        {
+          "construct": "timeframe",
+          "class": "assisted",
+          "reason": "timeframe 'fiscal_month_num' has no Omni equivalent; dropped from the list"
+        },
+        {
+          "construct": "timeframe",
+          "class": "assisted",
+          "reason": "timeframe 'fiscal_quarter_of_year' has no Omni equivalent; dropped from the list"
+        },
+        {
+          "construct": "timeframe",
+          "class": "assisted",
+          "reason": "timeframe 'hour4' has no Omni equivalent; dropped from the list"
+        },
+        {
+          "construct": "timeframe",
+          "class": "assisted",
+          "reason": "timeframe 'week_of_year' has no Omni equivalent; dropped from the list"
+        }
+      ],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:count_of_events",
+      "name": "count_of_events",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${events}",
+      "references": [
+        "web_sessions_fact.events"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${events}",
+        "aggregate_type": "sum",
+        "description": "The total sum of all recorded events across the selected sessions."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:total_session_duration_in_s",
+      "name": "total_session_duration_in_s",
+      "kind": "measure",
+      "lookml_type": "average",
+      "source_sql": "timestamp_diff(${TABLE}.session_end_ts,${TABLE}.session_start_ts,MINUTE)",
+      "references": [],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "sql": "timestamp_diff(${session_end_ts},${session_start_ts},MINUTE)",
+        "aggregate_type": "average",
+        "label": "Avg Session Duration (mins)",
+        "description": "The average duration of user sessions, calculated in minutes from session start to session end. Displayed in mm:ss format."
+      },
+      "unsupported": [
+        {
+          "construct": "value_format",
+          "class": "assisted",
+          "reason": "custom value_format 'mm:ss'; choose an Omni format"
+        }
+      ],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:total_sessions",
+      "name": "total_sessions",
+      "kind": "measure",
+      "lookml_type": "count_distinct",
+      "source_sql": "${web_sessions_pk}",
+      "references": [
+        "web_sessions_fact.web_sessions_pk"
+      ],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${web_sessions_pk}",
+        "aggregate_type": "count_distinct",
+        "label": "Total Sessions",
+        "description": "The total number of unique web sessions based on the web_sessions_pk."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:bounced_session_rate",
+      "name": "bounced_session_rate",
+      "kind": "measure",
+      "lookml_type": "number",
+      "source_sql": "SAFE_DIVIDE(COUNT(DISTINCT(case when ${is_bounced_session} = TRUE then ${web_sessions_pk} end)),${total_sessions})",
+      "references": [
+        "web_sessions_fact.is_bounced_session",
+        "web_sessions_fact.web_sessions_pk",
+        "web_sessions_fact.total_sessions"
+      ],
+      "class": "assisted",
+      "emitted": true,
+      "omni": {
+        "sql": "SAFE_DIVIDE(COUNT(DISTINCT(case when ${is_bounced_session} = TRUE then ${web_sessions_pk} end)),${total_sessions})",
+        "label": "Bounced Session Rate",
+        "description": "The percentage of sessions that were bounces, calculated as (bounced sessions / total sessions).",
+        "format": "percent_2"
+      },
+      "unsupported": [
+        {
+          "construct": "measure_number",
+          "class": "assisted",
+          "reason": "derived measure (type: number) emitted without aggregate_type; validate it resolves on the branch"
+        }
+      ],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:date_filter",
+      "name": "date_filter",
+      "kind": "filter",
+      "lookml_type": "date",
+      "source_sql": null,
+      "references": [],
+      "class": "redesign",
+      "emitted": false,
+      "omni": null,
+      "unsupported": [
+        {
+          "construct": "filter_field",
+          "class": "redesign",
+          "reason": "Looker filter-only field: rebuild as an Omni dashboard control or templated filter"
+        }
+      ],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:period_selector",
+      "name": "period_selector",
+      "kind": "parameter",
+      "lookml_type": "string",
+      "source_sql": null,
+      "references": [],
+      "class": "redesign",
+      "emitted": false,
+      "omni": null,
+      "unsupported": [
+        {
+          "construct": "parameter",
+          "class": "redesign",
+          "reason": "Looker parameter: rebuild as an Omni templated filter or dashboard control"
+        }
+      ],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:web_sessions_fact:time_range",
+      "name": "time_range",
+      "kind": "parameter",
+      "lookml_type": "string",
+      "source_sql": null,
+      "references": [],
+      "class": "redesign",
+      "emitted": false,
+      "omni": null,
+      "unsupported": [
+        {
+          "construct": "parameter",
+          "class": "redesign",
+          "reason": "Looker parameter: rebuild as an Omni templated filter or dashboard control"
+        }
+      ],
+      "source": {
+        "file": "views/web_sessions_fact.view.lkml",
+        "view": "web_sessions_fact"
+      }
+    }
+  ]
+}

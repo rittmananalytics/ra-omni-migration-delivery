@@ -1,0 +1,58 @@
+catalog: ra-development
+schema: analytics
+table_name: engagement_actions_fact
+dimensions:
+  engagement_action_pk:
+    primary_key: true
+    hidden: true
+  engagement_fk:
+    hidden: true
+  engagement_code:
+    label: Engagement Code
+  company_name:
+    label: Company Name
+  engagement_name:
+    label: Engagement Name
+  status_area:
+    label: Status Area
+    description: Delivery, Commercial or Client.
+  status_area_status:
+    label: Status
+    description: The status of the area this action belongs to. Colour the row by this.
+  status_sort_order:
+    hidden: true
+  priority:
+    label: Priority
+    description: Priority within the status area, starting at 1.
+  owner:
+    label: Owner
+    description: Delivery lead, Engagement director, Finance, or Client sponsor.
+  action:
+    label: Action
+  triggered_by:
+    label: Triggered By
+    description: The figure or date that produced this action.
+  reporting_month:
+    timeframes:
+    - month
+    - quarter
+    - year
+    - date
+    convert_tz: false
+    label: Reporting
+measures:
+  action_count:
+    aggregate_type: count
+    label: Actions
+    drill_fields:
+    - engagement_actions_fact.status_area
+    - engagement_actions_fact.priority
+    - engagement_actions_fact.owner
+    - engagement_actions_fact.action
+    - engagement_actions_fact.triggered_by
+  red_action_count:
+    aggregate_type: count
+    filters:
+      status_area_status:
+        is: RED
+    label: Actions On Red Areas

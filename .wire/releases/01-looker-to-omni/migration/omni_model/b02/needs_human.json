@@ -1,0 +1,83 @@
+[
+  {
+    "scope": "explore",
+    "name": "engagement_actions_fact",
+    "field": "(topic)",
+    "construct": "always_filter",
+    "class": "assisted",
+    "reason": "Filter expression '1 months' on engagement_actions_fact.reporting_month_month has no mechanical Omni operator; construct not emitted, write the filter by hand",
+    "lkml_file": "models/analytics.model.lkml",
+    "status": "resolved",
+    "resolution": "default_filters engagement_actions_fact.reporting_month[month]: time_for_duration [1 complete months ago, 1 months]",
+    "ruling_ref": "R-19"
+  },
+  {
+    "scope": "explore",
+    "name": "engagement_health_fact",
+    "field": "(topic)",
+    "construct": "always_filter",
+    "class": "assisted",
+    "reason": "Filter expression '12 months' on engagement_health_fact.reporting_month_month has no mechanical Omni operator; construct not emitted, write the filter by hand",
+    "lkml_file": "models/analytics.model.lkml",
+    "status": "resolved",
+    "resolution": "default_filters engagement_health_fact.reporting_month[month]: time_for_duration [12 complete months ago, 12 months]",
+    "ruling_ref": "R-19"
+  },
+  {
+    "scope": "explore",
+    "name": "engagement_sprint_burn_fact",
+    "field": "(topic)",
+    "construct": "always_filter",
+    "class": "assisted",
+    "reason": "Filter expression '1 months' on engagement_sprint_burn_fact.reporting_month_month has no mechanical Omni operator; construct not emitted, write the filter by hand",
+    "lkml_file": "models/analytics.model.lkml",
+    "status": "resolved",
+    "resolution": "default_filters engagement_sprint_burn_fact.reporting_month[month]: time_for_duration [1 complete months ago, 1 months]",
+    "ruling_ref": "R-19"
+  },
+  {
+    "scope": "view",
+    "name": "engagement_health_fact",
+    "field": "client_status_block",
+    "construct": "html",
+    "class": "redesign",
+    "reason": "html uses Liquid; Omni `markdown` uses Mustache; not emitted",
+    "lkml_file": "views/engagement_health_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "engagement_health_fact",
+    "field": "commercial_status_block",
+    "construct": "html",
+    "class": "redesign",
+    "reason": "html uses Liquid; Omni `markdown` uses Mustache; not emitted",
+    "lkml_file": "views/engagement_health_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "engagement_health_fact",
+    "field": "delivery_status_block",
+    "construct": "html",
+    "class": "redesign",
+    "reason": "html uses Liquid; Omni `markdown` uses Mustache; not emitted",
+    "lkml_file": "views/engagement_health_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "engagement_health_fact",
+    "field": "overall_status_block",
+    "construct": "html",
+    "class": "redesign",
+    "reason": "html uses Liquid; Omni `markdown` uses Mustache; not emitted",
+    "lkml_file": "views/engagement_health_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "engagement_sprint_burn_fact",
+    "field": "sprint_budget_used_pct",
+    "construct": "measure_number",
+    "class": "assisted",
+    "reason": "derived measure (type: number) emitted without aggregate_type; validate it resolves on the branch",
+    "lkml_file": "views/engagement_sprint_burn_fact.view.lkml"
+  }
+]

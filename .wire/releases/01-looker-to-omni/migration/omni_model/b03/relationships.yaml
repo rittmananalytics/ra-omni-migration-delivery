@@ -1,0 +1,40 @@
+- join_from_view: ad_campaign_performance_fact
+  join_to_view: ad_campaigns_dim
+  on_sql: ${ad_campaign_performance_fact.ad_campaign_fk} = ${ad_campaigns_dim.ad_campaign_pk}
+  relationship_type: many_to_one
+  join_type: always_left
+- join_from_view: organic_posts_dim
+  join_to_view: organic_post_performance_fact
+  on_sql: ${organic_posts_dim.organic_post_pk} = ${organic_post_performance_fact.organic_post_fk}
+  relationship_type: one_to_many
+  join_type: inner
+- join_from_view: web_sessions_fact
+  join_to_view: wh_sessions_attribution
+  on_sql: ${web_sessions_fact.web_sessions_pk} = ${wh_sessions_attribution.web_session_fk}
+  relationship_type: one_to_one
+  join_type: always_left
+- join_from_view: web_sessions_fact
+  join_to_view: page_first_published
+  on_sql: ${web_sessions_fact.first_page_title} = ${page_first_published.web_sessions_fact_first_page_title}
+  relationship_type: one_to_one
+  join_type: always_left
+- join_from_view: web_sessions_fact
+  join_to_view: web_events_fact
+  on_sql: ${web_sessions_fact.session_id} = ${web_events_fact.session_id}
+  relationship_type: one_to_many
+  join_type: always_left
+- join_from_view: web_events_fact
+  join_to_view: ips_enriched
+  on_sql: ${web_events_fact.ip} = ${ips_enriched.ip}
+  relationship_type: many_to_one
+  join_type: always_left
+- join_from_view: web_sessions_fact
+  join_to_view: has_viewed_pricing
+  on_sql: ${web_sessions_fact.blended_user_id} = ${has_viewed_pricing.web_sessions_fact_blended_user_id}
+  relationship_type: one_to_one
+  join_type: inner
+- join_from_view: web_sessions_fact
+  join_to_view: is_conversion_session
+  on_sql: ${web_sessions_fact.session_id} = ${is_conversion_session.web_events_fact_session_id}
+  relationship_type: one_to_one
+  join_type: always_left

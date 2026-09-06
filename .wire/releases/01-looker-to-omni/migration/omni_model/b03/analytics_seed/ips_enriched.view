@@ -1,0 +1,33 @@
+catalog: ra-development
+schema: analytics_seed
+table_name: ips_enriched
+dimensions:
+  ip:
+    hidden: true
+  asn:
+    hidden: true
+  city:
+    group_label: IP Enrichment
+  company:
+    group_label: IP Enrichment
+  country:
+    group_label: IP Enrichment
+  domain:
+    group_label: IP Enrichment
+  enrichment_error:
+    group_label: IP Enrichment
+  enrichment_success:
+    hidden: true
+  isp:
+    group_label: IP Enrichment
+  isp_filtered:
+    group_label: IP Enrichment
+  latitude:
+    hidden: true
+  longitude:
+    hidden: true
+  region:
+    group_label: IP Enrichment
+measures:
+  count:
+    aggregate_type: count

@@ -1,0 +1,157 @@
+{
+  "identity": "looker:analytics:view:organic_posts_dim",
+  "name": "organic_posts_dim",
+  "schema": "analytics",
+  "table_name": "organic_posts_dim",
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/organic_posts_dim.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:organic_posts_dim:organic_post_natural_key",
+      "name": "organic_post_natural_key",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.organic_post_natural_key",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_posts_dim.view.lkml",
+        "view": "organic_posts_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_posts_dim:organic_post_pk",
+      "name": "organic_post_pk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.organic_post_pk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_posts_dim.view.lkml",
+        "view": "organic_posts_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_posts_dim:post_content",
+      "name": "post_content",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.post_content",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_posts_dim.view.lkml",
+        "view": "organic_posts_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_posts_dim:post_link_url",
+      "name": "post_link_url",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.post_link_url",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_posts_dim.view.lkml",
+        "view": "organic_posts_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_posts_dim:post_title",
+      "name": "post_title",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.post_title",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_posts_dim.view.lkml",
+        "view": "organic_posts_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_posts_dim:post_url",
+      "name": "post_url",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.post_url",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_posts_dim.view.lkml",
+        "view": "organic_posts_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_posts_dim:source",
+      "name": "source",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.source",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {},
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_posts_dim.view.lkml",
+        "view": "organic_posts_dim"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:organic_posts_dim:post_ts",
+      "name": "post_ts",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.post_ts",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "timeframes": [
+          "raw",
+          "date",
+          "week",
+          "month",
+          "quarter",
+          "year"
+        ],
+        "label": "Published"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/organic_posts_dim.view.lkml",
+        "view": "organic_posts_dim"
+      }
+    }
+  ]
+}

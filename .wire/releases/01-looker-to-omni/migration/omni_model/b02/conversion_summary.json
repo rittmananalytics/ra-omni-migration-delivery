@@ -1,0 +1,38 @@
+{
+  "converter_version": "1.1.0",
+  "project": "analytics",
+  "views_emitted": 4,
+  "topics_emitted": 4,
+  "relationships_emitted": 0,
+  "needs_human": 8,
+  "needs_human_by_class": {
+    "assisted": 4,
+    "redesign": 4
+  },
+  "constructs": {
+    "dimension": {
+      "mechanical": 121
+    },
+    "dimension_group_time": {
+      "mechanical": 4
+    },
+    "explore": {
+      "mechanical": 4
+    },
+    "html": {
+      "redesign": 4
+    },
+    "measure": {
+      "mechanical": 34
+    },
+    "measure_number": {
+      "assisted": 1
+    },
+    "sql_table_name": {
+      "mechanical": 4
+    },
+    "view": {
+      "mechanical": 4
+    }
+  }
+}

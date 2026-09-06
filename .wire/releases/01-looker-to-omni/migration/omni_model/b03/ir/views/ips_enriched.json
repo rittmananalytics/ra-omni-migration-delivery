@@ -1,0 +1,289 @@
+{
+  "identity": "looker:analytics:view:ips_enriched",
+  "name": "ips_enriched",
+  "schema": "analytics_seed",
+  "table_name": "ips_enriched",
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/ips_enriched.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:ips_enriched:ip",
+      "name": "ip",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.ip",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:asn",
+      "name": "asn",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.asn",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:city",
+      "name": "city",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.city",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "group_label": "IP Enrichment"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:company",
+      "name": "company",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.company",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "group_label": "IP Enrichment"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:country",
+      "name": "country",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.country",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "group_label": "IP Enrichment"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:domain",
+      "name": "domain",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.domain",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "group_label": "IP Enrichment"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:enrichment_error",
+      "name": "enrichment_error",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.enrichment_error",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "group_label": "IP Enrichment"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:enrichment_success",
+      "name": "enrichment_success",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.enrichment_success",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:isp",
+      "name": "isp",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.isp",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "group_label": "IP Enrichment"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:isp_filtered",
+      "name": "isp_filtered",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.isp_filtered",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "group_label": "IP Enrichment"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:ip_location",
+      "name": "ip_location",
+      "kind": "dimension",
+      "lookml_type": "location",
+      "source_sql": null,
+      "references": [],
+      "class": "redesign",
+      "emitted": false,
+      "omni": null,
+      "unsupported": [
+        {
+          "construct": "type_location",
+          "class": "redesign",
+          "reason": "dimension type location has no Omni equivalent"
+        }
+      ],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:latitude",
+      "name": "latitude",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.latitude",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:longitude",
+      "name": "longitude",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.longitude",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:region",
+      "name": "region",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.region",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "group_label": "IP Enrichment"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:ips_enriched:count",
+      "name": "count",
+      "kind": "measure",
+      "lookml_type": null,
+      "source_sql": null,
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "aggregate_type": "count"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/ips_enriched.view.lkml",
+        "view": "ips_enriched"
+      }
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+[
+  {
+    "scope": "view",
+    "name": "ad_campaign_performance_fact",
+    "field": null,
+    "construct": "sql_table_name_liquid",
+    "class": "redesign",
+    "reason": "sql_table_name contains Liquid",
+    "lkml_file": "views/ad_campaign_performance_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "ad_campaigns_dim",
+    "field": null,
+    "construct": "sql_table_name_liquid",
+    "class": "redesign",
+    "reason": "sql_table_name contains Liquid",
+    "lkml_file": "views/ad_campaigns_dim.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "ips_enriched",
+    "field": "ip_location",
+    "construct": "type_location",
+    "class": "redesign",
+    "reason": "dimension type location has no Omni equivalent",
+    "lkml_file": "views/ips_enriched.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "page_first_published",
+    "field": "page_first_session_start_ts",
+    "construct": "timeframe",
+    "class": "assisted",
+    "reason": "timeframe 'hour4' has no Omni equivalent; dropped from the list",
+    "lkml_file": "views/page_first_published.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "page_first_published",
+    "field": "page_first_session_start_ts",
+    "construct": "timeframe",
+    "class": "assisted",
+    "reason": "timeframe 'week_of_year' has no Omni equivalent; dropped from the list",
+    "lkml_file": "views/page_first_published.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_events_fact",
+    "field": "avg_session_value",
+    "construct": "cross_view_reference",
+    "class": "assisted",
+    "reason": "sql references another view (web_sessions_fact); confirm every topic that exposes this field joins it",
+    "lkml_file": "views/web_events_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_events_fact",
+    "field": "avg_session_value",
+    "construct": "measure_number",
+    "class": "assisted",
+    "reason": "derived measure (type: number) emitted without aggregate_type; validate it resolves on the branch",
+    "lkml_file": "views/web_events_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_events_fact",
+    "field": "event_ts",
+    "construct": "timeframe",
+    "class": "assisted",
+    "reason": "timeframe 'hour3' has no Omni equivalent; dropped from the list",
+    "lkml_file": "views/web_events_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_events_fact",
+    "field": "map_location",
+    "construct": "type_location",
+    "class": "redesign",
+    "reason": "dimension type location has no Omni equivalent",
+    "lkml_file": "views/web_events_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": null,
+    "construct": "sql_table_name_liquid",
+    "class": "redesign",
+    "reason": "sql_table_name contains Liquid",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "bounced_session_rate",
+    "construct": "measure_number",
+    "class": "assisted",
+    "reason": "derived measure (type: number) emitted without aggregate_type; validate it resolves on the branch",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "date_filter",
+    "construct": "filter_field",
+    "class": "redesign",
+    "reason": "Looker filter-only field: rebuild as an Omni dashboard control or templated filter",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "period",
+    "construct": "liquid",
+    "class": "redesign",
+    "reason": "Liquid in sql; rebuild with Omni templated filters or Mustache",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "period_selector",
+    "construct": "parameter",
+    "class": "redesign",
+    "reason": "Looker parameter: rebuild as an Omni templated filter or dashboard control",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "referrer_days_since_post",
+    "construct": "cross_view_reference",
+    "class": "assisted",
+    "reason": "sql references another view (page_first_published); confirm every topic that exposes this field joins it",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "session_end_ts",
+    "construct": "timeframe",
+    "class": "assisted",
+    "reason": "timeframe 'hour4' has no Omni equivalent; dropped from the list",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "session_end_ts",
+    "construct": "timeframe",
+    "class": "assisted",
+    "reason": "timeframe 'week_of_year' has no Omni equivalent; dropped from the list",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "session_start_ts",
+    "construct": "timeframe",
+    "class": "assisted",
+    "reason": "timeframe 'fiscal_month_num' has no Omni equivalent; dropped from the list",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "session_start_ts",
+    "construct": "timeframe",
+    "class": "assisted",
+    "reason": "timeframe 'fiscal_quarter_of_year' has no Omni equivalent; dropped from the list",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "session_start_ts",
+    "construct": "timeframe",
+    "class": "assisted",
+    "reason": "timeframe 'hour4' has no Omni equivalent; dropped from the list",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "session_start_ts",
+    "construct": "timeframe",
+    "class": "assisted",
+    "reason": "timeframe 'week_of_year' has no Omni equivalent; dropped from the list",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "time_range",
+    "construct": "parameter",
+    "class": "redesign",
+    "reason": "Looker parameter: rebuild as an Omni templated filter or dashboard control",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  },
+  {
+    "scope": "view",
+    "name": "web_sessions_fact",
+    "field": "total_session_duration_in_s",
+    "construct": "value_format",
+    "class": "assisted",
+    "reason": "custom value_format 'mm:ss'; choose an Omni format",
+    "lkml_file": "views/web_sessions_fact.view.lkml"
+  }
+]

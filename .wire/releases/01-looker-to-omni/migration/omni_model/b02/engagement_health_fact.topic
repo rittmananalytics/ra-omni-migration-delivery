@@ -1,0 +1,9 @@
+base_view: engagement_health_fact
+label: Engagement Health
+description: 'One row per engagement per month: delivery and commercial metrics, the three computed statuses, and the written commentary. The primary explore for the engagement health board.'
+group_label: '        Core Analytics'
+default_filters:
+  engagement_health_fact.reporting_month[month]:
+    time_for_duration:
+    - 12 complete months ago
+    - 12 months

@@ -1,0 +1,1327 @@
+{
+ "groups": [
+  {
+   "id": "1",
+   "name": "All Users",
+   "user_count": 40,
+   "externally_managed": true,
+   "include_by_default": true
+  },
+  {
+   "id": "11",
+   "name": "Can See Financial Data",
+   "user_count": 3,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "12",
+   "name": "Can See HR Data",
+   "user_count": 3,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "13",
+   "name": "ConversionIA Team",
+   "user_count": 0,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "14",
+   "name": "Embed Shared Group 1",
+   "user_count": 1,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "17",
+   "name": "Gemini Default Users",
+   "user_count": 21,
+   "externally_managed": false,
+   "include_by_default": true
+  },
+  {
+   "id": "10",
+   "name": "Hifly Team",
+   "user_count": 1,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "20",
+   "name": "Looker CI Users",
+   "user_count": 10,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "18",
+   "name": "Netsuite Data App",
+   "user_count": 1,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "15",
+   "name": "Pepkor",
+   "user_count": 0,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "16",
+   "name": "Pleo External",
+   "user_count": 1,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "9",
+   "name": "RA Staff",
+   "user_count": 19,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "19",
+   "name": "Self-Service Explore Users",
+   "user_count": 0,
+   "externally_managed": false,
+   "include_by_default": false
+  },
+  {
+   "id": "2",
+   "name": "User",
+   "user_count": 11,
+   "externally_managed": false,
+   "include_by_default": false
+  }
+ ],
+ "user_attributes": [
+  {
+   "id": "19",
+   "name": "can_see_financial_data",
+   "label": "Can see financial data",
+   "type": "string",
+   "default_value": "",
+   "is_system": false
+  },
+  {
+   "id": "20",
+   "name": "can_see_hr_data",
+   "label": "Can See HR Data",
+   "type": "string",
+   "default_value": "",
+   "is_system": false
+  },
+  {
+   "id": "22",
+   "name": "client_id_rep",
+   "label": "Client Id Rep",
+   "type": "string",
+   "default_value": "100",
+   "is_system": false
+  },
+  {
+   "id": "26",
+   "name": "company_name",
+   "label": "Company Name",
+   "type": "advanced_filter_string",
+   "default_value": "%, NULL",
+   "is_system": false
+  },
+  {
+   "id": "18",
+   "name": "dataset",
+   "label": "Dataset",
+   "type": "string",
+   "default_value": "analytics",
+   "is_system": false
+  },
+  {
+   "id": "21",
+   "name": "default_value_currency_required",
+   "label": "Default Value Currency Required",
+   "type": "string",
+   "default_value": "USD",
+   "is_system": false
+  },
+  {
+   "id": "14",
+   "name": "department",
+   "label": "Department",
+   "type": "string",
+   "default_value": "",
+   "is_system": false
+  },
+  {
+   "id": "3",
+   "name": "email",
+   "label": "Email",
+   "type": "string",
+   "default_value": "",
+   "is_system": true
+  },
+  {
+   "id": "1",
+   "name": "first_name",
+   "label": "First Name",
+   "type": "string",
+   "default_value": "",
+   "is_system": true
+  },
+  {
+   "id": "9",
+   "name": "google_user_id",
+   "label": "Google Auth External User ID",
+   "type": "string",
+   "default_value": "",
+   "is_system": true
+  },
+  {
+   "id": "28",
+   "name": "groups",
+   "label": "Groups",
+   "type": "advanced_filter_string",
+   "default_value": "",
+   "is_system": false
+  },
+  {
+   "id": "6",
+   "name": "id",
+   "label": "Looker User ID",
+   "type": "number",
+   "default_value": "",
+   "is_system": true
+  },
+  {
+   "id": "13",
+   "name": "landing_page",
+   "label": "Landing Page",
+   "type": "relative_url",
+   "default_value": "/browse",
+   "is_system": false
+  },
+  {
+   "id": "2",
+   "name": "last_name",
+   "label": "Last Name",
+   "type": "string",
+   "default_value": "",
+   "is_system": true
+  },
+  {
+   "id": "11",
+   "name": "locale",
+   "label": "Locale",
+   "type": "string",
+   "default_value": "en",
+   "is_system": false
+  },
+  {
+   "id": "23",
+   "name": "looker_internal_email_domain_allowlist",
+   "label": "[Looker] Email Allowlist Domains for User Groups",
+   "type": "string",
+   "default_value": "",
+   "is_system": false
+  },
+  {
+   "id": "4",
+   "name": "name",
+   "label": "Full Name",
+   "type": "string",
+   "default_value": "",
+   "is_system": true
+  },
+  {
+   "id": "24",
+   "name": "narrative_lang",
+   "label": "Narrative Lang",
+   "type": "string",
+   "default_value": "en",
+   "is_system": false
+  },
+  {
+   "id": "12",
+   "name": "number_format",
+   "label": "Number Format",
+   "type": "string",
+   "default_value": "1,234.56",
+   "is_system": false
+  },
+  {
+   "id": "25",
+   "name": "project_id",
+   "label": "Project Id",
+   "type": "string",
+   "default_value": "bq-barkdata-prod",
+   "is_system": false
+  },
+  {
+   "id": "27",
+   "name": "user_attr_ra_dw_prod_gcp_connection_billing_project_id",
+   "label": "user_attr_ra_dw_prod_gcp_connection_billing_project_id",
+   "type": "string",
+   "default_value": "ra-development",
+   "is_system": false
+  }
+ ],
+ "user_attribute_group_values": {
+  "can_see_financial_data": [
+   {
+    "group_id": "11",
+    "value": "yes"
+   }
+  ],
+  "can_see_hr_data": [
+   {
+    "group_id": "12",
+    "value": "yes"
+   }
+  ]
+ },
+ "roles": [
+  {
+   "id": "2",
+   "name": "Admin",
+   "permission_set": "Admin",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "3",
+   "name": "User",
+   "permission_set": "User who can't download data",
+   "model_set": "MJR Staff Model Set",
+   "models": [
+    "analytics"
+   ]
+  },
+  {
+   "id": "5",
+   "name": "Funda Role",
+   "permission_set": "Developer",
+   "model_set": "Funda",
+   "models": [
+    "funda-bi"
+   ]
+  },
+  {
+   "id": "6",
+   "name": "Rixo External",
+   "permission_set": "User",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "7",
+   "name": "RA SMT",
+   "permission_set": "Developer",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "8",
+   "name": "RA Staff",
+   "permission_set": "Developer",
+   "model_set": "MJR Staff Model Set",
+   "models": [
+    "analytics"
+   ]
+  },
+  {
+   "id": "9",
+   "name": "Restricted Viewer User",
+   "permission_set": "User who can't download data",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "145",
+   "name": "Hifly",
+   "permission_set": "Developer",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "329",
+   "name": "SelectStar",
+   "permission_set": "SelectStar",
+   "model_set": "All Normal Models",
+   "models": [
+    "analytics"
+   ]
+  },
+  {
+   "id": "675",
+   "name": "Delphi",
+   "permission_set": "User",
+   "model_set": "Delphi Restricted",
+   "models": [
+    "attribution"
+   ]
+  },
+  {
+   "id": "905",
+   "name": "Role System Activity Viewer for SELECT.dev",
+   "permission_set": "System Activity Viewer for SELECT.dev",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "1982",
+   "name": "Support Basic Editor",
+   "permission_set": "Support Basic Editor",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "1983",
+   "name": "Support Advanced Editor",
+   "permission_set": "Support Advanced Editor",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "2365",
+   "name": "Gemini",
+   "permission_set": "Gemini",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "2451",
+   "name": "Pleo External",
+   "permission_set": "User",
+   "model_set": "Analytics Only",
+   "models": [
+    "analytics"
+   ]
+  },
+  {
+   "id": "2452",
+   "name": "explore_assistant",
+   "permission_set": "Developer",
+   "model_set": "explore_assistant",
+   "models": [
+    "Model",
+    "analytics",
+    "attribution",
+    "data-dictionary",
+    "delivery_analytics",
+    "delphi",
+    "explore-assistant-llm",
+    "extension-api-explorer",
+    "looker-gen-ai",
+    "looker-genai",
+    "looker-linkedin-ads",
+    "looker_content",
+    "lookml-diagram",
+    "main_amir_project_model",
+    "marketing_analysis",
+    "olivier_crdp",
+    "query_insights",
+    "ra-development",
+    "test"
+   ]
+  },
+  {
+   "id": "2453",
+   "name": "Marketplace Automation (f835ea)",
+   "permission_set": "Marketplace Automation (f835ea)",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "2454",
+   "name": "Customer Engineer Advanced Editor",
+   "permission_set": "Customer Engineer Advanced Editor",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "2456",
+   "name": "Conversational Analytics User",
+   "permission_set": "Conversational Analytics User",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "2457",
+   "name": "Conversational Analytics Agent Manager",
+   "permission_set": "Conversational Analytics Agent Manager",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "2458",
+   "name": "RA Dev",
+   "permission_set": "Developer",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "2459",
+   "name": "Self Service Explore Role",
+   "permission_set": "Self-Service Explore Creator",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  },
+  {
+   "id": "2474",
+   "name": "Looker CI Users",
+   "permission_set": "Looker CI Users",
+   "model_set": "All",
+   "models": [
+    "attribution",
+    "analytics",
+    "query_insights",
+    "explore-assistant-llm",
+    "looker-gen-ai",
+    "lookml-diagram",
+    "data_report",
+    "extension-api-explorer",
+    "scratch_viz_project",
+    "marks_health",
+    "data-dictionary",
+    "self_service___competition_groups_1773410642144283904_2sbh_196_1"
+   ]
+  }
+ ],
+ "folder_access": {
+  "Shared": [
+   {
+    "group_id": "1",
+    "user_id": null,
+    "permission_type": "PermissionType.view"
+   }
+  ]
+ },
+ "users": [
+  {
+   "id": "30",
+   "name": "",
+   "email": "spectacles@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "2",
+    "17"
+   ],
+   "role_ids": [
+    "3",
+    "2365",
+    "2"
+   ]
+  },
+  {
+   "id": "1445",
+   "name": "",
+   "email": "mark.rittman+lookerembed@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "2",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "3",
+    "8",
+    "2452",
+    "2365",
+    "7"
+   ]
+  },
+  {
+   "id": "2504",
+   "name": "",
+   "email": "markrittman2@gmail.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "16",
+    "17"
+   ],
+   "role_ids": [
+    "2365",
+    "2451"
+   ]
+  },
+  {
+   "id": "2505",
+   "name": "",
+   "email": "pipedream@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "2",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "3",
+    "8",
+    "2452",
+    "2365"
+   ]
+  },
+  {
+   "id": "2508",
+   "name": "",
+   "email": "mark+flowmo@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "9"
+   ],
+   "role_ids": [
+    "8",
+    "2452",
+    "2"
+   ]
+  },
+  {
+   "id": "2509",
+   "name": "",
+   "email": "netsuite_data_app@rittman_analytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "9",
+    "17",
+    "18"
+   ],
+   "role_ids": [
+    "8",
+    "2452",
+    "2365"
+   ]
+  },
+  {
+   "id": "2506",
+   "name": "Marketplace Automation User  (f835ea)",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1"
+   ],
+   "role_ids": [
+    "2453"
+   ]
+  },
+  {
+   "id": "2524",
+   "name": "Lukasz Aszyk",
+   "email": "lukasz@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1"
+   ],
+   "role_ids": [
+    "3",
+    "8"
+   ]
+  },
+  {
+   "id": "16",
+   "name": "Lewis Baker",
+   "email": "lewis@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "2",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "3",
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "7",
+    "2459"
+   ]
+  },
+  {
+   "id": "14",
+   "name": "Xin Bao",
+   "email": "xin.bao@looker.com",
+   "disabled": true,
+   "group_ids": [
+    "1",
+    "17"
+   ],
+   "role_ids": [
+    "2365",
+    "2"
+   ]
+  },
+  {
+   "id": "852",
+   "name": "Lydia Blackley",
+   "email": "lydia@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "2459"
+   ]
+  },
+  {
+   "id": "2510",
+   "name": "Alex Caldwell",
+   "email": "alex@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "9"
+   ],
+   "role_ids": [
+    "8",
+    "2452",
+    "2",
+    "3",
+    "2456",
+    "2457"
+   ]
+  },
+  {
+   "id": "2523",
+   "name": "Emma Callister",
+   "email": "emma@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1"
+   ],
+   "role_ids": [
+    "3",
+    "8"
+   ]
+  },
+  {
+   "id": "1",
+   "name": "Looker Deployments",
+   "email": "ops-deployment@looker.com",
+   "disabled": true,
+   "group_ids": [
+    "1",
+    "17"
+   ],
+   "role_ids": [
+    "2365",
+    "2"
+   ]
+  },
+  {
+   "id": "19",
+   "name": "Olivier Dupuis",
+   "email": "olivier@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "2",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "3",
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "2459"
+   ]
+  },
+  {
+   "id": "2108",
+   "name": "Joy Evett",
+   "email": "joy@rittmananalytics.com",
+   "disabled": true,
+   "group_ids": [
+    "1",
+    "2",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "3",
+    "8",
+    "2452",
+    "2365",
+    "2"
+   ]
+  },
+  {
+   "id": "2511",
+   "name": "Timothy Griew",
+   "email": "timothy@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1"
+   ],
+   "role_ids": [
+    "2",
+    "2459"
+   ]
+  },
+  {
+   "id": "2155",
+   "name": "John Haynes",
+   "email": "john@rittmananalytics.com",
+   "disabled": true,
+   "group_ids": [
+    "1",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "8",
+    "2452",
+    "2365"
+   ]
+  },
+  {
+   "id": "196",
+   "name": "Jordan Ilyat",
+   "email": "jordan@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "2458",
+    "2473"
+   ]
+  },
+  {
+   "id": "627",
+   "name": "Sadie Mitchell",
+   "email": "sadie@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "3",
+    "7"
+   ]
+  },
+  {
+   "id": "2525",
+   "name": "Tiarnan O'Kane",
+   "email": "tiarnan@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1"
+   ],
+   "role_ids": [
+    "3",
+    "8"
+   ]
+  },
+  {
+   "id": "3",
+   "name": "Mark Rittman",
+   "email": "mark@rittman.co.uk",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "2",
+    "9",
+    "11",
+    "12",
+    "17"
+   ],
+   "role_ids": [
+    "3",
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "7",
+    "145",
+    "329"
+   ]
+  },
+  {
+   "id": "28",
+   "name": "Mark Rittman",
+   "email": "mark.rittman@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "2",
+    "9",
+    "11",
+    "12",
+    "17"
+   ],
+   "role_ids": [
+    "3",
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "2459"
+   ]
+  },
+  {
+   "id": "1446",
+   "name": "Mark Rittman",
+   "email": "mark.rittman+embed@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "3",
+    "7"
+   ]
+  },
+  {
+   "id": "1447",
+   "name": "Mark Rittman",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "14",
+    "17"
+   ],
+   "role_ids": [
+    "2365",
+    "1401"
+   ]
+  },
+  {
+   "id": "2512",
+   "name": "George Sanderson",
+   "email": "george@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "9"
+   ],
+   "role_ids": [
+    "8",
+    "2452",
+    "2"
+   ]
+  },
+  {
+   "id": "45",
+   "name": "Toby Sexton",
+   "email": "toby@rittmananalytics.com",
+   "disabled": true,
+   "group_ids": [
+    "1",
+    "2",
+    "9",
+    "11",
+    "12",
+    "17"
+   ],
+   "role_ids": [
+    "3",
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "9"
+   ]
+  },
+  {
+   "id": "2011",
+   "name": "Bailey Sharp-Ledger",
+   "email": "bailey@rittmananalytics.com",
+   "disabled": true,
+   "group_ids": [
+    "1",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "3"
+   ]
+  },
+  {
+   "id": "2503",
+   "name": "Saverro Suseno",
+   "email": "sav@rittmananalytics.com",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "2",
+    "9",
+    "17"
+   ],
+   "role_ids": [
+    "3",
+    "8",
+    "2452",
+    "2365",
+    "2",
+    "2459"
+   ]
+  },
+  {
+   "id": "2521",
+   "name": "Looker CI User 0BhB",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "20"
+   ],
+   "role_ids": [
+    "2474"
+   ]
+  },
+  {
+   "id": "2519",
+   "name": "Looker CI User fikL",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "20"
+   ],
+   "role_ids": [
+    "2474"
+   ]
+  },
+  {
+   "id": "2516",
+   "name": "Looker CI User fiVJ",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "20"
+   ],
+   "role_ids": [
+    "2474"
+   ]
+  },
+  {
+   "id": "2513",
+   "name": "Looker CI User fV4v",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "20"
+   ],
+   "role_ids": [
+    "2474"
+   ]
+  },
+  {
+   "id": "2514",
+   "name": "Looker CI User iThw",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "20"
+   ],
+   "role_ids": [
+    "2474"
+   ]
+  },
+  {
+   "id": "2517",
+   "name": "Looker CI User mccu",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "20"
+   ],
+   "role_ids": [
+    "2474"
+   ]
+  },
+  {
+   "id": "2515",
+   "name": "Looker CI User qpd7",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "20"
+   ],
+   "role_ids": [
+    "2474"
+   ]
+  },
+  {
+   "id": "2518",
+   "name": "Looker CI User sxP9",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "20"
+   ],
+   "role_ids": [
+    "2474"
+   ]
+  },
+  {
+   "id": "2520",
+   "name": "Looker CI User Wk93",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "20"
+   ],
+   "role_ids": [
+    "2474"
+   ]
+  },
+  {
+   "id": "2522",
+   "name": "Looker CI User Wy9b",
+   "email": "",
+   "disabled": false,
+   "group_ids": [
+    "1",
+    "20"
+   ],
+   "role_ids": [
+    "2474"
+   ]
+  }
+ ]
+}

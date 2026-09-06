@@ -1,0 +1,318 @@
+{
+  "identity": "looker:analytics:view:engagement_burn_up_fact",
+  "name": "engagement_burn_up_fact",
+  "schema": "analytics",
+  "table_name": "engagement_burn_up_fact",
+  "emitted": true,
+  "class": "mechanical",
+  "unsupported": [],
+  "source": {
+    "file": "views/engagement_burn_up_fact.view.lkml",
+    "refined_by": []
+  },
+  "fields": [
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:engagement_burn_up_pk",
+      "name": "engagement_burn_up_pk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_burn_up_pk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "primary_key": true,
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:engagement_fk",
+      "name": "engagement_fk",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_fk",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "hidden": true
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:engagement_code",
+      "name": "engagement_code",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_code",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Engagement Code"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:company_name",
+      "name": "company_name",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.company_name",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Company Name"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:engagement_name",
+      "name": "engagement_name",
+      "kind": "dimension",
+      "lookml_type": "string",
+      "source_sql": "${TABLE}.engagement_name",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Engagement Name"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:week_number",
+      "name": "week_number",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.week_number",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Week Number",
+        "description": "Week 1 is the week the engagement started."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:total_weeks",
+      "name": "total_weeks",
+      "kind": "dimension",
+      "lookml_type": "number",
+      "source_sql": "${TABLE}.total_weeks",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Weeks In Window"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:is_actual_week",
+      "name": "is_actual_week",
+      "kind": "dimension",
+      "lookml_type": "yesno",
+      "source_sql": "${TABLE}.is_actual_week",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "label": "Is Actual Week",
+        "description": "Yes up to the current week. No for weeks still to come, which carry the projection only."
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:week_start",
+      "name": "week_start",
+      "kind": "dimension_group",
+      "lookml_type": "time",
+      "source_sql": "${TABLE}.week_start_date",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${week_start[date]}",
+        "timeframes": [
+          "date",
+          "week",
+          "month",
+          "quarter",
+          "year"
+        ],
+        "convert_tz": false,
+        "label": "Week"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:hours_in_week",
+      "name": "hours_in_week",
+      "kind": "measure",
+      "lookml_type": "sum",
+      "source_sql": "${TABLE}.hours_in_week",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${hours_in_week}",
+        "aggregate_type": "sum",
+        "label": "Hours In Week",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:cumulative_hours",
+      "name": "cumulative_hours",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${TABLE}.cumulative_hours",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${cumulative_hours}",
+        "aggregate_type": "max",
+        "label": "Hours Billed, Cumulative",
+        "description": "Stops at the current week, so the actual line ends where the data ends.",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:projected_cumulative_hours",
+      "name": "projected_cumulative_hours",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${TABLE}.projected_cumulative_hours",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${projected_cumulative_hours}",
+        "aggregate_type": "max",
+        "label": "Projected At Current Pace",
+        "description": "Picks up from the current week, so the actual and projected lines meet.",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:budget_line_hours",
+      "name": "budget_line_hours",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${TABLE}.budget_line_hours",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${budget_line_hours}",
+        "aggregate_type": "max",
+        "label": "Budget, Straight Line",
+        "description": "The engagement's budget spread evenly across the weeks in the window.",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:budget_hours",
+      "name": "budget_hours",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${TABLE}.budget_hours",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${budget_hours}",
+        "aggregate_type": "max",
+        "label": "Budget Hours",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    },
+    {
+      "identity": "looker:analytics:field:engagement_burn_up_fact:weekly_pace_hours",
+      "name": "weekly_pace_hours",
+      "kind": "measure",
+      "lookml_type": "max",
+      "source_sql": "${TABLE}.weekly_pace_hours",
+      "references": [],
+      "class": "mechanical",
+      "emitted": true,
+      "omni": {
+        "sql": "${weekly_pace_hours}",
+        "aggregate_type": "max",
+        "label": "Weekly Pace (hrs)",
+        "format": "number_1"
+      },
+      "unsupported": [],
+      "source": {
+        "file": "views/engagement_burn_up_fact.view.lkml",
+        "view": "engagement_burn_up_fact"
+      }
+    }
+  ]
+}
