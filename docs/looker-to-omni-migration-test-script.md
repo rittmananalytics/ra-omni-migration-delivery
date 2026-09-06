@@ -81,9 +81,11 @@ export LOOKERSDK_CLIENT_SECRET="<client secret>"
 4. Verify before starting:
 
 ```bash
-pip install looker-sdk
+python3 -m pip install looker-sdk
 python3 -c "import looker_sdk; sdk = looker_sdk.init40(); print(sdk.me().display_name)"
 ```
+
+(There is no bare `pip` on a default macOS shell; `python3 -m pip` always targets the same Python the check runs with. On an `externally-managed-environment` error, add `--user`. The package is only needed for this verification; the migration itself does not depend on it.)
 
 Your display name printing back means the credentials work. (If your setup uses the Looker MCP server instead, connect it via `claude mcp` and skip the env vars; the audit spec accepts either.)
 
